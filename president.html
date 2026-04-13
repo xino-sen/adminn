@@ -315,15 +315,15 @@
             </div>
 
             <form id="memoForm" class="space-y-4">
-                <input type="text" id="mTitle" placeholder="Memo Subject / Title"
+                <input type="text" id="mTitle" placeholder="Department/Subject Title..."
                     class="w-full p-4 bg-white/5 rounded-2xl text-sm border-none focus:ring-2 focus:ring-indigo-500 placeholder:text-slate-500 font-medium text-white" required>
 
-                <textarea id="mContent" placeholder="Official announcement text..."
+                <textarea id="mContent" placeholder="Message"
                     class="w-full p-4 bg-white/5 rounded-2xl text-sm border-none focus:ring-2 focus:ring-indigo-500 h-24 placeholder:text-slate-500 font-medium text-white" required></textarea>
 
                 <button type="submit"
                     class="w-full bg-indigo-600 text-white py-4 rounded-2xl text-[10px] font-black uppercase tracking-[0.2em] shadow-xl hover:bg-indigo-500 transition-all">
-                    Sign & Release Directive
+                    Send
                 </button>
             </form>
         </div>
@@ -346,33 +346,28 @@
 
 </main>   </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
     <script>
-        // Sync Logic
-        function syncExecutiveData() {
-            const reg = JSON.parse(localStorage.getItem('smit_registrar')) || [];
-            const cash = JSON.parse(localStorage.getItem('smit_payments')) || [];
-            const clinic = JSON.parse(localStorage.getItem('smit_clinic')) || [];
+        (function() {
+            // Palitan ito ng iyong Public Key mula sa EmailJS Dashboard
+            emailjs.init("2TLkXwiSBlVPE76cy"); 
+        })();
 
-            document.getElementById('stat-population').innerText = reg.length;
-            document.getElementById('stat-clinic').innerText = clinic.length;
-
-            let revenue = 0;
-            cash.forEach(item => revenue += parseFloat(item.amount.replace(',', '')) || 0);
-            document.getElementById('stat-revenue').innerText = '₱ ' + revenue.toLocaleString(undefined, {minimumFractionDigits: 2});
-            
-            document.getElementById('currentDate').innerText = new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-        }
-
-        // Memo Persistence
+        // Memo Logic
         let memos = JSON.parse(localStorage.getItem('smit_memos')) || [];
 
         function renderMemos() {
             const container = document.getElementById('memoDisplay');
+            if(!container) return; // Iwas error kung wala ang container sa page
+            
             container.innerHTML = '';
             memos.slice().reverse().forEach((m, i) => {
                 container.innerHTML += `
                     <div class="glass-card p-6 rounded-[2rem] border-l-4 border-l-indigo-500 relative group">
-                        <button onclick="deleteMemo(${memos.length - 1 - i})" class="absolute top-4 right-4 text-slate-300 hover:text-rose-500 opacity-0 group-hover:opacity-100 transition-all"><i class="fas fa-times-circle"></i></button>
+                        <button onclick="deleteMemo(${memos.length - 1 - i})" class="absolute top-4 right-4 text-slate-300 hover:text-rose-500 opacity-0 group-hover:opacity-100 transition-all">
+                            <i class="fas fa-times-circle"></i>
+                        </button>
                         <h5 class="text-xs font-black text-slate-800 uppercase mb-2">${m.title}</h5>
                         <p class="text-[11px] text-slate-500 leading-relaxed mb-4">${m.content}</p>
                         <span class="text-[9px] font-bold text-slate-400 uppercase">${m.date}</span>
@@ -382,24 +377,61 @@
             localStorage.setItem('smit_memos', JSON.stringify(memos));
         }
 
-        document.getElementById('memoForm').onsubmit = (e) => {
+        // Form Submission Logic
+        document.getElementById('memoForm').onsubmit = function(e) {
             e.preventDefault();
-            const data = {
+
+            const btn = e.target.querySelector('button');
+            const originalText = btn.innerText;
+            
+            // UI Feedback: Loading state
+            btn.innerText = "PROCESSING...";
+            btn.disabled = true;
+
+            const memoData = {
                 title: document.getElementById('mTitle').value,
                 content: document.getElementById('mContent').value,
-                date: new Date().toLocaleDateString()
+                date: new Date().toLocaleDateString('en-US', { 
+                    weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' 
+                })
             };
-            memos.push(data);
-            renderMemos();
-            e.target.reset();
+
+            // Ipadala sa EmailJS
+            // Siguraduhin na 'service_u8h01jm' at 'template_y0k4ttd' ay tama base sa Dashboard mo
+            emailjs.send('service_u8h01jm', 'template_oyy3p8c', {
+                subject: "OFFICIAL DIRECTIVE: " + memoData.title,
+                title: memoData.title,
+                message: memoData.content,
+                date: memoData.date
+            })
+            .then(() => {
+                // Success: I-save sa local archive at i-render
+                memos.push(memoData);
+                renderMemos();
+                
+                // Success Feedback
+                alert("Directive dispatched and archived.");
+                e.target.reset();
+            })
+            .catch((err) => {
+                console.error("EmailJS Error:", err);
+                alert("System Error: Could not dispatch email.");
+            })
+            .finally(() => {
+                // Ibalik ang button state
+                btn.innerText = originalText;
+                btn.disabled = false;
+            });
         };
 
         function deleteMemo(index) {
-            memos.splice(index, 1);
-            renderMemos();
+            if(confirm("Delete this directive record?")) {
+                memos.splice(index, 1);
+                renderMemos();
+            }
         }
 
-        syncExecutiveData();
+        // Initial load
         renderMemos();
     </script>
 </body>
