@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/jpg" href="image/smit.jpg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>HR Directory | SMIT INC.</title>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        
+        /* Base style for all links */
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            color: #cbd5e1;
+            border-radius: 0.75rem;
+            transition: all 200ms;
+            text-decoration: none;
+            font-size: 0.875rem;
+        }
+        
+        .nav-link:hover {
+            background-color: #1e293b;
+            color: white;
+        }
+
+        /* Icon sizing inside links */
+        .nav-link i {
+            width: 1.25rem;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        /* Active state - Indigo background */
+        .nav-link.active {
+            background-color: #4f46e5;
+            color: white;
+            box-shadow: 0 20px 25px -5px rgba(79, 70, 229, 0.2);
+        }
+
+        /* Section Header */
+        .nav-section-label {
+            color: #64748b;
+            font-size: 0.625rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-top: 2rem;
+            margin-bottom: 0.5rem;
+            margin-left: 0.5rem;
+            letter-spacing: 0.1em;
+        }
+
+        .program-link {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem;
+            color: #94a3b8;
+            border-radius: 0.75rem;
+            transition: all 200ms;
+        }
+        
+        .program-link:hover {
+            background-color: #1e293b;
+            color: white;
+        }
+        
+        .program-icon {
+            width: 2.25rem;
+            height: 2.25rem;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            background-color: #1e293b;
+            border: 1px solid #64748b;
+            flex-shrink: 0;
+            transition: all 200ms;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
+        .modal-active { display: flex !important; }
+    </style>
+</head>
+<body class="bg-slate-50 flex h-screen overflow-hidden text-slate-900">
+
+    <aside class="w-72 bg-slate-900 text-white flex flex-col h-screen shadow-2xl overflow-hidden">
+        <div class="p-8 text-center border-b border-slate-800/50 flex-shrink-0">
+            <div class="mb-4 relative inline-block">
+                <div class="absolute inset-0 bg-indigo-500 blur-lg opacity-20 rounded-full"></div>
+                <img src="image/smit.jpg" alt="University Logo" class="w-20 h-20 mx-auto object-contain rounded-full border-4 border-slate-800 shadow-xl relative z-10">
+            </div>
+            <h1 class="text-sm font-black tracking-tighter text-white uppercase leading-tight">
+                Southern Mindanao Institute <br> of Technology INC.
+            </h1>
+        </div>
+        
+        <nav class="flex-1 px-4 py-6 space-y-1 overflow-y-auto custom-scrollbar">
+            <div class="nav-section-label">Administration</div>
+            <a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i><span>Dashboard</span></a>
+            <a href="library.html" class="nav-link"><i class="fa-solid fa-book-open"></i><span>Library</span></a>
+            <a href="faculty.html" class="nav-link"><i class="fa-solid fa-chalkboard-teacher"></i><span>Faculty</span></a>
+            <a href="clinic.html" class="nav-link"><i class="fa-solid fa-house-medical"></i><span>Clinic</span></a>
+            <a href="cashier.html" class="nav-link"><i class="fa-solid fa-cash-register"></i><span>Cashier</span></a>
+            <a href="registrar.html" class="nav-link"><i class="fa-solid fa-file-signature"></i><span>Registrar Office</span></a>
+            <a href="president.html" class="nav-link"><i class="fa-solid fa-building-columns"></i><span>President's Office</span></a>
+            <a href="HR.html" class="nav-link active"><i class="fa-solid fa-users-gear"></i><span>HR</span></a>
+            <a href="facilities.html" class="nav-link"><i class="fa-solid fa-school"></i><span>Facilities</span></a>
+
+            <div onclick="togglePrograms()" class="flex items-center justify-between px-2 cursor-pointer group mt-8 mb-2">
+                <div id="programsContainer" class="space-y-1 transition-all duration-300 overflow-hidden">
+
+
+                <div id="programsContainer" class="space-y-1 transition-all duration-300 overflow-hidden">
+                    
+                    <a href="dept/bsit.html" class="program-link group">
+                        <div class="flex items-center space-x-3">
+                            <div class="program-icon border-slate-700 group-hover:border-indigo-500">
+                                <img src="image/bsit.jpg" alt="BSIT" class="w-full h-full object-cover">
+                            </div>
+                            <span class="text-xs font-medium">BS in Information Technology</span>
+                        </div>
+                    </a>
+
+                    <a href="dept/bshm.html" class="program-link group">
+                        <div class="flex items-center space-x-3">
+                            <div class="program-icon border-slate-700 group-hover:border-orange-500">
+                                <img src="image/bshm.png" alt="BSHM" class="w-full h-full object-cover">
+                            </div>
+                            <span class="text-xs font-medium">BS in Hospitality Management</span>
+                        </div>
+                    </a>
+
+                    <a href="dept/bsmidwife.html" class="program-link group">
+                        <div class="flex items-center space-x-3">
+                            <div class="program-icon border-slate-700 group-hover:border-pink-500">
+                                <img src="image/mid.png" alt="BSMID" class="w-full h-full object-cover">
+                            </div>
+                            <span class="text-xs font-medium">BS Midwifery</span>
+                        </div>
+                    </a>
+
+                    <a href="dept/bscrim.html" class="program-link group">
+                        <div class="flex items-center space-x-3">
+                            <div class="program-icon border-slate-700 group-hover:border-blue-500">
+                                <img src="image/bscrim.jpg" alt="Criminology" class="w-full h-full object-cover">
+                            </div>
+                            <span class="text-xs font-medium">BS in Criminology</span>
+                        </div>
+                    </a>
+
+                    <a href="dept/bsad.html" class="program-link group">
+                        <div class="flex items-center justify-between w-full">
+                            <div class="flex items-center space-x-3">
+                                <div class="program-icon border-slate-700 group-hover:border-green-500">
+                                    <img src="image/bsba.jpg" alt="BSBA" class="w-full h-full object-cover">
+                                </div>
+                                <span class="text-xs font-medium">BS in Business Administration</span>
+                            </div>
+                            <span class="text-[10px] bg-slate-800 px-2 py-1 rounded text-slate-500 group-hover:bg-indigo-600 group-hover:text-white transition-colors">450</span>
+                        </div>
+                    </a>
+                    <a href="dept/education.html" class="flex items-center justify-between p-2 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl group transition-all">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-9 h-9 rounded-lg overflow-hidden bg-slate-800 border border-slate-700 group-hover:border-red-500 transition-all">
+                                <img src="image/bsed.jpg" alt="Education" class="w-full h-full object-cover">
+                            </div>
+                            <span class="text-xs font-medium">BS in Education</span>
+                        </div>
+                    </a>
+                </div>
+        </nav>
+    </aside>
+
+    <div class="flex-1 flex flex-col overflow-hidden">
+        <header class="h-20 bg-white border-b flex items-center justify-between px-10 shadow-sm">
+            <div class="relative">
+                <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-slate-300"></i>
+                <input type="text" id="hrSearch" placeholder="Search personnel..." 
+                       class="w-96 pl-12 pr-6 py-2 bg-slate-100 rounded-xl text-sm border-none focus:ring-2 focus:ring-indigo-500 transition-all">
+            </div>
+            <button onclick="toggleModal()" class="bg-indigo-600 text-white px-6 py-2 rounded-xl text-xs font-black uppercase hover:bg-indigo-700 shadow-lg transition-all">
+                <i class="fas fa-user-plus mr-2"></i>Add Personnel
+            </button>
+        </header>
+
+ <main class="flex-1 overflow-y-auto p-10 custom-scrollbar">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm border-l-4 border-l-indigo-500">
+            <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Employee Relations</p>
+            <h3 class="text-lg font-black text-slate-800 mt-2">Staff Development</h3>
+            <p class="text-xs text-slate-400 mt-1">Managing professional growth, training programs, and faculty welfare.</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm border-l-4 border-l-emerald-500">
+            <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Talent Acquisition</p>
+            <h3 class="text-lg font-black text-slate-800 mt-2">Recruitment Hub</h3>
+            <p class="text-xs text-slate-400 mt-1">Processing new hires, onboarding, and departmental placements.</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm border-l-4 border-l-amber-500">
+            <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Compliance</p>
+            <h3 class="text-lg font-black text-slate-800 mt-2">Records & Policy</h3>
+            <p class="text-xs text-slate-400 mt-1">Maintaining personnel files, 201 folders, and institutional standards.</p>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-12">
+        <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 bg-indigo-50 rounded-xl flex items-center justify-center text-indigo-600">
+                    <i class="fa-solid fa-id-card"></i>
+                </div>
+                <h4 class="text-sm font-black text-slate-800 uppercase italic">Personnel Services</h4>
+            </div>
+            <ul class="space-y-2 text-xs text-slate-600">
+                <li>✔ Management of 201 Personnel Files</li>
+                <li>✔ Issuance of Certificates of Employment</li>
+                <li>✔ Employee Attendance and Leave Tracking</li>
+                <li>✔ Performance Evaluation Coordination</li>
+            </ul>
+        </div>
+
+        <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 bg-emerald-50 rounded-xl flex items-center justify-center text-emerald-600">
+                    <i class="fa-solid fa-hand-holding-dollar"></i>
+                </div>
+                <h4 class="text-sm font-black text-slate-800 uppercase italic">Benefits Admin</h4>
+            </div>
+            <ul class="space-y-2 text-xs text-slate-600">
+                <li>✔ Statutory Benefits Processing (SSS, PhilHealth, Pag-IBIG)</li>
+                <li>✔ Salary Adjustment and Promotion Documentation</li>
+                <li>✔ Health Card and Insurance Management</li>
+                <li>✔ Retirement and Separation Processing</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm border-l-4 border-l-slate-800">
+            <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Active Directory</p>
+            <h3 id="employeeCount" class="text-3xl font-black text-slate-800 mt-1">0</h3>
+        </div>
+        <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm border-l-4 border-l-emerald-500">
+            <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest">HR System Status</p>
+            <h3 class="text-xl font-black text-emerald-500 mt-2 uppercase italic">Active</h3>
+        </div>
+    </div>
+
+    <div class="bg-white rounded-[2.5rem] border border-slate-100 shadow-sm overflow-hidden">
+        <div class="p-8 border-b border-slate-50 flex justify-between items-center">
+            <div>
+                <h4 class="text-sm font-black text-slate-800 uppercase italic">Personnel Masterlist</h4>
+                <p class="text-[10px] text-slate-400 font-bold uppercase mt-1">Institutional Workforce Directory</p>
+            </div>
+            <select id="deptFilter" class="text-[10px] font-bold px-4 py-2 bg-slate-100 rounded-xl border-none outline-none focus:ring-2 focus:ring-indigo-500">
+                <option value="all">All Departments</option>
+                <option value="BSIT">Information Technology</option>
+                <option value="BSCRIM">Criminology</option>
+                <option value="BSED">Education</option>
+                <option value="ADMIN">Administrative</option>
+            </select>
+        </div>
+        <div class="overflow-x-auto">
+            <table class="w-full text-left">
+                <thead>
+                    <tr class="bg-slate-50/50">
+                        <th class="p-6 text-[10px] font-black text-slate-400 uppercase tracking-widest">Employee Info</th>
+                        <th class="p-6 text-[10px] font-black text-slate-400 uppercase tracking-widest">Contact Details</th>
+                        <th class="p-6 text-[10px] font-black text-slate-400 uppercase tracking-widest">Designation</th>
+                        <th class="p-6 text-[10px] font-black text-slate-400 uppercase tracking-widest text-center">Management</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-50" id="hrTableBody">
+                    </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+    </div>
+
+    <div id="hrModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+        <div class="bg-white rounded-[2.5rem] w-full max-w-md p-8 shadow-2xl">
+            <h3 id="modalTitle" class="text-xl font-black text-slate-800 uppercase italic mb-6">New Personnel</h3>
+            <form id="hrForm" class="space-y-4">
+                <input type="text" id="empName" placeholder="Full Name" class="w-full p-3 bg-slate-100 rounded-xl text-sm border-none focus:ring-2 focus:ring-indigo-500" required>
+                
+                <div class="grid grid-cols-2 gap-4">
+                    <input type="text" id="empID" placeholder="System ID" class="p-3 bg-slate-100 rounded-xl text-sm border-none focus:ring-2 focus:ring-indigo-500" required>
+                    <select id="empGender" class="p-3 bg-slate-100 rounded-xl text-sm border-none focus:ring-2 focus:ring-indigo-500">
+                        <option value="MALE">MALE</option>
+                        <option value="FEMALE">FEMALE</option>
+                    </select>
+                </div>
+
+                <input type="email" id="empEmail" placeholder="Email Address" class="w-full p-3 bg-slate-100 rounded-xl text-sm border-none focus:ring-2 focus:ring-indigo-500" required>
+                
+                <div class="grid grid-cols-2 gap-4">
+                    <input type="text" id="empPhone" placeholder="Phone Number" class="p-3 bg-slate-100 rounded-xl text-sm border-none focus:ring-2 focus:ring-indigo-500" required>
+                    <select id="empPosition" class="p-3 bg-slate-100 rounded-xl text-sm border-none focus:ring-2 focus:ring-indigo-500">
+                        <option value="BSIT">BSIT</option>
+                        <option value="BSCRIM">BSCRIM</option>
+                        <option value="BSED">BSED</option>
+                        <option value="ADMIN">ADMIN</option>
+                    </select>
+                </div>
+
+                <div class="flex gap-3 pt-4">
+                    <button type="button" onclick="toggleModal()" class="flex-1 py-3 text-slate-400 font-bold uppercase text-[10px]">Cancel</button>
+                    <button type="submit" id="submitBtn" class="flex-1 bg-indigo-600 text-white py-3 rounded-xl font-black uppercase text-[10px] shadow-lg">Save Personnel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+   <script>
+    const tableBody = document.getElementById('hrTableBody');
+    const form = document.getElementById('hrForm');
+    let editMode = false;
+    let currentEditId = null;
+
+    document.addEventListener('DOMContentLoaded', () => {
+        refreshDisplay();
+    });
+
+    function refreshDisplay() {
+        tableBody.innerHTML = '';
+        const saved = JSON.parse(localStorage.getItem('smit_hr_data')) || [];
+        saved.forEach(item => renderRow(item));
+        updateStats();
+    }
+
+    function toggleModal() {
+        const modal = document.getElementById('hrModal');
+        modal.classList.toggle('hidden');
+        modal.classList.toggle('modal-active');
+        if(modal.classList.contains('hidden')) {
+            form.reset();
+            editMode = false;
+            currentEditId = null;
+            document.getElementById('modalTitle').innerText = "New Personnel";
+            document.getElementById('submitBtn').innerText = "Save Personnel";
+        }
+    }
+
+    function updateStats() {
+        const count = document.querySelectorAll('.emp-row').length;
+        document.getElementById('employeeCount').innerText = count;
+    }
+
+    function saveToStorage() {
+        const employees = [];
+        document.querySelectorAll('.emp-row').forEach(tr => {
+            employees.push({
+                name: tr.querySelector('.e-name').innerText,
+                id: tr.querySelector('.e-id').innerText,
+                email: tr.querySelector('.e-email').innerText,
+                phone: tr.querySelector('.e-phone').innerText,
+                position: tr.querySelector('.e-pos').innerText,
+                gender: tr.querySelector('.e-gender').innerText
+            });
+        });
+        localStorage.setItem('smit_hr_data', JSON.stringify(employees));
+    }
+
+    function syncToFaculty(data, action = 'save') {
+        const academicDepts = ['BSIT', 'BSCRIM', 'BSED'];
+        if (!academicDepts.includes(data.position)) return;
+
+        let faculty = JSON.parse(localStorage.getItem('smit_faculty')) || [];
+        if (action === 'delete') {
+            faculty = faculty.filter(f => f.id !== data.id);
+        } else {
+            const index = faculty.findIndex(f => f.id === data.id || f.id === currentEditId);
+            const facultyItem = {
+                name: data.name,
+                id: data.id,
+                gender: data.gender === 'MALE' ? 'Male' : 'Female',
+                dept: data.position,
+                phone: data.phone,
+                email: data.email
+            };
+            if (index > -1) faculty[index] = facultyItem;
+            else faculty.push(facultyItem);
+        }
+        localStorage.setItem('smit_faculty', JSON.stringify(faculty));
+    }
+
+    function renderRow(item) {
+        const rowHTML = `
+            <tr class="emp-row hover:bg-slate-50/50 transition-colors" data-id="${item.id}">
+                <td class="p-4">
+                    <p class="text-xs font-bold text-slate-800 e-name">${item.name}</p>
+                    <p class="text-[9px] text-indigo-500 font-black uppercase e-id">${item.id}</p>
+                </td>
+                <td class="p-4">
+                    <p class="text-[10px] text-slate-600 font-medium e-email">${item.email}</p>
+                    <p class="text-[9px] text-slate-400 font-bold e-phone">${item.phone}</p>
+                </td>
+                <td class="p-4">
+                    <span class="px-3 py-1 bg-slate-100 text-slate-600 text-[9px] font-black rounded-full uppercase e-pos">${item.position}</span>
+                    <span class="hidden e-gender">${item.gender}</span>
+                </td>
+                <td class="p-4 text-center flex justify-center gap-3">
+                    <button onclick="prepareEdit(this)" class="text-slate-300 hover:text-indigo-600 transition-colors">
+                        <i class="fa-solid fa-user-pen text-xs"></i>
+                    </button>
+                    <button onclick="removeEmp(this)" class="text-slate-300 hover:text-rose-500 transition-colors">
+                        <i class="fa-solid fa-user-minus text-xs"></i>
+                    </button>
+                </td>
+            </tr>`;
+        tableBody.insertAdjacentHTML('afterbegin', rowHTML);
+    }
+
+    function prepareEdit(btn) {
+        const row = btn.closest('.emp-row');
+        editMode = true;
+        currentEditId = row.getAttribute('data-id');
+
+        document.getElementById('empName').value = row.querySelector('.e-name').innerText;
+        document.getElementById('empID').value = row.querySelector('.e-id').innerText;
+        document.getElementById('empEmail').value = row.querySelector('.e-email').innerText;
+        document.getElementById('empPhone').value = row.querySelector('.e-phone').innerText;
+        document.getElementById('empPosition').value = row.querySelector('.e-pos').innerText;
+        document.getElementById('empGender').value = row.querySelector('.e-gender').innerText;
+
+        document.getElementById('modalTitle').innerText = "Update Personnel";
+        document.getElementById('submitBtn').innerText = "Update Profile";
+        toggleModal();
+    }
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const newData = {
+            name: document.getElementById('empName').value,
+            id: document.getElementById('empID').value,
+            email: document.getElementById('empEmail').value,
+            phone: document.getElementById('empPhone').value,
+            position: document.getElementById('empPosition').value,
+            gender: document.getElementById('empGender').value
+        };
+
+        if(editMode) {
+            const oldRow = document.querySelector(`[data-id="${currentEditId}"]`);
+            if(oldRow) oldRow.remove();
+        }
+
+        renderRow(newData);
+        saveToStorage();
+        syncToFaculty(newData, 'save');
+        toggleModal();
+        updateStats();
+    });
+
+    function removeEmp(btn) {
+        const row = btn.closest('tr');
+        const id = row.getAttribute('data-id');
+        if(confirm('Archive this personnel record?')) {
+            syncToFaculty({id: id, position: row.querySelector('.e-pos').innerText}, 'delete');
+            row.remove();
+            saveToStorage();
+            updateStats();
+        }
+    }
+    // ... [Filters logic] ...
+</script>
+</body>
+</html>

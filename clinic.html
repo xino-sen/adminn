@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/jpg" href="image/smit.jpg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>Clinic  - SMIT</title>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        /* Base style for all links */
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            color: #cbd5e1;
+            border-radius: 0.75rem;
+            transition: all 200ms;
+            text-decoration: none;
+            font-size: 0.875rem;
+        }
+        
+        .nav-link:hover {
+            background-color: #1e293b;
+            color: white;
+        }
+
+        /* Icon sizing inside links */
+        .nav-link i {
+            width: 1.25rem;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        /* Active state - Indigo background */
+        .nav-link.active {
+            background-color: #4f46e5;
+            color: white;
+            box-shadow: 0 20px 25px -5px rgba(79, 70, 229, 0.2);
+        }
+
+        /* Section Header */
+        .nav-section-label {
+            color: #64748b;
+            font-size: 0.625rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-top: 2rem;
+            margin-bottom: 0.5rem;
+            margin-left: 0.5rem;
+            letter-spacing: 0.1em;
+        }
+
+        .program-link {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem;
+            color: #94a3b8;
+            border-radius: 0.75rem;
+            transition: all 200ms;
+        }
+        
+        .program-link:hover {
+            background-color: #1e293b;
+            color: white;
+        }
+        
+        .program-icon {
+            width: 2.25rem;
+            height: 2.25rem;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            background-color: #1e293b;
+            border: 1px solid #64748b;
+            flex-shrink: 0;
+            transition: all 200ms;
+        }
+
+        /* Rotate the chevron when closed */
+        .chevron-rotate {
+            transform: rotate(-90deg);
+        }
+
+        /* Hidden state */
+        .programs-hidden {
+            max-height: 0;
+            opacity: 0;
+            margin-top: 0;
+            pointer-events: none;
+        }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
+        .modal-active { display: flex !important; }
+    </style>
+</head>
+<body class="bg-gray-50 flex h-screen overflow-hidden">
+
+    <aside class="w-72 bg-reds-900 text-white flex flex-col h-screen shadow-2xl overflow-hidden">
+        <div class="p-8 text-center border-b border-slate-800/50 flex-shrink-0">
+            <div class="mb-4 relative inline-block">
+                <div class="absolute inset-0 bg-indigo-500 blur-lg opacity-20 rounded-full"></div>
+                <img src="image/smit.jpg" alt="University Logo" 
+                    class="w-20 h-20 mx-auto object-contain rounded-full border-4 border-slate-800 shadow-xl relative z-10">
+            </div>
+            <h1 class="text-sm font-black tracking-tighter text-white uppercase leading-tight">
+                Southern Mindanao Institute <br> of Technology INC.
+            </h1>
+        </div>
+        
+        <nav class="flex-1 px-4 py-6 space-y-1 overflow-y-auto custom-scrollbar">
+
+            <div class="nav-section-label">Administration</div>
+            
+            <a href="index.html" class="nav-link">
+                <i class="fa-solid fa-house"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="library.html" class="nav-link">
+                <i class="fa-solid fa-book-open"></i>
+                <span>Library</span>
+            </a>
+
+            <a href="faculty.html" class="nav-link">
+                <i class="fa-solid fa-chalkboard-teacher"></i>
+                <span>Faculty</span>
+            </a>
+
+            <a href="clinic.html" class="nav-link active">
+                <i class="fa-solid fa-house-medical"></i>
+                <span>Clinic</span>
+            </a>
+
+            <a href="cashier.html" class="nav-link">
+                <i class="fa-solid fa-cash-register"></i>
+                <span>Cashier</span>
+            </a>
+
+            <a href="registrar.html" class="nav-link">
+                <i class="fa-solid fa-file-signature"></i>
+                <span>Registrar Office</span>
+            </a>
+
+            <a href="president.html" class="nav-link">
+                <i class="fa-solid fa-building-columns"></i>
+                <span>President's Office</span>
+            </a>
+
+            <a href="HR.html" class="nav-link">
+                <i class="fa-solid fa-users-gear"></i>
+                <span>HR</span>
+            </a>
+
+            <a href="facilities.html" class="nav-link">
+                <i class="fa-solid fa-school"></i>
+                <span>Facilities</span>
+            </a>
+
+            <div onclick="togglePrograms()" class="flex items-center justify-between px-2 cursor-pointer group mt-8 mb-2">
+                <div id="programsContainer" class="space-y-1 transition-all duration-300 overflow-hidden">
+                
+                <a href="dept/bsit.html" class="program-link group">
+                    <div class="flex items-center space-x-3">
+                        <div class="program-icon border-slate-700 group-hover:border-indigo-500">
+                            <img src="image/bsit.jpg" alt="BSIT" class="w-full h-full object-cover">
+                        </div>
+                        <span class="text-xs font-medium">BS in Information Technology</span>
+                    </div>
+                </a>
+
+                <a href="dept/bshm.html" class="program-link group">
+                    <div class="flex items-center space-x-3">
+                        <div class="program-icon border-slate-700 group-hover:border-orange-500">
+                            <img src="image/bshm.png" alt="BSHM" class="w-full h-full object-cover">
+                        </div>
+                        <span class="text-xs font-medium">BS in Hospitality Management</span>
+                    </div>
+                </a>
+
+                <a href="dept/bsmidwife.html" class="program-link group">
+                    <div class="flex items-center space-x-3">
+                        <div class="program-icon border-slate-700 group-hover:border-pink-500">
+                            <img src="image/mid.png" alt="BSMID" class="w-full h-full object-cover">
+                        </div>
+                        <span class="text-xs font-medium">BS Midwifery</span>
+                    </div>
+                </a>
+
+                <a href="dept/bscrim.html" class="program-link group">
+                    <div class="flex items-center space-x-3">
+                        <div class="program-icon border-slate-700 group-hover:border-blue-500">
+                            <img src="image/bscrim.jpg" alt="Criminology" class="w-full h-full object-cover">
+                        </div>
+                        <span class="text-xs font-medium">BS in Criminology</span>
+                    </div>
+                </a>
+
+                <a href="dept/bsad.html" class="program-link group">
+                    <div class="flex items-center justify-between w-full">
+                        <div class="flex items-center space-x-3">
+                            <div class="program-icon border-slate-700 group-hover:border-green-500">
+                                <img src="image/bsba.jpg" alt="BSBA" class="w-full h-full object-cover">
+                            </div>
+                            <span class="text-xs font-medium">BS in Business Administration</span>
+                        </div>
+                        <span class="text-[10px] bg-slate-800 px-2 py-1 rounded text-slate-500 group-hover:bg-indigo-600 group-hover:text-white transition-colors">450</span>
+                    </div>
+                </a>
+                <a href="dept/education.html" class="flex items-center justify-between p-2 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl group transition-all">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-9 h-9 rounded-lg overflow-hidden bg-slate-800 border border-slate-700 group-hover:border-red-500 transition-all">
+                                <img src="image/bsed.jpg" alt="Education" class="w-full h-full object-cover">
+                            </div>
+                            <span class="text-xs font-medium">BS in Education</span>
+                        </div>
+                    </a>
+            </div>
+        </nav>
+    </aside>
+
+    <div class="flex-1 flex flex-col overflow-hidden">
+        <header class="h-16 bg-white border-b flex items-center justify-between px-8 shadow-sm">
+            <div class="relative">
+                <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                <input type="text" id="clinicSearch" placeholder="Search Patient Name or Diagnosis..." 
+                       class="pl-10 pr-4 py-2 bg-gray-100 rounded-xl text-sm border-none focus:ring-2 focus:ring-indigo-500 w-96 transition-all">
+            </div>
+            <button onclick="toggleModal()" class="bg-rose-600 text-white px-5 py-2 rounded-xl text-xs font-black uppercase hover:bg-rose-700 shadow-lg shadow-rose-100 transition-all">
+                <i class="fas fa-plus mr-2"></i>New Consultation
+            </button>
+        </header>
+
+<main class="flex-1 overflow-y-auto p-8 custom-scrollbar">
+
+    <!-- Clinic Services Overview -->
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+
+        <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm border-l-4 border-l-rose-500">
+            <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Consultation</p>
+            <h3 class="text-lg font-black text-slate-800 mt-2">Patient Check-Up</h3>
+            <p class="text-xs text-slate-400 mt-1">Handles student and staff medical consultations.</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm border-l-4 border-l-amber-500">
+            <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Medical Records</p>
+            <h3 class="text-lg font-black text-slate-800 mt-2">Log & Track</h3>
+            <p class="text-xs text-slate-400 mt-1">Stores patient history and visit logs.</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm border-l-4 border-l-blue-500">
+            <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Emergency Care</p>
+            <h3 class="text-lg font-black text-slate-800 mt-2">First Aid Response</h3>
+            <p class="text-xs text-slate-400 mt-1">Provides immediate treatment for urgent cases.</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm border-l-4 border-l-emerald-500">
+            <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Referrals</p>
+            <h3 class="text-lg font-black text-slate-800 mt-2">Hospital Transfer</h3>
+            <p class="text-xs text-slate-400 mt-1">Refers serious cases to partner hospitals.</p>
+        </div>
+
+    </div>
+
+    <!-- Clinic Functional Sections -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+
+        <!-- Patient Care -->
+        <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+            <h4 class="text-sm font-black text-slate-800 uppercase italic mb-4">Patient Care Services</h4>
+            <ul class="space-y-2 text-xs text-slate-600">
+                <li>✔ Medical consultations and health assessments</li>
+                <li>✔ Basic treatment and first aid services</li>
+                <li>✔ Monitoring of patient condition</li>
+                <li>✔ Issuance of medical advice</li>
+            </ul>
+        </div>
+
+        <!-- Record Management -->
+        <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+            <h4 class="text-sm font-black text-slate-800 uppercase italic mb-4">Medical Record Management</h4>
+            <ul class="space-y-2 text-xs text-slate-600">
+                <li>✔ Logging of patient visits and diagnoses</li>
+                <li>✔ Secure storage of medical history</li>
+                <li>✔ Easy retrieval of past consultations</li>
+                <li>✔ Updating patient status and outcomes</li>
+            </ul>
+        </div>
+
+        <!-- Health Monitoring -->
+        <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+            <h4 class="text-sm font-black text-slate-800 uppercase italic mb-4">Health Monitoring</h4>
+            <ul class="space-y-2 text-xs text-slate-600">
+                <li>✔ Tracks number of daily patients</li>
+                <li>✔ Identifies common illnesses</li>
+                <li>✔ Observes ongoing cases</li>
+                <li>✔ Supports preventive healthcare</li>
+            </ul>
+        </div>
+
+        <!-- Emergency & Referral -->
+        <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+            <h4 class="text-sm font-black text-slate-800 uppercase italic mb-4">Emergency & Referral</h4>
+            <ul class="space-y-2 text-xs text-slate-600">
+                <li>✔ Immediate response to emergencies</li>
+                <li>✔ First aid and stabilization</li>
+                <li>✔ Referral to hospitals if needed</li>
+                <li>✔ Documentation of critical cases</li>
+            </ul>
+        </div>
+
+    </div>
+
+</main>
+    </div>
+
+    <div id="clinicModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+        <div class="bg-white rounded-[2.5rem] w-full max-w-md p-8 shadow-2xl">
+            <h3 class="text-xl font-black text-slate-800 uppercase italic mb-6">Patient Consultation</h3>
+            <form id="clinicForm" class="space-y-4">
+                <input type="text" id="pName" placeholder="Patient Name (Last, First)" class="w-full p-3 bg-slate-100 rounded-xl text-sm border-none focus:ring-2 focus:ring-rose-500" required>
+                
+                <div class="grid grid-cols-2 gap-4">
+                    <select id="pGender" class="p-3 bg-slate-100 rounded-xl text-sm border-none focus:ring-2 focus:ring-rose-500">
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                    <select id="pType" class="p-3 bg-slate-100 rounded-xl text-sm border-none focus:ring-2 focus:ring-rose-500">
+                        <option value="Student">Student</option>
+                        <option value="Faculty">Faculty</option>
+                        <option value="Staff">Staff</option>
+                    </select>
+                </div>
+
+                <input type="text" id="pDiagnosis" placeholder="Complaint / Diagnosis" class="w-full p-3 bg-slate-100 rounded-xl text-sm border-none focus:ring-2 focus:ring-rose-500" required>
+                
+                <select id="pStatus" class="w-full p-3 bg-slate-100 rounded-xl text-sm border-none focus:ring-2 focus:ring-rose-500">
+                    <option value="Treated">Treated & Released</option>
+                    <option value="Sent Home">Sent Home</option>
+                    <option value="Referred">Referred to Hospital</option>
+                    <option value="Under Observation">Under Observation</option>
+                </select>
+
+                <div class="flex gap-3 pt-4">
+                    <button type="button" onclick="toggleModal()" class="flex-1 py-3 text-slate-400 font-bold uppercase text-[10px]">Cancel</button>
+                    <button type="submit" class="flex-1 bg-rose-600 text-white py-3 rounded-xl font-black uppercase text-[10px] shadow-lg shadow-rose-100">Log Entry</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const tableBody = document.getElementById('clinicTableBody');
+        const form = document.getElementById('clinicForm');
+
+        // LOAD DATA
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedData = JSON.parse(localStorage.getItem('smit_clinic')) || [];
+            savedData.forEach(item => renderRow(item));
+            updateStats();
+        });
+
+        function toggleModal() {
+            document.getElementById('clinicModal').classList.toggle('hidden');
+            document.getElementById('clinicModal').classList.toggle('modal-active');
+        }
+
+        function updateStats() {
+            document.getElementById('patientCount').innerText = document.querySelectorAll('.clinic-row').length;
+            document.getElementById('logCount').innerText = document.querySelectorAll('.clinic-row').length;
+        }
+
+        function saveToStorage() {
+            const clinicArray = [];
+            document.querySelectorAll('.clinic-row').forEach(tr => {
+                clinicArray.push({
+                    name: tr.querySelector('.patient-name').innerText,
+                    gender: tr.querySelector('.patient-gender').innerText,
+                    type: tr.querySelector('.patient-type').innerText,
+                    diagnosis: tr.querySelector('.diagnosis-val').innerText,
+                    status: tr.querySelector('.status-badge').innerText
+                });
+            });
+            localStorage.setItem('smit_clinic', JSON.stringify(clinicArray));
+        }
+
+        function renderRow(item) {
+            const statusColor = item.status === 'Treated' ? 'bg-emerald-50 text-emerald-600' : 
+                               item.status === 'Referred' ? 'bg-rose-50 text-rose-600' : 'bg-amber-50 text-amber-600';
+
+            const rowHTML = `
+                <tr class="clinic-row hover:bg-slate-50/50 transition-colors">
+                    <td class="p-4">
+                        <p class="text-xs font-bold text-slate-800 patient-name">${item.name}</p>
+                        <div class="flex gap-2 text-[9px] font-black uppercase text-slate-400">
+                            <span class="patient-gender">${item.gender}</span> • <span class="patient-type">${item.type}</span>
+                        </div>
+                    </td>
+                    <td class="p-4">
+                        <p class="text-xs text-slate-600 diagnosis-val">${item.diagnosis}</p>
+                    </td>
+                    <td class="p-4">
+                        <span class="status-badge px-3 py-1 ${statusColor} text-[9px] font-black rounded-full uppercase">${item.status}</span>
+                    </td>
+                    <td class="p-4 text-center">
+                        <button onclick="removeEntry(this)" class="text-slate-300 hover:text-rose-500 transition-colors">
+                            <i class="fa-solid fa-trash-can text-xs"></i>
+                        </button>
+                    </td>
+                </tr>`;
+            tableBody.insertAdjacentHTML('afterbegin', rowHTML);
+        }
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const newItem = {
+                name: document.getElementById('pName').value,
+                gender: document.getElementById('pGender').value,
+                type: document.getElementById('pType').value,
+                diagnosis: document.getElementById('pDiagnosis').value,
+                status: document.getElementById('pStatus').value
+            };
+            renderRow(newItem);
+            saveToStorage();
+            form.reset();
+            toggleModal();
+            updateStats();
+        });
+
+        function removeEntry(btn) {
+            if(confirm('Delete this medical log?')) {
+                btn.closest('tr').remove();
+                saveToStorage();
+                updateStats();
+            }
+        }
+
+        // Search Filter
+        document.getElementById('clinicSearch').addEventListener('keyup', function() {
+            const q = this.value.toLowerCase();
+            document.querySelectorAll('.clinic-row').forEach(row => {
+                row.style.display = row.innerText.toLowerCase().includes(q) ? '' : 'none';
+            });
+        });
+    </script>
+</body>
+</html>

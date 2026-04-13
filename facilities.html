@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/jpg" href="image/smit.jpg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>Facilities Hub | SMIT INC.</title>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        
+        /* Base style for all links */
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            color: #cbd5e1;
+            border-radius: 0.75rem;
+            transition: all 200ms;
+            text-decoration: none;
+            font-size: 0.875rem;
+        }
+        
+        .nav-link:hover {
+            background-color: #1e293b;
+            color: white;
+        }
+
+        /* Icon sizing inside links */
+        .nav-link i {
+            width: 1.25rem;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        /* Active state - Indigo background */
+        .nav-link.active {
+            background-color: #4f46e5;
+            color: white;
+            box-shadow: 0 20px 25px -5px rgba(79, 70, 229, 0.2);
+        }
+
+        /* Section Header */
+        .nav-section-label {
+            color: #64748b;
+            font-size: 0.625rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-top: 2rem;
+            margin-bottom: 0.5rem;
+            margin-left: 0.5rem;
+            letter-spacing: 0.1em;
+        }
+
+        .program-link {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem;
+            color: #94a3b8;
+            border-radius: 0.75rem;
+            transition: all 200ms;
+        }
+        
+        .program-link:hover {
+            background-color: #1e293b;
+            color: white;
+        }
+        
+        .program-icon {
+            width: 2.25rem;
+            height: 2.25rem;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            background-color: #1e293b;
+            border: 1px solid #64748b;
+            flex-shrink: 0;
+            transition: all 200ms;
+        }
+
+        .filter-btn {
+            padding: 10px 24px; border-radius: 12px; font-size: 13px; font-weight: 700;
+            transition: all 0.3s; background: white; color: #64748b; cursor: pointer; border: 1px solid #f1f5f9;
+        }
+        .filter-btn.active { background: #ff782d; color: white; border-color: #ff782d; }
+
+        .fac-card {
+            background: white; border-radius: 3rem; overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(0,0,0,0.02);
+        }
+        .fac-card:hover { transform: translateY(-10px); box-shadow: 0 40px 60px -15px rgba(0,0,0,0.08); }
+
+        .img-box { height: 240px; position: relative; overflow: hidden; margin: 12px; border-radius: 2.5rem; background: #f8fafc; }
+        .img-box img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .loc-badge {
+            position: absolute; top: 1.25rem; left: 1.25rem;
+            background: white; padding: 6px 14px; border-radius: 99px;
+            font-size: 10px; font-weight: 900; color: #ff782d; text-transform: uppercase;
+        }
+
+        .stat-box { background: #f8fafc; border-radius: 1.5rem; padding: 12px 20px; flex: 1; }
+        .status-dot { width: 10px; height: 10px; border-radius: 50%; }
+
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
+        .modal-active { display: flex !important; }
+    </style>
+</head>
+<body class="bg-[#fdf6f0] flex h-screen overflow-hidden">
+
+    <aside class="w-72 bg-slate-900 text-white flex flex-col h-screen shadow-2xl overflow-hidden">
+        <div class="p-8 text-center border-b border-slate-800/50 flex-shrink-0">
+            <div class="mb-4 relative inline-block">
+                <div class="absolute inset-0 bg-indigo-500 blur-lg opacity-20 rounded-full"></div>
+                <img src="image/smit.jpg" alt="University Logo" class="w-20 h-20 mx-auto object-contain rounded-full border-4 border-slate-800 shadow-xl relative z-10">
+            </div>
+            <h1 class="text-sm font-black tracking-tighter text-white uppercase leading-tight">
+                Southern Mindanao Institute <br> of Technology INC.
+            </h1>
+        </div>
+        
+        <nav class="flex-1 px-4 py-6 space-y-1 overflow-y-auto custom-scrollbar">
+            <div class="nav-section-label">Administration</div>
+            <a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i><span>Dashboard</span></a>
+            <a href="library.html" class="nav-link"><i class="fa-solid fa-book-open"></i><span>Library</span></a>
+            <a href="faculty.html" class="nav-link"><i class="fa-solid fa-chalkboard-teacher"></i><span>Faculty</span></a>
+            <a href="clinic.html" class="nav-link"><i class="fa-solid fa-house-medical"></i><span>Clinic</span></a>
+            <a href="cashier.html" class="nav-link"><i class="fa-solid fa-cash-register"></i><span>Cashier</span></a>
+            <a href="registrar.html" class="nav-link"><i class="fa-solid fa-file-signature"></i><span>Registrar Office</span></a>
+            <a href="president.html" class="nav-link"><i class="fa-solid fa-building-columns"></i><span>President's Office</span></a>
+            <a href="HR.html" class="nav-link"><i class="fa-solid fa-users-gear"></i><span>HR</span></a>
+            <a href="facilities.html" class="nav-link active"><i class="fa-solid fa-school"></i><span>Facilities</span></a>
+
+            <div onclick="togglePrograms()" class="flex items-center justify-between px-2 cursor-pointer group mt-8 mb-2">
+                <div id="programsContainer" class="space-y-1 transition-all duration-300 overflow-hidden">
+
+
+                <div id="programsContainer" class="space-y-1 transition-all duration-300 overflow-hidden">
+                    
+                    <a href="dept/bsit.html" class="program-link group">
+                        <div class="flex items-center space-x-3">
+                            <div class="program-icon border-slate-700 group-hover:border-indigo-500">
+                                <img src="image/bsit.jpg" alt="BSIT" class="w-full h-full object-cover">
+                            </div>
+                            <span class="text-xs font-medium">BS in Information Technology</span>
+                        </div>
+                    </a>
+
+                    <a href="dept/bshm.html" class="program-link group">
+                        <div class="flex items-center space-x-3">
+                            <div class="program-icon border-slate-700 group-hover:border-orange-500">
+                                <img src="image/bshm.png" alt="BSHM" class="w-full h-full object-cover">
+                            </div>
+                            <span class="text-xs font-medium">BS in Hospitality Management</span>
+                        </div>
+                    </a>
+
+                    <a href="dept/bsmidwife.html" class="program-link group">
+                        <div class="flex items-center space-x-3">
+                            <div class="program-icon border-slate-700 group-hover:border-pink-500">
+                                <img src="image/mid.png" alt="BSMID" class="w-full h-full object-cover">
+                            </div>
+                            <span class="text-xs font-medium">BS Midwifery</span>
+                        </div>
+                    </a>
+
+                    <a href="dept/bscrim.html" class="program-link group">
+                        <div class="flex items-center space-x-3">
+                            <div class="program-icon border-slate-700 group-hover:border-blue-500">
+                                <img src="image/bscrim.jpg" alt="Criminology" class="w-full h-full object-cover">
+                            </div>
+                            <span class="text-xs font-medium">BS in Criminology</span>
+                        </div>
+                    </a>
+
+                    <a href="dept/bsad.html" class="program-link group">
+                        <div class="flex items-center justify-between w-full">
+                            <div class="flex items-center space-x-3">
+                                <div class="program-icon border-slate-700 group-hover:border-green-500">
+                                    <img src="image/bsba.jpg" alt="BSBA" class="w-full h-full object-cover">
+                                </div>
+                                <span class="text-xs font-medium">BS in Business Administration</span>
+                            </div>
+                            <span class="text-[10px] bg-slate-800 px-2 py-1 rounded text-slate-500 group-hover:bg-indigo-600 group-hover:text-white transition-colors">450</span>
+                        </div>
+                    </a>
+                    <a href="dept/education.html" class="flex items-center justify-between p-2 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl group transition-all">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-9 h-9 rounded-lg overflow-hidden bg-slate-800 border border-slate-700 group-hover:border-red-500 transition-all">
+                                <img src="image/bsed.jpg" alt="Education" class="w-full h-full object-cover">
+                            </div>
+                            <span class="text-xs font-medium">BS in Education</span>
+                        </div>
+                    </a>
+                </div>
+        </nav>
+    </aside>
+
+    <main class="flex-1 flex flex-col overflow-hidden">
+        <header class="h-24 flex items-center justify-between px-12 shrink-0">
+            <div>
+                <h2 class="text-3xl font-black text-slate-800 tracking-tighter">Facilities Hub</h2>
+                <p class="text-xs font-bold text-slate-400 mt-1">Managing school assets and campus areas.</p>
+            </div>
+            <button onclick="toggleModal()" class="bg-slate-900 text-white px-8 py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-orange-500 transition-all shadow-xl">
+                + Register Facility
+            </button>
+        </header>
+
+        <div class="px-12 mb-8 shrink-0">
+            <div class="flex gap-3 bg-white/50 p-2 rounded-[1.5rem] w-fit border border-white/50">
+                <button class="filter-btn active" onclick="filterData('All', this)">All Areas</button>
+                <button class="filter-btn" onclick="filterData('Laboratory', this)">Laboratories</button>
+                <button class="filter-btn" onclick="filterData('Lecture', this)">Lecture Halls</button>
+            </div>
+        </div>
+
+        <div class="flex-1 overflow-y-auto px-12 pb-12 custom-scrollbar">
+            <div id="facGrid" class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-10"></div>
+        </div>
+    </main>
+
+    <div id="facModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-md z-50 hidden items-center justify-center p-4">
+        <div class="bg-white rounded-[3.5rem] w-full max-w-md p-12 shadow-2xl">
+            <div class="text-center mb-10">
+                <h3 class="text-2xl font-black text-slate-900 uppercase italic leading-none">New Facility</h3>
+                <p class="text-[10px] text-slate-400 font-black uppercase tracking-[0.2em] mt-2">Add new campus asset</p>
+            </div>
+            <form id="facForm" class="space-y-4">
+                <input type="text" id="fName" placeholder="Facility Name" class="w-full p-5 bg-slate-50 rounded-2xl text-sm border-none font-bold focus:ring-2 focus:ring-orange-400" required>
+                <input type="text" id="fLoc" placeholder="e.g. BLDG B • ROOM 302" class="w-full p-5 bg-slate-50 rounded-2xl text-sm border-none font-bold focus:ring-2 focus:ring-orange-400" required>
+                <div class="grid grid-cols-2 gap-4">
+                    <select id="fType" class="p-5 bg-slate-50 rounded-2xl text-sm border-none font-bold">
+                        <option value="Laboratory">Laboratory</option>
+                        <option value="Lecture">Lecture Hall</option>
+                    </select>
+                    <input type="text" id="fCap" placeholder="Seats" class="p-5 bg-slate-50 rounded-2xl text-sm border-none font-bold">
+                </div>
+                <select id="fStatus" class="w-full p-5 bg-slate-50 rounded-2xl text-sm border-none font-bold">
+                    <option value="Open">Available</option>
+                    <option value="Repair">Maintenance</option>
+                </select>
+                <div class="space-y-1">
+                    <input type="file" id="fFile" accept="image/*" class="hidden" onchange="handleFile(this)">
+                    <label for="fFile" class="w-full flex items-center justify-between p-5 bg-slate-50 border-2 border-dashed border-slate-200 rounded-2xl cursor-pointer hover:border-orange-400">
+                        <span id="fileNameDisplay" class="text-xs text-slate-400 font-bold truncate">Upload Picture...</span>
+                        <i class="fa-solid fa-image text-orange-400"></i>
+                    </label>
+                </div>
+                <div class="flex gap-4 pt-8">
+                    <button type="button" onclick="toggleModal()" class="flex-1 py-4 text-slate-400 font-black uppercase text-[10px]">Close</button>
+                    <button type="submit" class="flex-1 bg-slate-900 text-white py-4 rounded-2xl font-black uppercase text-[10px] shadow-lg">Save Asset</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Updated data with the requested laboratories added to the initial array
+        let facilities = JSON.parse(localStorage.getItem('smit_fac_final')) || [
+            { name: "Computer Lab 1", type: "Laboratory", loc: "BLDG A • ROOM 201", cap: "45 Seats", status: "Open", img: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=1000" },
+            { name: "Computer Lab 2", type: "Laboratory", loc: "BLDG A • ROOM 202", cap: "45 Seats", status: "Open", img: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=1000" },
+            { name: "Computer Lab 3", type: "Laboratory", loc: "BLDG A • ROOM 203", cap: "45 Seats", status: "Open", img: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=1000" },
+            { name: "Speech Laboratory", type: "Laboratory", loc: "BLDG B • ROOM 305", cap: "35 Seats", status: "Open", img: "https://images.unsplash.com/photo-1590650153855-d9e808231d41?q=80&w=1000" },
+            { name: "Criminology Lab", type: "Laboratory", loc: "ANNEX BLDG • GF", cap: "50 Seats", status: "Open", img: "https://images.unsplash.com/photo-1582719471384-894fbb16e074?q=80&w=1000" },
+            { name: "HM Laboratory", type: "Laboratory", loc: "BLDG C • ROOM 101", cap: "40 Seats", status: "Open", img: "https://images.unsplash.com/photo-1556910103-1c02745aae4d?q=80&w=1000" },
+            { name: "College Library", type: "Lecture", loc: "MAIN PLAZA • LEVEL 1", cap: "120 Seats", status: "Open", img: "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?q=80&w=1000" },
+            { name: "Function Room", type: "Lecture", loc: "MAIN PLAZA • LEVEL 1", cap: "220 Seats", status: "Open", img: "https://images.unsplash.com/photo-1517502884422-41eaead166d4?q=80&w=1000" }
+        ];
+
+        let currentFilter = 'All';
+        let base64Img = "";
+
+        function toggleModal() {
+            const modal = document.getElementById('facModal');
+            modal.classList.toggle('hidden');
+            modal.classList.toggle('flex');
+            if(modal.classList.contains('hidden')) {
+                document.getElementById('facForm').reset();
+                document.getElementById('fileNameDisplay').innerText = "Upload Picture...";
+                base64Img = "";
+            }
+        }
+
+        function handleFile(input) {
+            const file = input.files[0];
+            if (file) {
+                document.getElementById('fileNameDisplay').innerText = file.name;
+                const reader = new FileReader();
+                reader.onload = (e) => base64Img = e.target.result;
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function filterData(category, btn) {
+            currentFilter = category;
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            render();
+        }
+
+        function render() {
+            const grid = document.getElementById('facGrid');
+            grid.innerHTML = '';
+            
+            facilities.forEach((f, i) => {
+                if(currentFilter !== 'All' && f.type !== currentFilter) return;
+
+                const isRepair = f.status === 'Repair';
+                grid.innerHTML += `
+                <div class="fac-card">
+                    <div class="img-box">
+                        <img src="${f.img}" alt="Facility">
+                        <div class="loc-badge">${f.loc}</div>
+                    </div>
+                    <div class="px-10 pb-10">
+                        <div class="flex justify-between items-center mb-1">
+                            <h3 class="text-2xl font-black text-slate-800 truncate">${f.name}</h3>
+                            <div class="status-dot ${isRepair ? 'bg-orange-400' : 'bg-emerald-400'}"></div>
+                        </div>
+                        <p class="text-[11px] font-black text-slate-400 uppercase tracking-widest mb-6">${f.type}</p>
+                        
+                        <div class="flex gap-4 mb-8">
+                            <div class="stat-box">
+                                <p class="text-[9px] font-black text-slate-300 uppercase">Capacity</p>
+                                <p class="text-sm font-black text-slate-700">${f.cap}</p>
+                            </div>
+                            <div class="stat-box">
+                                <p class="text-[9px] font-black text-slate-300 uppercase">Status</p>
+                                <p class="text-sm font-black ${isRepair ? 'text-orange-500' : 'text-emerald-500'}">${isRepair ? 'Repair' : 'Vacant'}</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-2">
+                            <button class="flex-1 ${isRepair ? 'bg-slate-100 text-slate-300' : 'bg-slate-900 text-white'} py-4 rounded-2xl text-[11px] font-black uppercase tracking-widest">
+                                ${isRepair ? 'Maintenance' : 'View Details'}
+                            </button>
+                            <button onclick="deleteFac(${i})" class="w-14 bg-rose-50 text-rose-300 rounded-2xl hover:text-rose-500 transition-all">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>`;
+            });
+            localStorage.setItem('smit_fac_final', JSON.stringify(facilities));
+        }
+
+        document.getElementById('facForm').onsubmit = (e) => {
+            e.preventDefault();
+            facilities.push({
+                name: document.getElementById('fName').value,
+                loc: document.getElementById('fLoc').value,
+                type: document.getElementById('fType').value,
+                cap: document.getElementById('fCap').value || "N/A",
+                status: document.getElementById('fStatus').value,
+                img: base64Img || "https://images.unsplash.com/photo-1541339907198-e08756ebafe3?w=1000"
+            });
+            render();
+            toggleModal();
+        };
+
+        function deleteFac(i) { 
+            if(confirm('Remove this facility?')) { 
+                facilities.splice(i, 1); 
+                render(); 
+            } 
+        }
+
+        render();
+    </script>
+</body>
+</html>

@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="icon" type="image/jpg" href="image/smit.jpg">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>SMIT - SOUTHERN MINDANAO INSTITUTE OF TECHNOLOGY INC.</title>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        /* Base style for all links */
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            color: #cbd5e1;
+            border-radius: 0.75rem;
+            transition: all 200ms;
+            text-decoration: none;
+            font-size: 0.875rem;
+        }
+        
+        .nav-link:hover {
+            background-color: #1e293b;
+            color: white;
+        }
+
+        /* Icon sizing inside links */
+        .nav-link i {
+            width: 1.25rem;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        /* Active state - Indigo background */
+        .nav-link.active {
+            background-color: #4f46e5;
+            color: white;
+            box-shadow: 0 20px 25px -5px rgba(79, 70, 229, 0.2);
+        }
+
+        /* Section Header */
+        .nav-section-label {
+            color: #64748b;
+            font-size: 0.625rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-top: 2rem;
+            margin-bottom: 0.5rem;
+            margin-left: 0.5rem;
+            letter-spacing: 0.1em;
+        }
+
+        .program-link {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem;
+            color: #94a3b8;
+            border-radius: 0.75rem;
+            transition: all 200ms;
+        }
+        
+        .program-link:hover {
+            background-color: #1e293b;
+            color: white;
+        }
+        
+        .program-icon {
+            width: 2.25rem;
+            height: 2.25rem;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            background-color: #1e293b;
+            border: 1px solid #64748b;
+            flex-shrink: 0;
+            transition: all 200ms;
+        }
+
+        /* Rotate the chevron when closed */
+        .chevron-rotate {
+            transform: rotate(-90deg);
+        }
+
+        /* Hidden state */
+        .programs-hidden {
+            max-height: 0;
+            opacity: 0;
+            margin-top: 0;
+            pointer-events: none;
+        }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-gray-50 flex h-screen overflow-hidden">
+
+    <aside class="w-72 bg-white-900 text-white flex flex-col h-screen shadow-2xl overflow-hidden">
+        <div class="p-8 text-center border-b border-slate-800/50 flex-shrink-0">
+            <div class="mb-4 relative inline-block">
+                <div class="absolute inset-0 bg-indigo-500 blur-lg opacity-20 rounded-full"></div>
+                <img src="image/smit.jpg" alt="University Logo" 
+                    class="w-20 h-20 mx-auto object-contain rounded-full border-4 border-slate-800 shadow-xl relative z-10">
+            </div>
+            <h1 class="text-sm font-black tracking-tighter text-white uppercase leading-tight">
+                Southern Mindanao Institute <br> of Technology INC.
+            </h1>
+        </div>
+        
+        <nav class="flex-1 px-4 py-6 space-y-1 overflow-y-auto custom-scrollbar">
+
+            <div class="nav-section-label">Administration</div>
+            
+            <a href="index.html" class="nav-link active">
+                <i class="fa-solid fa-house"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="library.html" class="nav-link">
+                <i class="fa-solid fa-book-open"></i>
+                <span>Library</span>
+            </a>
+
+            <a href="faculty.html" class="nav-link">
+                <i class="fa-solid fa-chalkboard-teacher"></i>
+                <span>Faculty</span>
+            </a>
+
+            <a href="clinic.html" class="nav-link">
+                <i class="fa-solid fa-house-medical"></i>
+                <span>Clinic</span>
+            </a>
+
+            <a href="cashier.html" class="nav-link">
+                <i class="fa-solid fa-cash-register"></i>
+                <span>Cashier</span>
+            </a>
+
+            <a href="registrar.html" class="nav-link">
+                <i class="fa-solid fa-file-signature"></i>
+                <span>Registrar Office</span>
+            </a>
+
+            <a href="president.html" class="nav-link">
+                <i class="fa-solid fa-building-columns"></i>
+                <span>President's Office</span>
+            </a>
+
+            <a href="HR.html" class="nav-link">
+                <i class="fa-solid fa-users-gear"></i>
+                <span>HR</span>
+            </a>
+
+            <a href="facilities.html" class="nav-link">
+                <i class="fa-solid fa-school"></i>
+                <span>Facilities</span>
+            </a>
+
+            <div onclick="togglePrograms()" class="flex items-center justify-between px-2 cursor-pointer group mt-8 mb-2">
+                <div class="text-slate-500 text-[10px] uppercase font-bold tracking-widest">Programs & Colleges</div>
+                <i id="programChevron" class="fas fa-chevron-down text-[10px] text-slate-500 group-hover:text-white transition-transform duration-300"></i>
+            </div>
+
+            <div id="programsContainer" class="space-y-1 transition-all duration-300 overflow-hidden">
+                
+                <a href="dept/bsit.html" class="program-link group">
+                    <div class="flex items-center space-x-3">
+                        <div class="program-icon border-slate-700 group-hover:border-indigo-500">
+                            <img src="image/bsit.jpg" alt="BSIT" class="w-full h-full object-cover">
+                        </div>
+                        <span class="text-xs font-medium">BS in Information Technology</span>
+                    </div>
+                </a>
+
+                <a href="dept/bshm.html" class="program-link group">
+                    <div class="flex items-center space-x-3">
+                        <div class="program-icon border-slate-700 group-hover:border-orange-500">
+                            <img src="image/bshm.png" alt="BSHM" class="w-full h-full object-cover">
+                        </div>
+                        <span class="text-xs font-medium">BS in Hospitality Management</span>
+                    </div>
+                </a>
+
+                <a href="dept/bsmidwife.html" class="program-link group">
+                    <div class="flex items-center space-x-3">
+                        <div class="program-icon border-slate-700 group-hover:border-pink-500">
+                            <img src="image/mid.png" alt="BSMID" class="w-full h-full object-cover">
+                        </div>
+                        <span class="text-xs font-medium">BS Midwifery</span>
+                    </div>
+                </a>
+
+                <a href="dept/bscrim.html" class="program-link group">
+                    <div class="flex items-center space-x-3">
+                        <div class="program-icon border-slate-700 group-hover:border-blue-500">
+                            <img src="image/bscrim.jpg" alt="Criminology" class="w-full h-full object-cover">
+                        </div>
+                        <span class="text-xs font-medium">BS in Criminology</span>
+                    </div>
+                </a>
+
+                <a href="dept/bsad.html" class="program-link group">
+                    <div class="flex items-center justify-between w-full">
+                        <div class="flex items-center space-x-3">
+                            <div class="program-icon border-slate-700 group-hover:border-green-500">
+                                <img src="image/bsba.jpg" alt="BSBA" class="w-full h-full object-cover">
+                            </div>
+                            <span class="text-xs font-medium">BS in Business Administration</span>
+                        </div>
+                        <span class="text-[10px] bg-slate-800 px-2 py-1 rounded text-slate-500 group-hover:bg-indigo-600 group-hover:text-white transition-colors">450</span>
+                    </div>
+                </a>
+                <a href="dept/education.html" class="flex items-center justify-between p-2 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl group transition-all">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-9 h-9 rounded-lg overflow-hidden bg-slate-800 border border-slate-700 group-hover:border-red-500 transition-all">
+                                <img src="image/bsed.jpg" alt="Education" class="w-full h-full object-cover">
+                            </div>
+                            <span class="text-xs font-medium">BS in Education</span>
+                        </div>
+                    </a>
+            </div>
+        </nav>
+    </aside>
+
+    <div class="flex-1 flex flex-col overflow-hidden">
+        <header class="h-16 bg-white border-b flex items-center justify-between px-8 shadow-sm">
+            <div class="relative">
+                <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                <input type="text" placeholder="Search student records..." class="pl-10 pr-4 py-2 bg-gray-100 rounded-xl text-sm border-none focus:ring-2 focus:ring-indigo-500 w-80 transition-all">
+            </div>
+            <div class="flex items-center space-x-4">
+                <div class="text-right hidden md:block">
+                </div>
+                <div class="">
+                
+                </div>
+            </div>
+        </header>
+
+        <main class="flex-1 overflow-y-auto p-8 custom-scrollbar">
+            <div class="flex justify-between items-center mb-8">
+                <div>
+                    <h2 class="text-3xl font-black text-slate-800 tracking-tight italic uppercase">SMITIANS</h2>
+                    <p class="text-slate-500 text-sm font-medium">Mabuhay! Welcome to the SMIT Management Portal.</p>
+                </div>
+                <div class="flex space-x-3">
+                    <div class="bg-indigo-50 border border-indigo-100 text-indigo-700 px-4 py-2 rounded-xl text-xs font-bold flex items-center">
+                        <i class="fas fa-calendar-alt mr-2"></i> AY: 2025-2026
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex-1 flex flex-col min-w-0 bg-slate-50">
+    
+                <header class="h-20 bg-white border-b border-slate-200 flex items-center justify-between px-8 flex-shrink-0">
+                    <h2 class="text-xl font-black text-slate-800 tracking-tight uppercase">Institutional Overview</h2>
+                    <div class="flex items-center space-x-4">
+                        <span id="liveClock" class="text-[10px] font-bold text-slate-400 bg-slate-100 px-3 py-1 rounded-full uppercase tracking-widest">Loading...</span>
+                        <button class="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center hover:bg-indigo-600 hover:text-white transition-all">
+                            <i class="fas fa-bell"></i>
+                        </button>
+                    </div>
+                </header>
+
+                <div class="flex-1 overflow-y-auto p-8 custom-scrollbar">
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                        <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm group hover:shadow-md transition-all">
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="w-12 h-12 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-xl"><i class="fas fa-user-graduate"></i></div>
+                                <span class="text-[9px] font-black text-indigo-500 bg-indigo-50 px-2 py-1 rounded-lg">+12 Today</span>
+                            </div>
+                            <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Total Students</p>
+                            <h3 class="text-3xl font-black text-slate-800 mt-1">1,240</h3>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm group hover:shadow-md transition-all">
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-xl"><i class="fas fa-chalkboard-teacher"></i></div>
+                                <span class="text-[9px] font-black text-emerald-500 bg-emerald-50 px-2 py-1 rounded-lg">84 Active</span>
+                            </div>
+                            <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Faculty Members</p>
+                            <h3 class="text-3xl font-black text-slate-800 mt-1">92</h3>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm group hover:shadow-md transition-all">
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="w-12 h-12 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center text-xl"><i class="fas fa-book-reader"></i></div>
+                                <span class="text-[9px] font-black text-amber-600 bg-amber-50 px-2 py-1 rounded-lg">156 Borrowed</span>
+                            </div>
+                            <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Book Collection</p>
+                            <h3 class="text-3xl font-black text-slate-800 mt-1">5,602</h3>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm group hover:shadow-md transition-all">
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="w-12 h-12 rounded-2xl bg-rose-50 text-rose-600 flex items-center justify-center text-xl"><i class="fas fa-heartbeat"></i></div>
+                                <span class="text-[9px] font-black text-rose-600 bg-rose-50 px-2 py-1 rounded-lg">High Flow</span>
+                            </div>
+                            <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Clinic Visits (Daily)</p>
+                            <h3 class="text-3xl font-black text-slate-800 mt-1">24</h3>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        
+                        <div class="bg-white rounded-[2.5rem] p-8 shadow-sm border border-slate-100">
+                            <div class="flex justify-between items-center mb-6">
+                                <h4 class="text-sm font-black text-slate-800 uppercase tracking-tight">Faculty Spotlight</h4>
+                                <a href="faculty.html" class="text-[10px] font-black text-indigo-600 uppercase hover:underline">View All</a>
+                            </div>
+                            <div class="space-y-4">
+                                <div class="flex items-center justify-between p-4 bg-slate-50 rounded-2xl">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center font-bold text-indigo-600 text-xs">JD</div>
+                                        <div>
+                                            <p class="text-xs font-bold text-slate-800">John Doe, MIT</p>
+                                            <p class="text-[9px] text-slate-500 uppercase font-black">BSIT Department Head</p>
+                                        </div>
+                                    </div>
+                                    <span class="w-2 h-2 rounded-full bg-emerald-500 shadow-lg shadow-emerald-200"></span>
+                                </div>
+                                <div class="flex items-center justify-between p-4 bg-slate-50 rounded-2xl">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center font-bold text-amber-600 text-xs">MS</div>
+                                        <div>
+                                            <p class="text-xs font-bold text-slate-800">Maria Santos, MBA</p>
+                                            <p class="text-[9px] text-slate-500 uppercase font-black">BSBA Senior Lecturer</p>
+                                        </div>
+                                    </div>
+                                    <span class="w-2 h-2 rounded-full bg-slate-300"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-900 rounded-[2.5rem] p-8 shadow-2xl relative overflow-hidden text-white">
+                            <div class="relative z-10">
+                                <h4 class="text-sm font-black uppercase tracking-tight mb-6">Library Activity</h4>
+                                <div class="space-y-6">
+                                    <div>
+                                        <div class="flex justify-between text-[10px] font-black uppercase mb-2">
+                                            <span class="text-slate-400">Borrowed Books (Current)</span>
+                                            <span>156 / 500 Capacity</span>
+                                        </div>
+                                        <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+                                            <div class="bg-amber-500 h-full transition-all" style="width: 31%"></div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="grid grid-cols-2 gap-4">
+                                        <div class="p-4 bg-white/5 rounded-2xl border border-white/10 text-center">
+                                            <p class="text-[9px] font-black text-slate-400 uppercase">Top Genre</p>
+                                            <p class="text-sm font-bold mt-1 text-amber-400">Technology</p>
+                                        </div>
+                                        <div class="p-4 bg-white/5 rounded-2xl border border-white/10 text-center">
+                                            <p class="text-[9px] font-black text-slate-400 uppercase">Returns Today</p>
+                                            <p class="text-sm font-bold mt-1 text-emerald-400">42</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-amber-500 rounded-full blur-[80px] opacity-10"></div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>  
+
+            <div class="bg-white rounded-[2rem] shadow-xl shadow-slate-200/50 border border-gray-100 overflow-hidden mb-8">
+                <div class="md:flex">
+                    <div class="md:w-1/3 bg-slate-900 p-12 flex flex-col justify-center items-center text-center relative overflow-hidden">
+                        <div class="absolute inset-0 bg-indigo-600 opacity-10 blur-3xl -bottom-20"></div>
+                        <img src="image/smit.jpg" alt="SMIT Logo" class="w-32 h-32 rounded-full border-4 border-indigo-500/50 shadow-2xl mb-6 relative z-10">
+                        <h3 class="text-white text-2xl font-black tracking-widest relative z-10 uppercase italic">Our Journey</h3>
+                        <div class="w-12 h-1.5 bg-indigo-500 mt-4 rounded-full relative z-10"></div>
+                    </div>
+
+                    <div class="md:w-2/3 p-12">
+                        <div class="space-y-6">
+                            <div>
+                                <h4 class="text-indigo-600 font-black uppercase tracking-[0.2em] text-xs mb-3">The SMIT Heritage</h4>
+                                <p class="text-slate-600 leading-relaxed italic text-lg font-medium">
+                                    "Mula sa pangarap na makapagbigay ng de-kalidad na edukasyon sa Mindanao, ang **Southern Mindanao Institute of Technology Inc.** ay patuloy na naglilingkod at humuhubog ng mga lider na may integridad at kakayahan sa teknolohiya."
+                                </p>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6">
+                                <div class="bg-indigo-50/50 p-6 rounded-2xl border border-indigo-100">
+                                    <div class="flex items-center space-x-3 mb-3">
+                                        <i class="fas fa-bullseye text-indigo-600"></i>
+                                        <h5 class="font-black text-slate-800 uppercase text-xs tracking-widest">VISION</h5>
+                                    </div>
+                                    <p class="text-sm text-slate-600 leading-relaxed">SOUTHERN MINDANAO INSTITUTE OF TECHNOLOGY, INC. IS A LEARNER-CENTERED INSTITUTE COMMITED TO QUALITY EDUCATION.</p>
+                                </div>
+                                <div class="bg-indigo-50/50 p-6 rounded-2xl border border-indigo-100">
+                                    <div class="flex items-center space-x-3 mb-3">
+                                        <i class="fas fa-eye text-indigo-600"></i>
+                                        <h5 class="font-black text-slate-800 uppercase text-xs tracking-widest">MISSION</h5>
+                                    </div>
+                                    <p class="text-sm text-slate-600 leading-relaxed">SOUTHERN MINDANAO INSTITUTE OF TECHNOLOGY, INC. IS A NON-SECTARIAN SCHOOL COMMITS TO PROVIDE THE COMMUNITY WITH COMPITENT, ETHICAL AND RESEARCH ORIENTED GRADUATES THROUGH:
+                                        A. EFFECTIVE AND EFFIECENT FACULTY AND STAFF
+                                        B. ADEQUATE AND APPROPRIATES INSTRUCTIONAL FACILITIES
+                                        C. INNOVATIVE AND RESPONSIVE TEACHING STRATIGIES
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-[2rem] shadow-sm border border-gray-100 p-8 mb-10">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
+                    <div>
+                        <h3 class="text-xl font-black text-slate-800 uppercase tracking-tight italic">
+                            <i class="fas fa-chart-pie text-indigo-500 mr-2"></i> Student Distribution
+                        </h3>
+                        <p class="text-slate-400 text-xs font-medium mt-1 uppercase tracking-widest">Real-time enrollment data per department</p>
+                    </div>
+                    <button class="mt-4 md:mt-0 flex items-center space-x-2 text-xs font-bold text-slate-500 bg-slate-100 px-4 py-2 rounded-xl hover:bg-slate-200 transition">
+                        <i class="fas fa-download"></i> <span>Export Report</span>
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
+                    
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-end">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-2 h-2 rounded-full bg-indigo-500"></div>
+                                <span class="text-sm font-bold text-slate-700">BS in Information Systems</span>
+                            </div>
+                            <span class="text-xs font-black text-slate-400">450 / 600 Capacity</span>
+                        </div>
+                        <div class="w-full bg-slate-100 h-3 rounded-full overflow-hidden">
+                            <div class="bg-indigo-500 h-full rounded-full shadow-lg shadow-indigo-200" style="width: 75%"></div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-end">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-2 h-2 rounded-full bg-orange-500"></div>
+                                <span class="text-sm font-bold text-slate-700">BS in Hospitality Management</span>
+                            </div>
+                            <span class="text-xs font-black text-slate-400">320 / 500 Capacity</span>
+                        </div>
+                        <div class="w-full bg-slate-100 h-3 rounded-full overflow-hidden">
+                            <div class="bg-orange-500 h-full rounded-full shadow-lg shadow-orange-200" style="width: 64%"></div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-end">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-2 h-2 rounded-full bg-pink-500"></div>
+                                <span class="text-sm font-bold text-slate-700">BS in Midwifery</span>
+                            </div>
+                            <span class="text-xs font-black text-slate-400">180 / 300 Capacity</span>
+                        </div>
+                        <div class="w-full bg-slate-100 h-3 rounded-full overflow-hidden">
+                            <div class="bg-pink-500 h-full rounded-full shadow-lg shadow-pink-200" style="width: 60%"></div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-end">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-2 h-2 rounded-full bg-red-500"></div>
+                                <span class="text-sm font-bold text-slate-700">BS in Criminology</span>
+                            </div>
+                            <span class="text-xs font-black text-slate-400">510 / 550 Capacity</span>
+                        </div>
+                        <div class="w-full bg-slate-100 h-3 rounded-full overflow-hidden">
+                            <div class="bg-red-500 h-full rounded-full shadow-lg shadow-red-200" style="width: 92%"></div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="mt-10 pt-6 border-t border-slate-50 flex items-center justify-between text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+                    <span>Last Updated: Feb 23, 2026</span>
+                    <span class="flex items-center"><i class="fas fa-circle text-green-500 mr-2 text-[6px]"></i> Live System Data</span>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 xl:grid-cols-3 gap-8 mb-10">
+                
+                <div class="xl:col-span-2 bg-white rounded-[2rem] shadow-sm border border-gray-100 overflow-hidden flex flex-col">
+                    <div class="p-6 bg-slate-900 text-white flex justify-between items-center">
+                        <div>
+                            <h3 class="text-lg font-black uppercase tracking-tighter italic">Official Course Offerings</h3>
+                            <p class="text-slate-400 text-[10px] font-bold uppercase tracking-[0.2em]">Academic Year 2025-2026</p>
+                        </div>
+                        <i class="fas fa-graduation-cap text-2xl text-indigo-400"></i>
+                    </div>
+                    
+                    <div class="p-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="text-indigo-600 font-black text-xs uppercase tracking-widest mb-4 border-b pb-2">CHED Programs</h4>
+                            <ul class="space-y-2 text-[11px] font-bold text-slate-600">
+                                <li class="flex items-center"><i class="fas fa-caret-right text-indigo-500 mr-2"></i> BS in Criminology</li>
+                                <li class="flex items-center"><i class="fas fa-caret-right text-indigo-500 mr-2"></i> BS in Industrial Security Management</li>
+                                <li class="flex items-center"><i class="fas fa-caret-right text-indigo-500 mr-2"></i> BS in Business Administration</li>
+                                <li class="flex items-center"><i class="fas fa-caret-right text-indigo-500 mr-2"></i> BS in Hospitality Management</li>
+                                <li class="flex items-center"><i class="fas fa-caret-right text-indigo-500 mr-2"></i> BS in Information Systems</li>
+                                <li class="flex items-center"><i class="fas fa-caret-right text-indigo-500 mr-2"></i> BS in Midwifery</li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h4 class="text-green-600 font-black text-xs uppercase tracking-widest mb-4 border-b pb-2">TESDA & Basic Ed</h4>
+                            <ul class="space-y-2 text-[11px] font-bold text-slate-600">
+                                <li class="flex items-center"><i class="fas fa-tools text-green-500 mr-2"></i> Computer System Servicing NC II</li>
+                                <li class="flex items-center"><i class="fas fa-utensils text-green-500 mr-2"></i> Commercial Cooking NC II</li>
+                                <li class="flex items-center"><i class="fas fa-broom text-green-500 mr-2"></i> Housekeeping Services NC II</li>
+                                <li class="flex items-center"><i class="fas fa-car text-green-500 mr-2"></i> Automotive Servicing NC I & II</li>
+                                <li class="flex items-center"><i class="fas fa-book text-green-500 mr-2"></i> Senior High School (K-12)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="px-8 py-4 bg-slate-50 border-t border-gray-100 flex items-center">
+                        <span class="flex h-2 w-2 rounded-full bg-green-500 mr-2 animate-pulse"></span>
+                        <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest italic">Enrollment is now ongoing</span>
+                    </div>
+                </div>
+
+                <div class="bg-amber-50 rounded-[2rem] border border-amber-100 p-8 flex flex-col shadow-sm">
+                    <h3 class="text-amber-800 font-black text-sm uppercase tracking-tighter italic mb-6">Requirements Checklist</h3>
+                    
+                    <div class="space-y-6 flex-1">
+                        <div>
+                            <p class="text-[10px] font-black text-amber-900 uppercase mb-2">Incoming First Year</p>
+                            <ul class="space-y-2 text-[10px] font-bold text-amber-700">
+                                <li class="flex items-start"><i class="fas fa-file-alt mt-0.5 mr-2"></i> Report Card (Form 138)</li>
+                                <li class="flex items-start"><i class="fas fa-id-card mt-0.5 mr-2"></i> 4 pcs. 1x1 Colored ID Picture</li>
+                                <li class="flex items-start"><i class="fas fa-certificate mt-0.5 mr-2"></i> Good Moral Certificate</li>
+                                <li class="flex items-start"><i class="fas fa-baby mt-0.5 mr-2"></i> PSA Birth Certificate</li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <p class="text-[10px] font-black text-amber-900 uppercase mb-2">Transferee</p>
+                            <ul class="space-y-2 text-[10px] font-bold text-amber-700">
+                                <li class="flex items-start"><i class="fas fa-walking mt-0.5 mr-2"></i> Honorable Dismissal</li>
+                                <li class="flex items-start"><i class="fas fa-list-ol mt-0.5 mr-2"></i> Transcript of Records</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="bg-white rounded-[2rem] shadow-sm border border-gray-100 p-8 mb-10">
+                <div class="flex items-center justify-between mb-8">
+                    <div>
+                        <h3 class="text-xl font-black text-slate-800 uppercase tracking-tight italic">
+                            <i class="fas fa-rocket text-indigo-500 mr-2"></i> Career Opportunities
+                        </h3>
+                        <p class="text-slate-400 text-[10px] font-bold uppercase tracking-[0.2em] mt-1">Building your future with SMIT skills</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="group p-6 rounded-3xl bg-slate-50 border border-transparent hover:border-indigo-200 hover:bg-white hover:shadow-xl transition-all duration-300">
+                        <div class="w-12 h-12 rounded-2xl bg-indigo-600 flex items-center justify-center text-white mb-6 shadow-lg shadow-indigo-200 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-laptop-code text-xl"></i>
+                        </div>
+                        <h4 class="font-black text-slate-800 uppercase text-xs mb-3 italic">Tech & Business Leaders</h4>
+                        <p class="text-[11px] text-slate-500 leading-relaxed mb-4">
+                            Para sa mga kumukuha ng **BS Information Systems** at **Business Administration**, naghihintay ang mga posisyon bilang Systems Analyst, IT Consultant, o Business Manager sa mga local at global na kumpanya.
+                        </p>
+                        <div class="flex items-center text-indigo-600 font-black text-[9px] uppercase tracking-widest">
+                            <span>High Demand Field</span>
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </div>
+                    </div>
+
+                    <div class="group p-6 rounded-3xl bg-slate-50 border border-transparent hover:border-red-200 hover:bg-white hover:shadow-xl transition-all duration-300">
+                        <div class="w-12 h-12 rounded-2xl bg-red-600 flex items-center justify-center text-white mb-6 shadow-lg shadow-red-200 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-shield-alt text-xl"></i>
+                        </div>
+                        <h4 class="font-black text-slate-800 uppercase text-xs mb-3 italic">Public Safety & Justice</h4>
+                        <p class="text-[11px] text-slate-500 leading-relaxed mb-4">
+                            Ang mga graduates ng **BS Criminology** at **Industrial Security Management** ay may malaking oportunidad na makapasok sa PNP, BJMP, BFP, o bilang Security Executives sa malalaking korporasyon.
+                        </p>
+                        <div class="flex items-center text-red-600 font-black text-[9px] uppercase tracking-widest">
+                            <span>Service & Integrity</span>
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </div>
+                    </div>
+
+                    <div class="group p-6 rounded-3xl bg-slate-50 border border-transparent hover:border-green-200 hover:bg-white hover:shadow-xl transition-all duration-300">
+                        <div class="w-12 h-12 rounded-2xl bg-green-600 flex items-center justify-center text-white mb-6 shadow-lg shadow-green-200 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-concierge-bell text-xl"></i>
+                        </div>
+                        <h4 class="font-black text-slate-800 uppercase text-xs mb-3 italic">Global Hospitality & Tech</h4>
+                        <p class="text-[11px] text-slate-500 leading-relaxed mb-4">
+                            Sa tulong ng **BSHM** at **TESDA NC II courses** (Cooking, Housekeeping, Automotive), handa ang mga estudyante para sa trabaho sa mga cruise ships, hotels, at international technical firms.
+                        </p>
+                        <div class="flex items-center text-green-600 font-black text-[9px] uppercase tracking-widest">
+                            <span>World-Class Skills</span>
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-10 bg-gradient-to-r from-slate-900 to-indigo-900 rounded-2xl p-6 text-center">
+                    <p class="text-indigo-200 text-[10px] font-bold uppercase tracking-[0.3em] mb-2">Ready to seize your opportunity?</p>
+                    <h5 class="text-white font-black italic uppercase tracking-tighter text-lg">Your Journey to Success Starts at SMIT</h5>
+                </div>
+            </div>
+                    
+
+            <footer class="text-center py-8 text-slate-400 text-[10px] font-bold uppercase tracking-[0.3em]">
+                Southern Mindanao Institute of Technology Inc. | Campus Management System v1.0
+            </footer>
+        </main>
+    </div>
+
+    <script>
+        function togglePrograms() {
+            const container = document.getElementById('programsContainer');
+            const chevron = document.getElementById('programChevron');
+            
+            // Toggle the visibility classes
+            container.classList.toggle('programs-hidden');
+            
+            // Toggle the chevron rotation
+            chevron.classList.toggle('chevron-rotate');
+        }
+    </script>
+</body>
+</html>

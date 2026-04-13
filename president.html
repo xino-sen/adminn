@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/jpg" href="image/smit.jpg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>Executive Suite - SMIT</title>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        /* Base style for all links */
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            color: #cbd5e1;
+            border-radius: 0.75rem;
+            transition: all 200ms;
+            text-decoration: none;
+            font-size: 0.875rem;
+        }
+        
+        .nav-link:hover {
+            background-color: #1e293b;
+            color: white;
+        }
+
+        /* Icon sizing inside links */
+        .nav-link i {
+            width: 1.25rem;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        /* Active state - Indigo background */
+        .nav-link.active {
+            background-color: #4f46e5;
+            color: white;
+            box-shadow: 0 20px 25px -5px rgba(79, 70, 229, 0.2);
+        }
+
+        /* Section Header */
+        .nav-section-label {
+            color: #64748b;
+            font-size: 0.625rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-top: 2rem;
+            margin-bottom: 0.5rem;
+            margin-left: 0.5rem;
+            letter-spacing: 0.1em;
+        }
+
+        .program-link {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem;
+            color: #94a3b8;
+            border-radius: 0.75rem;
+            transition: all 200ms;
+        }
+        
+        .program-link:hover {
+            background-color: #1e293b;
+            color: white;
+        }
+        
+        .program-icon {
+            width: 2.25rem;
+            height: 2.25rem;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            background-color: #1e293b;
+            border: 1px solid #64748b;
+            flex-shrink: 0;
+            transition: all 200ms;
+        }
+
+        /* Rotate the chevron when closed */
+        .chevron-rotate {
+            transform: rotate(-90deg);
+        }
+
+        /* Hidden state */
+        .programs-hidden {
+            max-height: 0;
+            opacity: 0;
+            margin-top: 0;
+            pointer-events: none;
+        }
+        .nav-link:hover { background: rgba(99, 102, 241, 0.1); color: #818cf8; }
+        .nav-link.active { background: #6366f1; color: white; box-shadow: 0 10px 15px -3px rgba(99, 102, 241, 0.4); }
+        .glass-card { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border: 1px solid rgba(226, 232, 240, 0.8); }
+        .status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 6px; }
+            .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
+        .modal-active { display: flex !important; }
+    </style>
+</head>
+<body class="bg-slate-50 flex h-screen overflow-hidden">
+
+    <aside class="w-72 bg-slate-900 text-white flex flex-col h-screen shadow-2xl overflow-hidden">
+        <div class="p-8 text-center border-b border-slate-800/50 flex-shrink-0">
+            <div class="mb-4 relative inline-block">
+                <div class="absolute inset-0 bg-indigo-500 blur-lg opacity-20 rounded-full"></div>
+                <img src="image/smit.jpg" alt="University Logo" 
+                    class="w-20 h-20 mx-auto object-contain rounded-full border-4 border-slate-800 shadow-xl relative z-10">
+            </div>
+            <h1 class="text-sm font-black tracking-tighter text-white uppercase leading-tight">
+                Southern Mindanao Institute <br> of Technology INC.
+            </h1>
+        </div>
+        
+        <nav class="flex-1 px-4 py-6 space-y-1 overflow-y-auto custom-scrollbar">
+
+            <div class="nav-section-label">Administration</div>
+            
+            <a href="index.html" class="nav-link">
+                <i class="fa-solid fa-house"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="library.html" class="nav-link">
+                <i class="fa-solid fa-book-open"></i>
+                <span>Library</span>
+            </a>
+
+            <a href="faculty.html" class="nav-link">
+                <i class="fa-solid fa-chalkboard-teacher"></i>
+                <span>Faculty</span>
+            </a>
+
+            <a href="clinic.html" class="nav-link">
+                <i class="fa-solid fa-house-medical"></i>
+                <span>Clinic</span>
+            </a>
+
+            <a href="cashier.html" class="nav-link">
+                <i class="fa-solid fa-cash-register"></i>
+                <span>Cashier</span>
+            </a>
+
+            <a href="registrar.html" class="nav-link">
+                <i class="fa-solid fa-file-signature"></i>
+                <span>Registrar Office</span>
+            </a>
+
+            <a href="president.html" class="nav-link active">
+                <i class="fa-solid fa-building-columns"></i>
+                <span>President's Office</span>
+            </a>
+
+            <a href="HR.html" class="nav-link">
+                <i class="fa-solid fa-users-gear"></i>
+                <span>HR</span>
+            </a>
+
+            <a href="facilities.html" class="nav-link">
+                <i class="fa-solid fa-school"></i>
+                <span>Facilities</span>
+            </a>
+
+            <div onclick="togglePrograms()" class="flex items-center justify-between px-2 cursor-pointer group mt-8 mb-2">
+                <div id="programsContainer" class="space-y-1 transition-all duration-300 overflow-hidden">
+
+
+                <div id="programsContainer" class="space-y-1 transition-all duration-300 overflow-hidden">
+                    
+                    <a href="dept/bsit.html" class="program-link group">
+                        <div class="flex items-center space-x-3">
+                            <div class="program-icon border-slate-700 group-hover:border-indigo-500">
+                                <img src="image/bsit.jpg" alt="BSIT" class="w-full h-full object-cover">
+                            </div>
+                            <span class="text-xs font-medium">BS in Information Technology</span>
+                        </div>
+                    </a>
+
+                    <a href="dept/bshm.html" class="program-link group">
+                        <div class="flex items-center space-x-3">
+                            <div class="program-icon border-slate-700 group-hover:border-orange-500">
+                                <img src="image/bshm.png" alt="BSHM" class="w-full h-full object-cover">
+                            </div>
+                            <span class="text-xs font-medium">BS in Hospitality Management</span>
+                        </div>
+                    </a>
+
+                    <a href="dept/bsmidwife.html" class="program-link group">
+                        <div class="flex items-center space-x-3">
+                            <div class="program-icon border-slate-700 group-hover:border-pink-500">
+                                <img src="image/mid.png" alt="BSMID" class="w-full h-full object-cover">
+                            </div>
+                            <span class="text-xs font-medium">BS Midwifery</span>
+                        </div>
+                    </a>
+
+                    <a href="dept/bscrim.html" class="program-link group">
+                        <div class="flex items-center space-x-3">
+                            <div class="program-icon border-slate-700 group-hover:border-blue-500">
+                                <img src="image/bscrim.jpg" alt="Criminology" class="w-full h-full object-cover">
+                            </div>
+                            <span class="text-xs font-medium">BS in Criminology</span>
+                        </div>
+                    </a>
+
+                    <a href="dept/bsad.html" class="program-link group">
+                        <div class="flex items-center justify-between w-full">
+                            <div class="flex items-center space-x-3">
+                                <div class="program-icon border-slate-700 group-hover:border-green-500">
+                                    <img src="image/bsba.jpg" alt="BSBA" class="w-full h-full object-cover">
+                                </div>
+                                <span class="text-xs font-medium">BS in Business Administration</span>
+                            </div>
+                            <span class="text-[10px] bg-slate-800 px-2 py-1 rounded text-slate-500 group-hover:bg-indigo-600 group-hover:text-white transition-colors">450</span>
+                        </div>
+                    </a>
+                    <a href="dept/education.html" class="flex items-center justify-between p-2 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl group transition-all">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-9 h-9 rounded-lg overflow-hidden bg-slate-800 border border-slate-700 group-hover:border-red-500 transition-all">
+                                <img src="image/bsed.jpg" alt="Education" class="w-full h-full object-cover">
+                            </div>
+                            <span class="text-xs font-medium">BS in Education</span>
+                        </div>
+                    </a>
+                </div>
+        </nav>
+    </aside>
+
+    <div class="flex-1 flex flex-col overflow-hidden">
+
+<main class="flex-1 overflow-y-auto p-10 custom-scrollbar">
+
+    <div class="flex justify-between items-center mb-10">
+        <div>
+            <h2 class="text-3xl font-black text-slate-800 tracking-tight italic uppercase">Presidential Services</h2>
+            <p class="text-slate-500 text-sm font-medium">Institutional approvals, executive directives, and administrative oversight.</p>
+        </div>
+        <div class="flex gap-4">
+            <button class="bg-slate-900 text-white px-6 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-indigo-600 transition-all">
+                <i class="fa-solid fa-calendar-check mr-2"></i>Schedule Appointment
+            </button>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+        <div class="bg-white p-6 rounded-[2.5rem] border border-slate-100 shadow-sm border-l-4 border-l-indigo-500">
+            <div class="w-10 h-10 bg-indigo-50 rounded-xl flex items-center justify-center text-indigo-600 mb-4">
+                <i class="fa-solid fa-file-signature"></i>
+            </div>
+            <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Document Service</p>
+            <h3 class="text-lg font-black text-slate-800 mt-2">Executive Approval</h3>
+            <p class="text-xs text-slate-400 mt-1">Processing of MOAs, contracts, and high-level institutional requisitions.</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-[2.5rem] border border-slate-100 shadow-sm border-l-4 border-l-emerald-500">
+            <div class="w-10 h-10 bg-emerald-50 rounded-xl flex items-center justify-center text-emerald-600 mb-4">
+                <i class="fa-solid fa-building-shield"></i>
+            </div>
+            <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Governance</p>
+            <h3 class="text-lg font-black text-slate-800 mt-2">Policy Oversight</h3>
+            <p class="text-xs text-slate-400 mt-1">Ratification of campus-wide policies and student handbook amendments.</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-[2.5rem] border border-slate-100 shadow-sm border-l-4 border-l-amber-500">
+            <div class="w-10 h-10 bg-amber-50 rounded-xl flex items-center justify-center text-amber-600 mb-4">
+                <i class="fa-solid fa-handshake"></i>
+            </div>
+            <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest">External Relations</p>
+            <h3 class="text-lg font-black text-slate-800 mt-2">Public Affairs</h3>
+            <p class="text-xs text-slate-400 mt-1">Coordination with CHED, DepEd, and private sector stakeholders.</p>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
+        
+        <div class="bg-white p-8 rounded-[3rem] border border-slate-100 shadow-sm">
+            <div class="flex items-center gap-3 mb-6">
+                <div class="w-10 h-10 bg-slate-900 rounded-xl flex items-center justify-center text-white">
+                    <i class="fa-solid fa-list-check text-xs"></i>
+                </div>
+                <h4 class="text-sm font-black text-slate-800 uppercase italic">Approval Workflow</h4>
+            </div>
+            <div class="space-y-4">
+                <div class="flex gap-4 p-4 bg-slate-50 rounded-2xl border border-slate-100">
+                    <span class="w-6 h-6 bg-white rounded-lg flex items-center justify-center text-[10px] font-black shadow-sm">01</span>
+                    <div>
+                        <p class="text-xs font-bold text-slate-800">Department Endorsement</p>
+                        <p class="text-[10px] text-slate-500">Documents must be signed by the respective Dean or Dept. Head.</p>
+                    </div>
+                </div>
+                <div class="flex gap-4 p-4 bg-slate-50 rounded-2xl border border-slate-100">
+                    <span class="w-6 h-6 bg-white rounded-lg flex items-center justify-center text-[10px] font-black shadow-sm">02</span>
+                    <div>
+                        <p class="text-xs font-bold text-slate-800">Secretarial Review</p>
+                        <p class="text-[10px] text-slate-500">Verification of attachments and compliance with school standards.</p>
+                    </div>
+                </div>
+                <div class="flex gap-4 p-4 bg-slate-50 rounded-2xl border border-slate-100">
+                    <span class="w-6 h-6 bg-white rounded-lg flex items-center justify-center text-[10px] font-black shadow-sm">03</span>
+                    <div>
+                        <p class="text-xs font-bold text-slate-800">Presidential Action</p>
+                        <p class="text-[10px] text-slate-500">Final signature, institutional stamping, and official logging.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-slate-900 p-8 rounded-[3rem] text-white">
+            <div class="flex justify-between items-center mb-6">
+                <h4 class="text-sm font-black uppercase italic">Draft Official Directive</h4>
+                <span class="text-[8px] px-2 py-1 bg-white/10 rounded-lg text-slate-300 font-black">PRESIDENTIAL SEAL</span>
+            </div>
+
+            <form id="memoForm" class="space-y-4">
+                <input type="text" id="mTitle" placeholder="Memo Subject / Title"
+                    class="w-full p-4 bg-white/5 rounded-2xl text-sm border-none focus:ring-2 focus:ring-indigo-500 placeholder:text-slate-500 font-medium text-white" required>
+
+                <textarea id="mContent" placeholder="Official announcement text..."
+                    class="w-full p-4 bg-white/5 rounded-2xl text-sm border-none focus:ring-2 focus:ring-indigo-500 h-24 placeholder:text-slate-500 font-medium text-white" required></textarea>
+
+                <button type="submit"
+                    class="w-full bg-indigo-600 text-white py-4 rounded-2xl text-[10px] font-black uppercase tracking-[0.2em] shadow-xl hover:bg-indigo-500 transition-all">
+                    Sign & Release Directive
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div class="bg-white rounded-[2.5rem] border border-slate-100 shadow-sm overflow-hidden">
+        <div class="p-8 border-b border-slate-50 flex justify-between items-center">
+            <div>
+                <h4 class="text-sm font-black text-slate-800 uppercase italic">Directive Archive</h4>
+                <p class="text-[10px] text-slate-400 font-bold uppercase mt-1">Official communications history</p>
+            </div>
+            <div class="flex items-center gap-3">
+                <p id="currentDate" class="text-[10px] font-black text-slate-400 uppercase tracking-widest"></p>
+            </div>
+        </div>
+        
+        <div id="memoDisplay" class="p-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            </div>
+    </div>
+
+</main>   </div>
+
+    <script>
+        // Sync Logic
+        function syncExecutiveData() {
+            const reg = JSON.parse(localStorage.getItem('smit_registrar')) || [];
+            const cash = JSON.parse(localStorage.getItem('smit_payments')) || [];
+            const clinic = JSON.parse(localStorage.getItem('smit_clinic')) || [];
+
+            document.getElementById('stat-population').innerText = reg.length;
+            document.getElementById('stat-clinic').innerText = clinic.length;
+
+            let revenue = 0;
+            cash.forEach(item => revenue += parseFloat(item.amount.replace(',', '')) || 0);
+            document.getElementById('stat-revenue').innerText = '₱ ' + revenue.toLocaleString(undefined, {minimumFractionDigits: 2});
+            
+            document.getElementById('currentDate').innerText = new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+        }
+
+        // Memo Persistence
+        let memos = JSON.parse(localStorage.getItem('smit_memos')) || [];
+
+        function renderMemos() {
+            const container = document.getElementById('memoDisplay');
+            container.innerHTML = '';
+            memos.slice().reverse().forEach((m, i) => {
+                container.innerHTML += `
+                    <div class="glass-card p-6 rounded-[2rem] border-l-4 border-l-indigo-500 relative group">
+                        <button onclick="deleteMemo(${memos.length - 1 - i})" class="absolute top-4 right-4 text-slate-300 hover:text-rose-500 opacity-0 group-hover:opacity-100 transition-all"><i class="fas fa-times-circle"></i></button>
+                        <h5 class="text-xs font-black text-slate-800 uppercase mb-2">${m.title}</h5>
+                        <p class="text-[11px] text-slate-500 leading-relaxed mb-4">${m.content}</p>
+                        <span class="text-[9px] font-bold text-slate-400 uppercase">${m.date}</span>
+                    </div>
+                `;
+            });
+            localStorage.setItem('smit_memos', JSON.stringify(memos));
+        }
+
+        document.getElementById('memoForm').onsubmit = (e) => {
+            e.preventDefault();
+            const data = {
+                title: document.getElementById('mTitle').value,
+                content: document.getElementById('mContent').value,
+                date: new Date().toLocaleDateString()
+            };
+            memos.push(data);
+            renderMemos();
+            e.target.reset();
+        };
+
+        function deleteMemo(index) {
+            memos.splice(index, 1);
+            renderMemos();
+        }
+
+        syncExecutiveData();
+        renderMemos();
+    </script>
+</body>
+</html>

@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/jpg" href="image/smit.jpg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>Registrar Office  - SMIT</title>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        /* Base style for all links */
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            color: #cbd5e1;
+            border-radius: 0.75rem;
+            transition: all 200ms;
+            text-decoration: none;
+            font-size: 0.875rem;
+        }
+        
+        .nav-link:hover {
+            background-color: #1e293b;
+            color: white;
+        }
+
+        /* Icon sizing inside links */
+        .nav-link i {
+            width: 1.25rem;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        /* Active state - Indigo background */
+        .nav-link.active {
+            background-color: #4f46e5;
+            color: white;
+            box-shadow: 0 20px 25px -5px rgba(79, 70, 229, 0.2);
+        }
+
+        /* Section Header */
+        .nav-section-label {
+            color: #64748b;
+            font-size: 0.625rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-top: 2rem;
+            margin-bottom: 0.5rem;
+            margin-left: 0.5rem;
+            letter-spacing: 0.1em;
+        }
+
+        .program-link {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem;
+            color: #94a3b8;
+            border-radius: 0.75rem;
+            transition: all 200ms;
+        }
+        
+        .program-link:hover {
+            background-color: #1e293b;
+            color: white;
+        }
+        
+        .program-icon {
+            width: 2.25rem;
+            height: 2.25rem;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            background-color: #1e293b;
+            border: 1px solid #64748b;
+            flex-shrink: 0;
+            transition: all 200ms;
+        }
+
+        /* Rotate the chevron when closed */
+        .chevron-rotate {
+            transform: rotate(-90deg);
+        }
+
+        /* Hidden state */
+        .programs-hidden {
+            max-height: 0;
+            opacity: 0;
+            margin-top: 0;
+            pointer-events: none;
+        }
+
+        /* Rotate the chevron when closed */
+        .chevron-rotate {
+            transform: rotate(-90deg);
+        }
+
+        /* Hidden state */
+        .programs-hidden {
+            max-height: 0;
+            opacity: 0;
+            margin-top: 0;
+            pointer-events: none;
+        }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
+        .modal-active { display: flex !important; }
+    </style>
+</head>
+<body class="bg-gray-50 flex h-screen overflow-hidden">
+
+    <aside class="w-72 bg-red-900 text-white flex flex-col h-screen shadow-2xl overflow-hidden">
+        <div class="p-8 text-center border-b border-slate-800/50 flex-shrink-0">
+            <div class="mb-4 relative inline-block">
+                <div class="absolute inset-0 bg-indigo-500 blur-lg opacity-20 rounded-full"></div>
+                <img src="image/smit.jpg" alt="University Logo" 
+                    class="w-20 h-20 mx-auto object-contain rounded-full border-4 border-slate-800 shadow-xl relative z-10">
+            </div>
+            <h1 class="text-sm font-black tracking-tighter text-white uppercase leading-tight">
+                Southern Mindanao Institute <br> of Technology INC.
+            </h1>
+        </div>
+        
+        <nav class="flex-1 px-4 py-6 space-y-1 overflow-y-auto custom-scrollbar">
+
+            <div class="nav-section-label">Administration</div>
+            
+            <a href="index.html" class="nav-link">
+                <i class="fa-solid fa-house"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="library.html" class="nav-link">
+                <i class="fa-solid fa-book-open"></i>
+                <span>Library</span>
+            </a>
+
+            <a href="faculty.html" class="nav-link">
+                <i class="fa-solid fa-chalkboard-teacher"></i>
+                <span>Faculty</span>
+            </a>
+
+            <a href="clinic.html" class="nav-link">
+                <i class="fa-solid fa-house-medical"></i>
+                <span>Clinic</span>
+            </a>
+
+            <a href="cashier.html" class="nav-link">
+                <i class="fa-solid fa-cash-register"></i>
+                <span>Cashier</span>
+            </a>
+
+            <a href="registrar.html" class="nav-link active">
+                <i class="fa-solid fa-file-signature"></i>
+                <span>Registrar Office</span>
+            </a>
+
+            <a href="president.html" class="nav-link">
+                <i class="fa-solid fa-building-columns"></i>
+                <span>President's Office</span>
+            </a>
+
+            <a href="HR.html" class="nav-link">
+                <i class="fa-solid fa-users-gear"></i>
+                <span>HR</span>
+            </a>
+
+            <a href="facilities.html" class="nav-link">
+                <i class="fa-solid fa-school"></i>
+                <span>Facilities</span>
+            </a>
+
+            <div onclick="togglePrograms()" class="flex items-center justify-between px-2 cursor-pointer group mt-8 mb-2">
+                <div id="programsContainer" class="space-y-1 transition-all duration-300 overflow-hidden">
+
+
+                <div id="programsContainer" class="space-y-1 transition-all duration-300 overflow-hidden">
+                    
+                    <a href="dept/bsit.html" class="program-link group">
+                        <div class="flex items-center space-x-3">
+                            <div class="program-icon border-slate-700 group-hover:border-indigo-500">
+                                <img src="image/bsit.jpg" alt="BSIT" class="w-full h-full object-cover">
+                            </div>
+                            <span class="text-xs font-medium">BS in Information Technology</span>
+                        </div>
+                    </a>
+
+                    <a href="dept/bshm.html" class="program-link group">
+                        <div class="flex items-center space-x-3">
+                            <div class="program-icon border-slate-700 group-hover:border-orange-500">
+                                <img src="image/bshm.png" alt="BSHM" class="w-full h-full object-cover">
+                            </div>
+                            <span class="text-xs font-medium">BS in Hospitality Management</span>
+                        </div>
+                    </a>
+
+                    <a href="dept/bsmidwife.html" class="program-link group">
+                        <div class="flex items-center space-x-3">
+                            <div class="program-icon border-slate-700 group-hover:border-pink-500">
+                                <img src="image/mid.png" alt="BSMID" class="w-full h-full object-cover">
+                            </div>
+                            <span class="text-xs font-medium">BS Midwifery</span>
+                        </div>
+                    </a>
+
+                    <a href="dept/bscrim.html" class="program-link group">
+                        <div class="flex items-center space-x-3">
+                            <div class="program-icon border-slate-700 group-hover:border-blue-500">
+                                <img src="image/bscrim.jpg" alt="Criminology" class="w-full h-full object-cover">
+                            </div>
+                            <span class="text-xs font-medium">BS in Criminology</span>
+                        </div>
+                    </a>
+
+                    <a href="dept/bsad.html" class="program-link group">
+                        <div class="flex items-center justify-between w-full">
+                            <div class="flex items-center space-x-3">
+                                <div class="program-icon border-slate-700 group-hover:border-green-500">
+                                    <img src="image/bsba.jpg" alt="BSBA" class="w-full h-full object-cover">
+                                </div>
+                                <span class="text-xs font-medium">BS in Business Administration</span>
+                            </div>
+                            <span class="text-[10px] bg-slate-800 px-2 py-1 rounded text-slate-500 group-hover:bg-indigo-600 group-hover:text-white transition-colors">450</span>
+                        </div>
+                    </a>
+                    <a href="dept/education.html" class="flex items-center justify-between p-2 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl group transition-all">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-9 h-9 rounded-lg overflow-hidden bg-slate-800 border border-slate-700 group-hover:border-red-500 transition-all">
+                                <img src="image/bsed.jpg" alt="Education" class="w-full h-full object-cover">
+                            </div>
+                            <span class="text-xs font-medium">BS in Education</span>
+                        </div>
+                    </a>
+                </div>
+        </nav>
+    </aside>
+
+    <div class="flex-1 flex flex-col overflow-hidden">
+        <header class="h-16 bg-white border-b flex items-center justify-between px-8 shadow-sm">
+            <div class="relative">
+                <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                <input type="text" id="regSearch" placeholder="Search Student Name or ID..." 
+                       class="pl-10 pr-4 py-2 bg-gray-100 rounded-xl text-sm border-none focus:ring-2 focus:ring-indigo-500 w-96 transition-all">
+            </div>
+            <button onclick="toggleModal()" class="bg-indigo-600 text-white px-5 py-2 rounded-xl text-xs font-black uppercase hover:bg-indigo-700 shadow-lg shadow-indigo-100 transition-all">
+                <i class="fas fa-user-plus mr-2"></i>New Student            
+            </button>
+        </header>
+
+       <main class="flex-1 overflow-y-auto p-10 custom-scrollbar">
+
+    <div class="flex justify-between items-center mb-10">
+        <div>
+            <h2 class="text-3xl font-black text-slate-800 tracking-tight italic uppercase">Registrar Services</h2>
+            <p class="text-slate-500 text-sm font-medium">Academic record maintenance, enrollment processing, and credential issuance.</p>
+        </div>
+        <div class="flex gap-4">
+            <button onclick="toggleModal()" class="bg-indigo-600 text-white px-6 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-slate-900 shadow-lg shadow-indigo-100 transition-all">
+                <i class="fas fa-user-plus mr-2"></i>New Enrollment
+            </button>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+        <div class="bg-white p-6 rounded-[2.5rem] border border-slate-100 shadow-sm border-l-4 border-l-indigo-500">
+            <div class="w-10 h-10 bg-indigo-50 rounded-xl flex items-center justify-center text-indigo-600 mb-4">
+                <i class="fa-solid fa-address-card"></i>
+            </div>
+            <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Enrollment</p>
+            <h3 class="text-lg font-black text-slate-800 mt-2">Admissions</h3>
+            <p class="text-xs text-slate-400 mt-1">Processing of new students, transferees, and returning learners.</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-[2.5rem] border border-slate-100 shadow-sm border-l-4 border-l-emerald-500">
+            <div class="w-10 h-10 bg-emerald-50 rounded-xl flex items-center justify-center text-emerald-600 mb-4">
+                <i class="fa-solid fa-file-export"></i>
+            </div>
+            <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Credentials</p>
+            <h3 class="text-lg font-black text-slate-800 mt-2">Document Release</h3>
+            <p class="text-xs text-slate-400 mt-1">Issuance of TOR, Diplomas, and Honorable Dismissal forms.</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-[2.5rem] border border-slate-100 shadow-sm border-l-4 border-l-amber-500">
+            <div class="w-10 h-10 bg-amber-50 rounded-xl flex items-center justify-center text-amber-600 mb-4">
+                <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+            <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Graduation</p>
+            <h3 class="text-lg font-black text-slate-800 mt-2">Eval & Clearance</h3>
+            <p class="text-xs text-slate-400 mt-1">Final evaluation of units and processing of graduation clearances.</p>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-10">
+        
+        <div class="lg:col-span-1 bg-white p-8 rounded-[3rem] border border-slate-100 shadow-sm">
+            <div class="flex items-center gap-3 mb-6">
+                <div class="w-10 h-10 bg-slate-900 rounded-xl flex items-center justify-center text-white">
+                    <i class="fa-solid fa-clipboard-list text-xs"></i>
+                </div>
+                <h4 class="text-sm font-black text-slate-800 uppercase italic">Request Process</h4>
+            </div>
+            <div class="space-y-4 relative">
+                <div class="flex gap-4 p-4 bg-slate-50 rounded-2xl border border-slate-100 relative z-10">
+                    <span class="w-6 h-6 bg-indigo-600 rounded-lg flex items-center justify-center text-[10px] font-black text-white shadow-sm">01</span>
+                    <div>
+                        <p class="text-xs font-bold text-slate-800">Fill-out Request</p>
+                        <p class="text-[10px] text-slate-500">Submit the Request for Document form at the front desk.</p>
+                    </div>
+                </div>
+                <div class="flex gap-4 p-4 bg-slate-50 rounded-2xl border border-slate-100 relative z-10">
+                    <span class="w-6 h-6 bg-white rounded-lg flex items-center justify-center text-[10px] font-black shadow-sm">02</span>
+                    <div>
+                        <p class="text-xs font-bold text-slate-800">Cashier Payment</p>
+                        <p class="text-[10px] text-slate-500">Pay the corresponding document fees at the Cashier window.</p>
+                    </div>
+                </div>
+                <div class="flex gap-4 p-4 bg-slate-50 rounded-2xl border border-slate-100 relative z-10">
+                    <span class="w-6 h-6 bg-white rounded-lg flex items-center justify-center text-[10px] font-black shadow-sm">03</span>
+                    <div>
+                        <p class="text-xs font-bold text-slate-800">Verification & Sign</p>
+                        <p class="text-[10px] text-slate-500">Record verification and final signing by the Registrar.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="lg:col-span-2 bg-white rounded-[3rem] border border-slate-100 shadow-sm overflow-hidden flex flex-col">
+            <div class="p-8 border-b border-slate-50 flex justify-between items-center">
+                <div>
+                    <h4 class="text-sm font-black text-slate-800 uppercase italic">Student Masterlist</h4>
+                    <p class="text-[10px] text-slate-400 font-bold uppercase mt-1">Real-time enrollment records</p>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="flex items-center bg-slate-100 rounded-xl px-3 py-1">
+                        <i class="fa-solid fa-filter text-[10px] text-slate-400 mr-2"></i>
+                        <select id="courseFilter" class="text-[10px] font-bold bg-transparent border-none focus:ring-0 p-1">
+                            <option value="all">All Courses</option>
+                            <option value="BSIT">BSIT</option>
+                            <option value="BSCRIM">BSCRIM</option>
+                            <option value="BSED">BSED</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="overflow-x-auto flex-1">
+                <table class="w-full text-left">
+                    <thead>
+                        <tr class="bg-slate-50/50">
+                            <th class="p-6 text-[10px] font-black text-slate-400 uppercase">Student Profile</th>
+                            <th class="p-6 text-[10px] font-black text-slate-400 uppercase">Classification</th>
+                            <th class="p-6 text-[10px] font-black text-slate-400 uppercase">Status</th>
+                            <th class="p-6 text-[10px] font-black text-slate-400 uppercase text-center">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-50" id="regTableBody">
+                        </tbody>
+                </table>
+            </div>
+
+            <div class="p-6 bg-slate-50/50 border-t border-slate-50 flex justify-around">
+                <div class="text-center">
+                    <p class="text-[9px] font-black text-slate-400 uppercase">Total Enrolled</p>
+                    <p id="studentCount" class="text-lg font-black text-slate-800">0</p>
+                </div>
+                <div class="text-center border-x border-slate-200 px-10">
+                    <p class="text-[9px] font-black text-slate-400 uppercase">Active Requests</p>
+                    <p id="requestCount" class="text-lg font-black text-amber-500">0</p>
+                </div>
+                <div class="text-center">
+                    <p class="text-[9px] font-black text-slate-400 uppercase">System Sync</p>
+                    <p class="text-[10px] font-black text-emerald-500 mt-1 uppercase">Cloud Active</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+    </div>
+
+    <div id="regModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+        <div class="bg-white rounded-[2.5rem] w-full max-w-md p-8 shadow-2xl">
+            <h3 id="modalTitle" class="text-xl font-black text-slate-800 uppercase italic mb-6">New Student</h3>
+            <form id="regForm" class="space-y-4">
+                <input type="text" id="sName" placeholder="Full Name (Last, First)" class="w-full p-3 bg-slate-100 rounded-xl text-sm border-none focus:ring-2 focus:ring-indigo-500" required>
+                
+                <div class="grid grid-cols-2 gap-4">
+                    <input type="text" id="sID" placeholder="Student ID" class="p-3 bg-slate-100 rounded-xl text-sm border-none focus:ring-2 focus:ring-indigo-500" required>
+                    <select id="sCourse" class="p-3 bg-slate-100 rounded-xl text-sm border-none focus:ring-2 focus:ring-indigo-500">
+                        <option value="BSIT">BSIT</option>
+                        <option value="BSCRIM">BSCRIM</option>
+                        <option value="BSED">BSED</option>
+                        <option value="BSBA">BSBA</option>
+                        <option value="BSMIDWIFE">BSMIDWIFE</option>
+                    </select>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <select id="sYear" class="p-3 bg-slate-100 rounded-xl text-sm border-none focus:ring-2 focus:ring-indigo-500">
+                        <option value="1st Year">1st Year</option>
+                        <option value="2nd Year">2nd Year</option>
+                        <option value="3rd Year">3rd Year</option>
+                        <option value="4th Year">4th Year</option>
+                    </select>
+                    <select id="sSection" class="p-3 bg-slate-100 rounded-xl text-sm border-none focus:ring-2 focus:ring-indigo-500">
+                        <option value="" disabled selected>Select Section</option>
+                        <option value="A">Section A</option>
+                        <option value="B">Section B</option>
+                        <option value="C">Section C</option>
+                        <option value="D">Section D</option>
+                    </select>
+                </div>
+
+                <select id="sStatus" class="w-full p-3 bg-slate-100 rounded-xl text-sm border-none focus:ring-2 focus:ring-indigo-500">
+                    <option value="Regular">Regular</option>
+                    <option value="Irregular">Irregular</option>
+                    <option value="Transferee">Transferee</option>
+                </select>
+
+                <div class="flex gap-3 pt-4">
+                    <button type="button" onclick="toggleModal()" class="flex-1 py-3 text-slate-400 font-bold uppercase text-[10px]">Cancel</button>
+                    <button type="submit" id="submitBtn" class="flex-1 bg-indigo-600 text-white py-3 rounded-xl font-black uppercase text-[10px] shadow-lg shadow-indigo-100">Enroll Student</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const tableBody = document.getElementById('regTableBody');
+        const form = document.getElementById('regForm');
+        let editMode = false;
+        let currentEditId = null;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const saved = JSON.parse(localStorage.getItem('smit_registrar')) || [];
+            saved.forEach(item => renderRow(item));
+            updateStats();
+        });
+
+        function toggleModal() {
+            const modal = document.getElementById('regModal');
+            modal.classList.toggle('hidden');
+            modal.classList.toggle('modal-active');
+            if(modal.classList.contains('hidden')) {
+                form.reset();
+                editMode = false;
+                currentEditId = null;
+                document.getElementById('modalTitle').innerText = "Student Enrollment";
+                document.getElementById('submitBtn').innerText = "Enroll Student";
+            }
+        }
+
+        function updateStats() {
+            const count = document.querySelectorAll('.student-row').length;
+            document.getElementById('studentCount').innerText = count;
+            document.getElementById('requestCount').innerText = Math.floor(count / 2);
+        }
+
+        function saveToStorage() {
+            const students = [];
+            document.querySelectorAll('.student-row').forEach(tr => {
+                students.push({
+                    name: tr.querySelector('.s-name').innerText,
+                    id: tr.querySelector('.s-id').innerText,
+                    course: tr.querySelector('.s-course').innerText,
+                    year: tr.querySelector('.s-year').innerText,
+                    section: tr.querySelector('.s-section').innerText,
+                    status: tr.querySelector('.status-badge').innerText
+                });
+            });
+            localStorage.setItem('smit_registrar', JSON.stringify(students));
+        }
+
+        function renderRow(item) {
+            const statusColor = item.status === 'Regular' ? 'bg-emerald-50 text-emerald-600' : 'bg-amber-50 text-amber-600';
+            const rowHTML = `
+                <tr class="student-row hover:bg-slate-50/50 transition-colors" data-id="${item.id}">
+                    <td class="p-4">
+                        <p class="text-xs font-bold text-slate-800 s-name">${item.name}</p>
+                        <p class="text-[9px] text-indigo-500 font-black uppercase s-id">${item.id}</p>
+                    </td>
+                    <td class="p-4">
+                        <p class="text-xs text-slate-600 font-medium"><span class="s-course">${item.course}</span> - <span class="s-year">${item.year}</span></p>
+                        <p class="text-[9px] text-slate-400 font-bold uppercase tracking-widest">Section: <span class="s-section">${item.section}</span></p>
+                    </td>
+                    <td class="p-4">
+                        <span class="status-badge px-3 py-1 ${statusColor} text-[9px] font-black rounded-full uppercase">${item.status}</span>
+                    </td>
+                    <td class="p-4 text-center flex justify-center gap-3">
+                        <button onclick="prepareEdit(this)" class="text-slate-300 hover:text-indigo-600 transition-colors">
+                            <i class="fa-solid fa-user-pen text-xs"></i>
+                        </button>
+                        <button onclick="removeStudent(this)" class="text-slate-300 hover:text-rose-500 transition-colors">
+                            <i class="fa-solid fa-user-minus text-xs"></i>
+                        </button>
+                    </td>
+                </tr>`;
+            tableBody.insertAdjacentHTML('afterbegin', rowHTML);
+        }
+
+        function prepareEdit(btn) {
+            const row = btn.closest('.student-row');
+            editMode = true;
+            currentEditId = row.getAttribute('data-id');
+
+            document.getElementById('sName').value = row.querySelector('.s-name').innerText;
+            document.getElementById('sID').value = row.querySelector('.s-id').innerText;
+            document.getElementById('sCourse').value = row.querySelector('.s-course').innerText;
+            document.getElementById('sYear').value = row.querySelector('.s-year').innerText;
+            document.getElementById('sSection').value = row.querySelector('.s-section').innerText;
+            document.getElementById('sStatus').value = row.querySelector('.status-badge').innerText;
+
+            document.getElementById('modalTitle').innerText = "Edit Student Profile";
+            document.getElementById('submitBtn').innerText = "Update Profile";
+            toggleModal();
+        }
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const newData = {
+                name: document.getElementById('sName').value,
+                id: document.getElementById('sID').value,
+                course: document.getElementById('sCourse').value,
+                year: document.getElementById('sYear').value,
+                section: document.getElementById('sSection').value,
+                status: document.getElementById('sStatus').value
+            };
+
+            if(editMode) {
+                const oldRow = document.querySelector(`[data-id="${currentEditId}"]`);
+                if(oldRow) oldRow.remove();
+            }
+
+            renderRow(newData);
+            saveToStorage();
+            toggleModal();
+            updateStats();
+        });
+
+        function removeStudent(btn) {
+            if(confirm('Unenroll this student?')) {
+                btn.closest('tr').remove();
+                saveToStorage();
+                updateStats();
+            }
+        }
+
+        // Search/Filter
+        function applyFilter() {
+            const q = document.getElementById('regSearch').value.toLowerCase();
+            const c = document.getElementById('courseFilter').value.toLowerCase();
+            document.querySelectorAll('.student-row').forEach(row => {
+                const text = row.innerText.toLowerCase();
+                const course = row.querySelector('.s-course').innerText.toLowerCase();
+                row.style.display = (text.includes(q) && (c === 'all' || course === c)) ? '' : 'none';
+            });
+        }
+        document.getElementById('regSearch').addEventListener('keyup', applyFilter);
+        document.getElementById('courseFilter').addEventListener('change', applyFilter);
+    </script>
+</body>
+</html>

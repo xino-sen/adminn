@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/jpg" href="image/smit.jpg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>HM - Southern Mindanao Institute of Technology Inc.</title>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        /* Base style for all links */
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            color: #cbd5e1;
+            border-radius: 0.75rem;
+            transition: all 200ms;
+            text-decoration: none;
+            font-size: 0.875rem;
+        }
+        
+        .nav-link:hover {
+            background-color: #1e293b;
+            color: white;
+        }
+
+        /* Icon sizing inside links */
+        .nav-link i {
+            width: 1.25rem;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        /* Active state - Indigo background */
+        .nav-link.active {
+            background-color: #4f46e5;
+            color: white;
+            box-shadow: 0 20px 25px -5px rgba(79, 70, 229, 0.2);
+        }
+
+        /* Section Header */
+        .nav-section-label {
+            color: #64748b;
+            font-size: 0.625rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-top: 2rem;
+            margin-bottom: 0.5rem;
+            margin-left: 0.5rem;
+            letter-spacing: 0.1em;
+        }
+
+        .program-link {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem;
+            color: #94a3b8;
+            border-radius: 0.75rem;
+            transition: all 200ms;
+        }
+        
+        .program-link:hover {
+            background-color: #1e293b;
+            color: white;
+        }
+        
+        .program-icon {
+            width: 2.25rem;
+            height: 2.25rem;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            background-color: #1e293b;
+            border: 1px solid #64748b;
+            flex-shrink: 0;
+            transition: all 200ms;
+        }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: hsla(180, 3%, 94%, 0.785); border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-gray-50 flex h-screen overflow-hidden">
+
+    <aside class="w-72 bg-reds-900 text-white flex flex-col h-screen shadow-2xl overflow-hidden">
+        <div class="p-8 text-center border-b border-slate-800/50 flex-shrink-0">
+            <div class="mb-4 relative inline-block">
+                <div class="absolute inset-0 bg-indigo-500 blur-lg opacity-20 rounded-full"></div>
+                <img src="../image/smit.jpg" alt="University Logo" 
+                    class="w-20 h-20 mx-auto object-contain rounded-full border-4 border-slate-800 shadow-xl relative z-10">
+            </div>
+            <h1 class="text-sm font-black tracking-tighter text-white uppercase leading-tight">
+                Southern Mindanao Institute <br> of Technology INC.
+            </h1>
+        </div>
+        
+        <nav class="flex-1 px-4 py-6 space-y-1 overflow-y-auto custom-scrollbar">
+
+            <div class="nav-section-label">Administration</div>
+            
+            <a href="../index.html" class="nav-link">
+                <i class="fa-solid fa-house"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="../library.html" class="nav-link">
+                <i class="fa-solid fa-book-open"></i>
+                <span>Library</span>
+            </a>
+
+            <a href="../faculty.html" class="nav-link">
+                <i class="fa-solid fa-chalkboard-teacher"></i>
+                <span>Faculty</span>
+            </a>
+
+            <a href="../clinic.html" class="nav-link">
+                <i class="fa-solid fa-house-medical"></i>
+                <span>Clinic</span>
+            </a>
+
+            <a href="../cashier.html" class="nav-link">
+                <i class="fa-solid fa-cash-register"></i>
+                <span>Cashier</span>
+            </a>
+
+            <a href="../registrar.html" class="nav-link">
+                <i class="fa-solid fa-file-signature"></i>
+                <span>Registrar Office</span>
+            </a>
+
+            <a href="../president.html" class="nav-link">
+                <i class="fa-solid fa-building-columns"></i>
+                <span>President's Office</span>
+            </a>
+
+            <a href="../HR.html" class="nav-link">
+                <i class="fa-solid fa-users-gear"></i>
+                <span>HR</span>
+            </a>
+
+            <a href="../facilities.html" class="nav-link">
+                <i class="fa-solid fa-school"></i>
+                <span>Facilities</span>
+            </a>
+
+            <div onclick="togglePrograms()" class="flex items-center justify-between px-2 cursor-pointer group mt-8 mb-2">
+                <div id="programsContainer" class="space-y-1 transition-all duration-300 overflow-hidden w-full">
+                    
+                    <a href="../dept/bsit.html" class="program-link group">
+                        <div class="flex items-center space-x-3">
+                            <div class="program-icon border-slate-700 group-hover:border-indigo-500">
+                                <img src="../image/bsit.jpg" alt="BSIT" class="w-full h-full object-cover">
+                            </div>
+                            <span class="text-xs font-medium">BS in Information Technology</span>
+                        </div>
+                    </a>
+
+                    <a href="../dept/bshm.html" class="flex items-center justify-between p-2 bg-orange-500 text-white shadow-lg shadow-orange-500/20 rounded-xl group transition-all">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-9 h-9 rounded-lg overflow-hidden bg-white/20 border border-white/30">
+                                <img src="../image/bshm.png" alt="BSHM" class="w-full h-full object-cover">
+                            </div>
+                            <span class="text-xs font-bold">BS in Hospitality Management</span>
+                        </div>
+                    </a>
+
+                    <a href="../dept/midwifery.html" class="flex items-center justify-between p-2 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl group transition-all">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-9 h-9 rounded-lg overflow-hidden bg-slate-800 border border-slate-700 group-hover:border-pink-500 transition-all">
+                                <img src="../image/mid.png" alt="BSMID" class="w-full h-full object-cover">
+                            </div>
+                            <span class="text-xs font-medium">BS Midwifery</span>
+                        </div>
+                    </a>
+
+                    <a href="../dept/bscrim.html" class="flex items-center justify-between p-2 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl group transition-all">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-9 h-9 rounded-lg overflow-hidden bg-slate-800 border border-slate-700 group-hover:border-blue-500 transition-all">
+                                <img src="../image/bscrim.jpg" alt="Criminology" class="w-full h-full object-cover">
+                            </div>
+                            <span class="text-xs font-medium">BS in Criminology</span>
+                        </div>
+                    </a>
+
+                    <a href="../dept/bsad.html" class="flex items-center justify-between p-2 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl group transition-all">
+                        <div class="flex items-center justify-between w-full">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-9 h-9 rounded-lg overflow-hidden bg-slate-800 border border-slate-700 group-hover:border-green-500 transition-all">
+                                    <img src="../image/bsba.jpg" alt="BSBA" class="w-full h-full object-cover">
+                                </div>
+                                <span class="text-xs font-medium">BS in Business Administration</span>
+                            </div>
+                            <span class="text-[10px] bg-slate-800 px-2 py-1 rounded text-slate-500 group-hover:bg-indigo-600 group-hover:text-white transition-colors">450</span>
+                        </div>
+                    </a>
+
+                    <a href="../dept/education.html" class="flex items-center justify-between p-2 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl group transition-all">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-9 h-9 rounded-lg overflow-hidden bg-slate-800 border border-slate-700 group-hover:border-red-500 transition-all">
+                                <img src="../image/bsed.jpg" alt="Education" class="w-full h-full object-cover">
+                            </div>
+                            <span class="text-xs font-medium">BS in Education</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </aside>
+
+
+    <div class="flex-1 flex flex-col overflow-hidden">
+        
+        <header class="h-16 bg-white border-b flex items-center justify-between px-8 shadow-sm">
+            <div class="relative">
+                <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                <input type="text" placeholder="Search BSHM students..." class="pl-10 pr-4 py-2 bg-gray-100 rounded-xl text-sm border-none focus:ring-2 focus:ring-orange-500 w-80 transition-all">
+            </div>
+            <div class="flex items-center space-x-4">
+            </div>
+        </header>
+
+        <main class="flex-1 overflow-y-auto p-8 custom-scrollbar">
+            
+            <div class="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
+                <div>
+                    <h2 class="text-3xl font-black text-slate-800 tracking-tight italic uppercase">Hospitality Management</h2>
+                    <p class="text-slate-500 text-sm font-medium">College of Business, Hospitality, and Tourism Management</p>
+                </div>
+                <div class="flex space-x-3">
+                </div>
+            </div>
+
+            <div class="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-orange-500 to-amber-900 p-10 text-white shadow-2xl mb-10">
+                <div class="relative z-10 max-w-2xl">
+                    <span class="mb-4 inline-block rounded-full border border-white/20 bg-white/10 px-4 py-1 text-[10px] font-black uppercase tracking-widest">
+                        Course Background
+                    </span>
+                    <h2 class="mb-4 text-4xl font-black italic uppercase tracking-tighter">
+                        Hospitality Management
+                    </h2>
+                    <p class="text-sm font-medium leading-relaxed opacity-90">
+                        This program is dedicated to shaping the future leaders in the hotel and restaurant industry. 
+From Culinary Arts, Front Office Operations, to Tourism Management, we ensure that 
+every H.M. student is prepared for global hospitality standards.
+                    </p>
+                </div>
+                
+                <i class="fas fa-utensils absolute -bottom-12 -right-12 rotate-12 text-[18rem] text-white/10"></i>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+                <div class="bg-white p-6 rounded-[2rem] shadow-sm border border-slate-100 hover:border-orange-200 transition-all group">
+                    <div class="w-12 h-12 bg-orange-50 text-orange-600 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-orange-600 group-hover:text-white transition-all">
+                        <i class="fas fa-concierge-bell"></i>
+                    </div>
+                    <h4 class="font-black text-slate-800 text-sm uppercase mb-1">Front Office</h4>
+                    <p class="text-[10px] text-slate-500 font-medium">Guest relations and reservation systems management.</p>
+                </div>
+                <div class="bg-white p-6 rounded-[2rem] shadow-sm border border-slate-100 hover:border-orange-200 transition-all group">
+                    <div class="w-12 h-12 bg-orange-50 text-orange-600 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-orange-600 group-hover:text-white transition-all">
+                        <i class="fas fa-cocktail"></i>
+                    </div>
+                    <h4 class="font-black text-slate-800 text-sm uppercase mb-1">F&B Service</h4>
+                    <p class="text-[10px] text-slate-500 font-medium">Fine dining standards and beverage operations.</p>
+                </div>
+                <div class="bg-white p-6 rounded-[2rem] shadow-sm border border-slate-100 hover:border-orange-200 transition-all group">
+                    <div class="w-12 h-12 bg-orange-50 text-orange-600 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-orange-600 group-hover:text-white transition-all">
+                        <i class="fas fa-bed"></i>
+                    </div>
+                    <h4 class="font-black text-slate-800 text-sm uppercase mb-1">Housekeeping</h4>
+                    <p class="text-[10px] text-slate-500 font-medium">Professional room maintenance and laundry services.</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-10">
+    
+            <div class="flex flex-col items-center rounded-[2.5rem] border border-orange-100 bg-white p-8 text-center shadow-sm transition-all hover:shadow-md">
+                <h3 class="mb-6 text-[10px] font-black uppercase italic tracking-[0.3em] text-orange-400">
+                    Department Head
+                </h3>
+                
+                <div class="relative mb-4 h-32 w-32 rounded-full border-4 border-orange-50 p-1 shadow-inner">
+                    <div class="flex h-full w-full items-center justify-center rounded-full bg-orange-50 text-3xl text-orange-300 overflow-hidden">
+                        <i class="fas fa-user-tie"></i> 
+                    </div>
+                    <div class="absolute bottom-1 right-1 h-6 w-6 rounded-full border-4 border-white bg-green-500"></div>
+                </div>
+
+                <h4 class="text-lg font-black uppercase tracking-tight text-slate-800 leading-tight">
+                    Melvin Sanchez.
+                </h4>
+                <p class="mb-6 text-[10px] font-bold italic uppercase text-orange-600">
+                    Program Chairperson
+                </p>
+
+                <div class="flex space-x-3">
+                    <button class="flex h-10 w-10 items-center justify-center rounded-xl bg-orange-50 text-orange-600 transition-all hover:bg-orange-600 hover:text-white">
+                        <i class="fas fa-envelope"></i>
+                    </button>
+                    <button class="flex h-10 w-10 items-center justify-center rounded-xl bg-orange-50 text-orange-600 transition-all hover:bg-orange-600 hover:text-white">
+                        <i class="fas fa-phone"></i>
+                    </button>
+                </div>
+            </div>
+
+    <div class="lg:col-span-2 rounded-[2.5rem] border border-slate-100 bg-white p-8 shadow-sm">
+        <h3 class="text-xs font-black uppercase italic text-slate-800 tracking-widest mb-6">Department Facilities Status</h3>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="p-4 rounded-2xl bg-orange-50 border border-orange-100">
+                <div class="flex items-center space-x-3">
+                    <i class="fas fa-fire-burner text-orange-600"></i>
+                    <div>
+                        <p class="text-[10px] font-black uppercase text-slate-500">Kitchen Laboratory</p>
+                        <p class="text-xs font-bold text-slate-800 uppercase tracking-tighter">Fully Operational</p>
+                    </div>
+                </div>
+            </div>
+            <div class="p-4 rounded-2xl bg-amber-50 border border-amber-100">
+                <div class="flex items-center space-x-3">
+                    <i class="fas fa-bed text-amber-600"></i>
+                    <div>
+                        <p class="text-[10px] font-black uppercase text-slate-500">Mock Hotel Suite</p>
+                        <p class="text-xs font-bold text-slate-800 uppercase tracking-tighter">Available for Demo</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mt-8">
+            <div class="h-2 w-full rounded-full bg-slate-100">
+                <div class="h-full w-[70%] rounded-full bg-orange-500"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="bg-white rounded-[2.5rem] p-8 border border-slate-100 shadow-sm mb-10">
+    <div class="flex justify-between items-center mb-10">
+        <div>
+            <h3 class="text-xs font-black uppercase italic text-slate-800 tracking-widest">Enrollment Overview</h3>
+            <p class="text-[10px] font-medium text-slate-400 uppercase tracking-tighter">Academic Year 2025-2026</p>
+        </div>
+        <div class="text-right">
+            <span class="text-3xl font-black text-indigo-600 tracking-tighter">208</span>
+            <p class="text-[9px] font-black text-slate-400 uppercase">Total Students</p>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-10">
+        <div class="group p-6 rounded-[2rem] bg-slate-50 border border-transparent hover:border-indigo-200 transition-all text-center">
+            <p class="text-[9px] font-black text-slate-400 uppercase mb-2">1st Year</p>
+            <p class="text-2xl font-black text-slate-800 group-hover:text-indigo-600 transition-colors">77</p>
+            <div class="mt-3 h-1 w-12 bg-indigo-500 mx-auto rounded-full opacity-20 group-hover:opacity-100 transition-opacity"></div>
+        </div>
+        <div class="group p-6 rounded-[2rem] bg-slate-50 border border-transparent hover:border-indigo-200 transition-all text-center">
+            <p class="text-[9px] font-black text-slate-400 uppercase mb-2">2nd Year</p>
+            <p class="text-2xl font-black text-slate-800 group-hover:text-indigo-600 transition-colors">68</p>
+            <div class="mt-3 h-1 w-12 bg-indigo-500 mx-auto rounded-full opacity-20 group-hover:opacity-100 transition-opacity"></div>
+        </div>
+        <div class="group p-6 rounded-[2rem] bg-slate-50 border border-transparent hover:border-indigo-200 transition-all text-center">
+            <p class="text-[9px] font-black text-slate-400 uppercase mb-2">3rd Year</p>
+            <p class="text-2xl font-black text-slate-800 group-hover:text-indigo-600 transition-colors">33</p>
+            <div class="mt-3 h-1 w-12 bg-indigo-500 mx-auto rounded-full opacity-20 group-hover:opacity-100 transition-opacity"></div>
+        </div>
+        <div class="group p-6 rounded-[2rem] bg-slate-50 border border-transparent hover:border-indigo-200 transition-all text-center">
+            <p class="text-[9px] font-black text-slate-400 uppercase mb-2">4th Year</p>
+            <p class="text-2xl font-black text-slate-800 group-hover:text-indigo-600 transition-colors">30</p>
+            <div class="mt-3 h-1 w-12 bg-indigo-500 mx-auto rounded-full opacity-20 group-hover:opacity-100 transition-opacity"></div>
+        </div>
+    </div>
+
+    <div class="mb-10 overflow-hidden rounded-[2.5rem] bg-white shadow-sm border border-orange-100">
+    <div class="grid grid-cols-1 md:grid-cols-2">
+        
+        <div class="relative aspect-video md:aspect-auto bg-slate-900 overflow-hidden group">
+            <video class="h-full w-full object-cover opacity-90 transition-transform duration-700 group-hover:scale-105" autoplay muted loop playsinline>
+                <source src="../image/hm.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+
+        </div>
+
+        <div class="p-10 flex flex-col justify-center bg-gradient-to-br from-orange-50/50 to-white">
+            <div class="mb-4 inline-flex items-center space-x-2">
+                <span class="h-[2px] w-8 bg-orange-500"></span>
+                <span class="text-[10px] font-black uppercase tracking-[0.3em] text-orange-600">Department Showcase</span>
+            </div>
+            
+            <h3 class="text-2xl font-black text-slate-800 uppercase italic leading-tight mb-4">
+                Experience World-Class <br> <span class="text-orange-600 underline decoration-orange-200 underline-offset-4">Hospitality Training</span>
+            </h3>
+            
+            <p class="text-xs text-slate-500 leading-relaxed mb-8 font-medium">
+                From fine dining service to hotel front-office operations, our BSHM program provides the hands-on experience needed in the global tourism industry. Watch our students in their actual laboratory exercises.
+            </p>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        
+        <div class="group relative overflow-hidden rounded-[2rem] aspect-[4/5] shadow-sm">
+            <img src="../image/bshm1.jpg" alt="Culinary" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110">
+            <div class="absolute inset-0 bg-gradient-to-t from-orange-900/80 via-transparent to-transparent"></div>
+            <div class="absolute bottom-6 left-6">
+                <span class="text-[8px] font-black uppercase text-orange-300">April 2026</span>
+                <h4 class="text-xs font-bold text-white uppercase mt-1">International Cuisine Fest</h4>
+            </div>
+        </div>
+
+        <div class="group relative overflow-hidden rounded-[2rem] aspect-[4/5] shadow-sm">
+            <img src="../image/bshm2.jpg" alt="Mixology" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110">
+            <div class="absolute inset-0 bg-gradient-to-t from-orange-900/80 via-transparent to-transparent"></div>
+            <div class="absolute bottom-6 left-6">
+                <span class="text-[8px] font-black uppercase text-orange-300">March 2026</span>
+                <h4 class="text-xs font-bold text-white uppercase mt-1">Flair Bartending Expo</h4>
+            </div>
+        </div>
+
+        <div class="group relative overflow-hidden rounded-[2rem] aspect-[4/5] shadow-sm">
+            <img src="../image/bshm3.jpg" alt="Tourism" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110">
+            <div class="absolute inset-0 bg-gradient-to-t from-orange-900/80 via-transparent to-transparent"></div>
+            <div class="absolute bottom-6 left-6">
+                <span class="text-[8px] font-black uppercase text-orange-300">Feb 2026</span>
+                <h4 class="text-xs font-bold text-white uppercase mt-1">Eco-Tourism Seminar</h4>
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>
+</main>
+    </div>
+</body>
+</html>

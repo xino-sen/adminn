@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/jpg" href="image/smit.jpg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>Bachelor of Science Criminology - Southern Mindanao Institute of Technology Inc.</title>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        /* Base style for all links */
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            color: #cbd5e1;
+            border-radius: 0.75rem;
+            transition: all 200ms;
+            text-decoration: none;
+            font-size: 0.875rem;
+        }
+        
+        .nav-link:hover {
+            background-color: #1e293b;
+            color: white;
+        }
+
+        /* Icon sizing inside links */
+        .nav-link i {
+            width: 1.25rem;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        /* Active state - Indigo background */
+        .nav-link.active {
+            background-color: #4f46e5;
+            color: white;
+            box-shadow: 0 20px 25px -5px rgba(79, 70, 229, 0.2);
+        }
+
+        /* Section Header */
+        .nav-section-label {
+            color: #64748b;
+            font-size: 0.625rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-top: 2rem;
+            margin-bottom: 0.5rem;
+            margin-left: 0.5rem;
+            letter-spacing: 0.1em;
+        }
+
+        .program-link {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem;
+            color: #94a3b8;
+            border-radius: 0.75rem;
+            transition: all 200ms;
+        }
+        
+        .program-link:hover {
+            background-color: #1e293b;
+            color: white;
+        }
+        
+        .program-icon {
+            width: 2.25rem;
+            height: 2.25rem;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            background-color: #1e293b;
+            border: 1px solid #64748b;
+            flex-shrink: 0;
+            transition: all 200ms;
+        }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #e20896; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-gray-50 flex h-screen overflow-hidden">
+
+    <aside class="w-72 bg-reds-900 text-white flex flex-col h-screen shadow-2xl overflow-hidden">
+        <div class="p-8 text-center border-b border-slate-800/50 flex-shrink-0">
+            <div class="mb-4 relative inline-block">
+                <div class="absolute inset-0 bg-indigo-500 blur-lg opacity-20 rounded-full"></div>
+                <img src="../image/smit.jpg" alt="University Logo" 
+                    class="w-20 h-20 mx-auto object-contain rounded-full border-4 border-slate-800 shadow-xl relative z-10">
+            </div>
+            <h1 class="text-sm font-black tracking-tighter text-white uppercase leading-tight">
+                Southern Mindanao Institute <br> of Technology INC.
+            </h1>
+        </div>
+        
+        <nav class="flex-1 px-4 py-6 space-y-1 overflow-y-auto custom-scrollbar">
+
+            <div class="nav-section-label">Administration</div>
+            
+            <a href="../index.html" class="nav-link">
+                <i class="fa-solid fa-house"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="../library.html" class="nav-link">
+                <i class="fa-solid fa-book-open"></i>
+                <span>Library</span>
+            </a>
+
+            <a href="../faculty.html" class="nav-link">
+                <i class="fa-solid fa-chalkboard-teacher"></i>
+                <span>Faculty</span>
+            </a>
+
+            <a href="../clinic.html" class="nav-link">
+                <i class="fa-solid fa-house-medical"></i>
+                <span>Clinic</span>
+            </a>
+
+            <a href="../cashier.html" class="nav-link">
+                <i class="fa-solid fa-cash-register"></i>
+                <span>Cashier</span>
+            </a>
+
+            <a href="../registrar.html" class="nav-link">
+                <i class="fa-solid fa-file-signature"></i>
+                <span>Registrar Office</span>
+            </a>
+
+            <a href="../president.html" class="nav-link">
+                <i class="fa-solid fa-building-columns"></i>
+                <span>President's Office</span>
+            </a>
+
+            <a href="../HR.html" class="nav-link">
+                <i class="fa-solid fa-users-gear"></i>
+                <span>HR</span>
+            </a>
+
+            <a href="../facilities.html" class="nav-link">
+                <i class="fa-solid fa-school"></i>
+                <span>Facilities</span>
+            </a>
+
+            <div onclick="togglePrograms()" class="flex items-center justify-between px-2 cursor-pointer group mt-8 mb-2">
+                <div id="programsContainer" class="space-y-1 transition-all duration-300 overflow-hidden w-full">
+                    
+                    <a href="../dept/bsit.html" class="program-link group">
+                        <div class="flex items-center space-x-3">
+                            <div class="program-icon border-slate-700 group-hover:border-indigo-500">
+                                <img src="../image/bsit.jpg" alt="BSIT" class="w-full h-full object-cover">
+                            </div>
+                            <span class="text-xs font-medium">BS in Information Technology</span>
+                        </div>
+                    </a>
+
+                    <a href="../dept/bshm.html" class="flex items-center justify-between p-2 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl group transition-all">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-9 h-9 rounded-lg overflow-hidden bg-slate-800 border border-slate-700 group-hover:border-orange-500 transition-all">
+                                <img src="../image/bshm.png" alt="BSHM" class="w-full h-full object-cover">
+                            </div>
+                            <span class="text-xs font-medium">BS in Hospitality Management</span>
+                        </div>
+                    </a>
+
+                    <a href="../dept/midwifery.html" class="flex items-center justify-between p-2 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl group transition-all">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-9 h-9 rounded-lg overflow-hidden bg-slate-800 border border-slate-700 group-hover:border-pink-500 transition-all">
+                                <img src="../image/mid.png" alt="BSMID" class="w-full h-full object-cover">
+                            </div>
+                            <span class="text-xs font-medium">BS Midwifery</span>
+                        </div>
+                    </a>
+
+                    <a href="../dept/bscrim.html" class="nav-link active flex items-center justify-between p-2 rounded-xl transition-all">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-9 h-9 rounded-lg overflow-hidden bg-slate-800 border border-blue-500 transition-all shadow-[0_0_10px_rgba(59,130,246,0.5)]">
+                                <img src="../image/bscrim.jpg" alt="Criminology" class="w-full h-full object-cover">
+                            </div>
+                            <span class="text-xs font-bold text-white">BS in Criminology</span>
+                        </div>
+                        <div class="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse mr-2"></div>
+                    </a>
+
+                    <a href="../dept/bsad.html" class="flex items-center justify-between p-2 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl group transition-all">
+                        <div class="flex items-center justify-between w-full">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-9 h-9 rounded-lg overflow-hidden bg-slate-800 border border-slate-700 group-hover:border-green-500 transition-all">
+                                    <img src="../image/bsba.jpg" alt="BSBA" class="w-full h-full object-cover">
+                                </div>
+                                <span class="text-xs font-medium">BS in Business Administration</span>
+                            </div>
+                            <span class="text-[10px] bg-slate-800 px-2 py-1 rounded text-slate-500 group-hover:bg-indigo-600 group-hover:text-white transition-colors">450</span>
+                        </div>
+                    </a>
+
+                    <a href="../dept/education.html" class="flex items-center justify-between p-2 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl group transition-all">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-9 h-9 rounded-lg overflow-hidden bg-slate-800 border border-slate-700 group-hover:border-red-500 transition-all">
+                                <img src="../image/bsed.jpg" alt="Education" class="w-full h-full object-cover">
+                            </div>
+                            <span class="text-xs font-medium">BS in Education</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </aside>
+
+
+    <div class="flex-1 flex flex-col overflow-hidden">
+        
+        <header class="h-16 bg-white border-b flex items-center justify-between px-8 shadow-sm">
+            <div class="relative">
+                <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                <input type="text" placeholder="Search cadet/student name..." class="pl-10 pr-4 py-2 bg-gray-100 rounded-xl text-sm border-none focus:ring-2 focus:ring-blue-900 w-80 transition-all">
+            </div>
+            <div class="flex items-center space-x-4">
+            </div>
+        </header>
+
+        <main class="flex-1 overflow-y-auto p-8 custom-scrollbar">
+            
+            <div class="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
+                <div>
+                    <h2 class="text-3xl font-black text-slate-800 tracking-tight italic uppercase">College of Criminology</h2>
+                    <p class="text-slate-500 text-sm font-medium">Commitment to Service, Integrity, and Justice.</p>
+                </div>
+            </div>
+
+            <div class="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-slate-800 to-slate-950 p-10 text-white shadow-2xl mb-10 border-b-4 border-yellow-600">
+            <div class="relative z-10 max-w-2xl">
+                <span class="mb-4 inline-block rounded-full border border-yellow-600/50 bg-yellow-600/10 px-4 py-1 text-[10px] font-black uppercase tracking-widest text-yellow-500">
+                    Professional Standards
+                </span>
+                <h2 class="mb-4 text-4xl font-black italic uppercase tracking-tighter">
+                    Bachelor of Science in Criminology
+                </h2>
+                <p class="text-sm font-medium leading-relaxed opacity-80">
+                    This program focuses on the study of crime, law enforcement, and social justice. 
+        We shape the future defenders of the people with a high level of discipline, 
+        legal knowledge, and dedication to public service.
+                </p>
+            </div>
+            
+            <i class="fas fa-shield-halved absolute -bottom-12 -right-12 rotate-12 text-[18rem] text-white/5"></i>
+        </div>
+
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+                <div class="bg-white p-8 rounded-[2rem] border-b-4 border-blue-900 shadow-sm">
+                    <div class="flex items-center justify-between mb-4">
+                        <i class="fas fa-fingerprint text-2xl text-blue-900"></i>
+                        <span class="text-[9px] font-black bg-blue-50 text-blue-900 px-2 py-1 rounded">Lab A</span>
+                    </div>
+                    <h4 class="font-black text-slate-800 text-sm uppercase">Criminalistics</h4>
+                    <p class="text-[10px] text-slate-500 mt-1">Dactyloscopy, Ballistics, and Forensic Science studies.</p>
+                </div>
+                <div class="bg-white p-8 rounded-[2rem] border-b-4 border-blue-900 shadow-sm">
+                    <div class="flex items-center justify-between mb-4">
+                        <i class="fas fa-gavel text-2xl text-blue-900"></i>
+                        <span class="text-[9px] font-black bg-blue-50 text-blue-900 px-2 py-1 rounded">Room 302</span>
+                    </div>
+                    <h4 class="font-black text-slate-800 text-sm uppercase">Criminal Law</h4>
+                    <p class="text-[10px] text-slate-500 mt-1">Fedirrico S.</p>
+                </div>
+                <div class="bg-white p-8 rounded-[2rem] border-b-4 border-blue-900 shadow-sm">
+                    <div class="flex items-center justify-between mb-4">
+                        <i class="fas fa-shield-alt text-2xl text-blue-900"></i>
+                        <span class="text-[9px] font-black bg-blue-50 text-blue-900 px-2 py-1 rounded">Field</span>
+                    </div>
+                    <h4 class="font-black text-slate-800 text-sm uppercase">Law Enforcement</h4>
+                    <p class="text-[10px] text-slate-500 mt-1">Police Admin and Operational Planning.</p>
+                </div>
+            </div>
+
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-10">
+    
+    <div class="flex flex-col items-center rounded-[2.5rem] border border-slate-200 bg-white p-8 text-center shadow-sm transition-all hover:shadow-md relative overflow-hidden">
+        <div class="absolute top-0 right-0 p-4 opacity-10">
+            <i class="fas fa-scale-balanced text-4xl"></i>
+        </div>
+
+        <h3 class="mb-6 text-[10px] font-black uppercase italic tracking-[0.3em] text-slate-400">
+            Department Dean
+        </h3>
+        
+        <div class="relative mb-4 h-32 w-32 rounded-full border-4 border-slate-100 p-1 shadow-inner bg-slate-50">
+            <div class="flex h-full w-full items-center justify-center rounded-full bg-slate-800 text-3xl text-yellow-500 overflow-hidden">
+                <i class="fas fa-user-shield"></i> 
+            </div>
+            <div class="absolute bottom-1 right-1 h-6 w-6 rounded-full border-4 border-white bg-blue-600 shadow-sm"></div>
+        </div>
+
+        <h4 class="text-lg font-black uppercase tracking-tight text-slate-800 leading-tight">
+            Fedirico S. Seneres, Jr
+        </h4>
+        <p class="mb-6 text-[10px] font-bold italic uppercase text-slate-500 tracking-wider">
+            Dean, College of Criminal Justice
+        </p>
+
+        <div class="flex space-x-3">
+            <button title="Official Email" class="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-900 text-yellow-500 transition-all hover:scale-110 shadow-lg">
+                <i class="fas fa-envelope-open-text"></i>
+            </button>
+            <button title="Department Office" class="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-100 text-slate-600 transition-all hover:bg-slate-200 shadow-sm">
+                <i class="fas fa-building-shield"></i>
+            </button>
+        </div>
+    </div>
+</div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            </div>
+            
+            <div class="bg-white rounded-[2.5rem] p-8 border border-slate-200 shadow-sm mb-10">
+    <div class="flex justify-between items-center mb-10">
+        <div>
+            <h3 class="text-xs font-black uppercase italic text-slate-800 tracking-widest">Enrollment Statistics</h3>
+            <p class="text-[10px] font-medium text-slate-400 uppercase tracking-tighter">Academic Year 2025-2026</p>
+        </div>
+        <div class="text-right">
+            <span class="text-3xl font-black text-slate-900 tracking-tighter">875</span>
+            <p class="text-[9px] font-black text-slate-400 uppercase">Total Battalion Strength</p>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-10">
+        <div class="group p-6 rounded-[2rem] bg-slate-50 border border-transparent hover:border-slate-300 transition-all text-center">
+            <p class="text-[9px] font-black text-slate-400 uppercase mb-2">1st Year</p>
+            <p class="text-2xl font-black text-slate-800 group-hover:text-slate-900 transition-colors">134</p>
+            <div class="mt-3 h-1 w-10 bg-slate-900 mx-auto rounded-full opacity-20 group-hover:opacity-100 transition-opacity"></div>
+        </div>
+        <div class="group p-6 rounded-[2rem] bg-slate-50 border border-transparent hover:border-slate-300 transition-all text-center">
+            <p class="text-[9px] font-black text-slate-400 uppercase mb-2">2nd Year</p>
+            <p class="text-2xl font-black text-slate-800 group-hover:text-slate-900 transition-colors">196</p>
+            <div class="mt-3 h-1 w-10 bg-slate-900 mx-auto rounded-full opacity-20 group-hover:opacity-100 transition-opacity"></div>
+        </div>
+        <div class="group p-6 rounded-[2rem] bg-slate-50 border border-transparent hover:border-slate-300 transition-all text-center">
+            <p class="text-[9px] font-black text-slate-400 uppercase mb-2">3rd Year</p>
+            <p class="text-2xl font-black text-slate-800 group-hover:text-slate-900 transition-colors">232</p>
+            <div class="mt-3 h-1 w-10 bg-slate-900 mx-auto rounded-full opacity-20 group-hover:opacity-100 transition-opacity"></div>
+        </div>
+        <div class="group p-6 rounded-[2rem] bg-slate-50 border border-transparent hover:border-slate-300 transition-all text-center">
+            <p class="text-[9px] font-black text-slate-400 uppercase mb-2">4th Year</p>
+            <p class="text-2xl font-black text-slate-800 group-hover:text-slate-900 transition-colors">313</p>
+            <div class="mt-3 h-1 w-10 bg-slate-900 mx-auto rounded-full opacity-20 group-hover:opacity-100 transition-opacity"></div>
+        </div>
+    </div>
+
+   <div class="mb-10 overflow-hidden rounded-[2.5rem] bg-slate-900 shadow-2xl border border-slate-800">
+        <div class="grid grid-cols-1 md:grid-cols-2">
+            <div class="relative aspect-video md:aspect-auto bg-black">
+                <video class="h-full w-full object-cover opacity-80" autoplay muted loop playsinline>
+                    <source src="bscrim.mp4" type="video/mp4">
+                </video>
+                <div class="absolute inset-0 flex items-center justify-center">
+                </div>
+            </div>
+            <div class="p-8 flex flex-col justify-center">
+                <span class="text-[10px] font-black uppercase tracking-[0.3em] text-yellow-500 mb-2">Tactical Showcase</span>
+                <h3 class="text-xl font-black text-white uppercase italic mb-4">Drills & Investigation Demo</h3>
+                <p class="text-xs text-slate-400 leading-relaxed mb-6">
+                Watch actual drills, forensic investigation techniques, and court room simulations by our Criminology cadets.
+                </p>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="mb-10">
+        <div class="flex items-center justify-between mb-8">
+            <div>
+                <h3 class="text-xs font-black uppercase italic text-slate-800 tracking-widest">Tactical Events & Gallery</h3>
+                <p class="text-[10px] font-medium text-slate-400 uppercase tracking-tighter">Discipline, Integrity, and Service in Action</p>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            
+            <div class="group relative overflow-hidden rounded-[2rem] bg-slate-200 aspect-[4/5] shadow-sm transition-all hover:shadow-xl border border-slate-200">
+                <img src="image/crim1.jpg" alt="Reveille Run" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-90"></div>
+                <div class="absolute bottom-6 left-6 right-6">
+                    <span class="text-[8px] font-black uppercase text-yellow-500 tracking-widest">Morning Drills</span>
+                    <h4 class="text-xs font-bold text-white uppercase mt-1">Reveille & Endurance Road Run</h4>
+                </div>
+            </div>
+
+            <div class="group relative overflow-hidden rounded-[2rem] bg-slate-200 aspect-[4/5] shadow-sm transition-all hover:shadow-xl border border-slate-200">
+                <img src="image/crim2.jpg" alt="Crime Scene" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-90"></div>
+                <div class="absolute bottom-6 left-6 right-6">
+                    <span class="text-[8px] font-black uppercase text-yellow-500 tracking-widest">Crime Laboratory</span>
+                    <h4 class="text-xs font-bold text-white uppercase mt-1">Forensic & Crime Scene Processing</h4>
+                </div>
+            </div>
+
+            <div class="group relative overflow-hidden rounded-[2rem] bg-slate-200 aspect-[4/5] shadow-sm transition-all hover:shadow-xl border border-slate-200">
+                <img src="image/crim3.jpg" alt="Community OutReach" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-90"></div>
+                <div class="absolute bottom-6 left-6 right-6">
+                    <span class="text-[8px] font-black uppercase text-yellow-500 tracking-widest">Community Service</span>
+                    <h4 class="text-xs font-bold text-white uppercase mt-1">Outreach and Traffic Management</h4>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</main>
+
+</body>
+</html>

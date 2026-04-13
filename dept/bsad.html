@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/jpg" href="image/smit.jpg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>BSBA- SMIT</title>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        /* Custom Scrollbar Fix */
+
+        /* Base style for all links */
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            color: #cbd5e1;
+            border-radius: 0.75rem;
+            transition: all 200ms;
+            text-decoration: none;
+            font-size: 0.875rem;
+        }
+        
+        .nav-link:hover {
+            background-color: #1e293b;
+            color: white;
+        }
+
+        /* Icon sizing inside links */
+        .nav-link i {
+            width: 1.25rem;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        /* Active state - Indigo background */
+        .nav-link.active {
+            background-color: #4f46e5;
+            color: white;
+            box-shadow: 0 20px 25px -5px rgba(79, 70, 229, 0.2);
+        }
+
+        /* Section Header */
+        .nav-section-label {
+            color: #64748b;
+            font-size: 0.625rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-top: 2rem;
+            margin-bottom: 0.5rem;
+            margin-left: 0.5rem;
+            letter-spacing: 0.1em;
+        }
+
+        .program-link {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem;
+            color: #94a3b8;
+            border-radius: 0.75rem;
+            transition: all 200ms;
+        }
+        
+        .program-link:hover {
+            background-color: #1e293b;
+            color: white;
+        }
+        
+        .program-icon {
+            width: 2.25rem;
+            height: 2.25rem;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            background-color: #1e293b;
+            border: 1px solid #64748b;
+            flex-shrink: 0;
+            transition: all 200ms;
+        }
+        .custom-scrollbar::-webkit-scrollbar { width: 5px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #475569; border-radius: 10px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #6366f1; }
+    
+    </style>
+</head>
+<body class="bg-gray-50 flex h-screen overflow-hidden">
+
+    <aside class="w-72 bg-reds-900 text-white flex flex-col h-screen shadow-2xl overflow-hidden">
+        <div class="p-8 text-center border-b border-slate-800/50 flex-shrink-0">
+            <div class="mb-4 relative inline-block">
+                <div class="absolute inset-0 bg-indigo-500 blur-lg opacity-20 rounded-full"></div>
+                <img src="../image/smit.jpg" alt="University Logo" 
+                    class="w-20 h-20 mx-auto object-contain rounded-full border-4 border-slate-800 shadow-xl relative z-10">
+            </div>
+            <h1 class="text-sm font-black tracking-tighter text-white uppercase leading-tight">
+                Southern Mindanao Institute <br> of Technology INC.
+            </h1>
+        </div>
+        
+        <nav class="flex-1 px-4 py-6 space-y-1 overflow-y-auto custom-scrollbar">
+
+            <div class="nav-section-label">Administration</div>
+            
+            <a href="../index.html" class="nav-link">
+                <i class="fa-solid fa-house"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="../library.html" class="nav-link">
+                <i class="fa-solid fa-book-open"></i>
+                <span>Library</span>
+            </a>
+
+            <a href="../faculty.html" class="nav-link">
+                <i class="fa-solid fa-chalkboard-teacher"></i>
+                <span>Faculty</span>
+            </a>
+
+            <a href="../clinic.html" class="nav-link">
+                <i class="fa-solid fa-house-medical"></i>
+                <span>Clinic</span>
+            </a>
+
+            <a href="../cashier.html" class="nav-link">
+                <i class="fa-solid fa-cash-register"></i>
+                <span>Cashier</span>
+            </a>
+
+            <a href="../registrar.html" class="nav-link">
+                <i class="fa-solid fa-file-signature"></i>
+                <span>Registrar Office</span>
+            </a>
+
+            <a href="../president.html" class="nav-link">
+                <i class="fa-solid fa-building-columns"></i>
+                <span>President's Office</span>
+            </a>
+
+            <a href="../HR.html" class="nav-link">
+                <i class="fa-solid fa-users-gear"></i>
+                <span>HR</span>
+            </a>
+
+            <a href="../facilities.html" class="nav-link">
+                <i class="fa-solid fa-school"></i>
+                <span>Facilities</span>
+            </a>
+
+            <div onclick="togglePrograms()" class="flex items-center justify-between px-2 cursor-pointer group mt-8 mb-2">
+                <div id="programsContainer" class="space-y-1 transition-all duration-300 overflow-hidden w-full">
+                    
+                    <a href="../dept/bsit.html" class="program-link group">
+                        <div class="flex items-center space-x-3">
+                            <div class="program-icon border-slate-700 group-hover:border-indigo-500">
+                                <img src="../image/bsit.jpg" alt="BSIT" class="w-full h-full object-cover">
+                            </div>
+                            <span class="text-xs font-medium">BS in Information Technology</span>
+                        </div>
+                    </a>
+
+                    <a href="../dept/bshm.html" class="flex items-center justify-between p-2 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl group transition-all">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-9 h-9 rounded-lg overflow-hidden bg-slate-800 border border-slate-700 group-hover:border-orange-500 transition-all">
+                                <img src="../image/bshm.png" alt="BSHM" class="w-full h-full object-cover">
+                            </div>
+                            <span class="text-xs font-medium">BS in Hospitality Management</span>
+                        </div>
+                    </a>
+
+                    <a href="../dept/midwifery.html" class="flex items-center justify-between p-2 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl group transition-all">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-9 h-9 rounded-lg overflow-hidden bg-slate-800 border border-slate-700 group-hover:border-pink-500 transition-all">
+                                <img src="../image/mid.png" alt="BSMID" class="w-full h-full object-cover">
+                            </div>
+                            <span class="text-xs font-medium">BS Midwifery</span>
+                        </div>
+                    </a>
+
+                    <a href="../dept/bscrim.html" class="flex items-center justify-between p-2 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl group transition-all">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-9 h-9 rounded-lg overflow-hidden bg-slate-800 border border-slate-700 group-hover:border-blue-500 transition-all">
+                                <img src="../image/bscrim.jpg" alt="Criminology" class="w-full h-full object-cover">
+                            </div>
+                            <span class="text-xs font-medium">BS in Criminology</span>
+                        </div>
+                    </a>
+
+                    <a href="../dept/bsad.html" class="nav-link active flex items-center justify-between p-2 rounded-xl transition-all shadow-lg">
+                        <div class="flex items-center justify-between w-full">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-9 h-9 rounded-lg overflow-hidden bg-slate-800 border border-green-500 transition-all shadow-[0_0_10px_rgba(34,197,94,0.3)]">
+                                    <img src="../image/bsba.jpg" alt="BSBA" class="w-full h-full object-cover">
+                                </div>
+                                <span class="text-xs font-bold text-white">BS in Business Administration</span>
+                            </div>
+                            <span class="text-[10px] bg-white/20 px-2 py-1 rounded text-white font-black backdrop-blur-md">450</span>
+                        </div>
+                    </a>
+
+                    <a href="../dept/education.html" class="flex items-center justify-between p-2 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl group transition-all">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-9 h-9 rounded-lg overflow-hidden bg-slate-800 border border-slate-700 group-hover:border-red-500 transition-all">
+                                <img src="../image/bsed.jpg" alt="Education" class="w-full h-full object-cover">
+                            </div>
+                            <span class="text-xs font-medium">BS in Education</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </aside>
+
+
+    <div class="flex-1 flex flex-col overflow-hidden">
+        <header class="h-16 bg-white border-b flex items-center justify-between px-8 shadow-sm">
+            <div class="relative">
+                <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                <input type="text" placeholder="Search student records..." class="pl-10 pr-4 py-2 bg-gray-100 rounded-xl text-sm border-none focus:ring-2 focus:ring-indigo-500 w-80 transition-all">
+            </div>
+            <div class="flex items-center space-x-4">
+                <div class="flex items-center space-x-2 bg-slate-100 px-3 py-1.5 rounded-lg border border-slate-200">
+            </div>
+        </header>
+
+        <main class="flex-1 overflow-y-auto p-8 custom-scrollbar">
+            <div class="mb-8">
+                <h2 class="text-3xl font-black text-slate-800 tracking-tight italic uppercase">Business Administration</h2>
+                <p class="text-slate-500 text-sm font-medium">Department Management & Analytics</p>
+            </div>
+
+            <!-- Program Banner -->
+            <div class="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-emerald-600 to-teal-950 p-10 text-white shadow-2xl mb-10 border-b-4 border-emerald-400">
+                <div class="relative z-10 max-w-2xl">
+                    <span class="mb-4 inline-block rounded-full border border-emerald-400/30 bg-white/10 px-4 py-1 text-[10px] font-black uppercase tracking-widest text-emerald-100">
+                        Corporate Leadership
+                    </span>
+                    <h2 class="mb-4 text-4xl font-black italic uppercase tracking-tighter">Business Administration</h2>
+                    <p class="text-sm font-medium leading-relaxed opacity-90">
+                        This program focuses on developing strategic leaders in the world of commerce. We hone each student to be an innovator with integrity and a global vision.
+                    </p>
+                </div>
+                <i class="fas fa-chart-line absolute -bottom-12 -right-12 rotate-12 text-[18rem] text-white/5"></i>
+            </div>
+
+            <!-- Major Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+                <div class="relative bg-white rounded-[2.5rem] p-8 border border-slate-100 shadow-sm border-b-4 border-b-emerald-600 transition-all hover:shadow-md">
+                    <div class="flex justify-between items-start mb-6">
+                        <div class="text-emerald-600 text-3xl"><i class="fas fa-coins"></i></div>
+                        <span class="px-3 py-1 bg-emerald-50 text-emerald-700 text-[10px] font-black uppercase rounded-lg">Room 401</span>
+                    </div>
+                    <h4 class="text-sm font-black uppercase tracking-tight text-slate-800 mb-2">Financial Management</h4>
+                    <p class="text-[11px] text-slate-400 font-medium leading-relaxed">Investment analysis, Banking operations, and Corporate Finance strategies.</p>
+                </div>
+
+                <div class="relative bg-white rounded-[2.5rem] p-8 border border-slate-100 shadow-sm border-b-4 border-b-emerald-600 transition-all hover:shadow-md">
+                    <div class="flex justify-between items-start mb-6">
+                        <div class="text-emerald-600 text-3xl"><i class="fas fa-bullhorn"></i></div>
+                        <span class="px-3 py-1 bg-emerald-50 text-emerald-700 text-[10px] font-black uppercase rounded-lg">Studio B</span>
+                    </div>
+                    <h4 class="text-sm font-black uppercase tracking-tight text-slate-800 mb-2">Marketing Management</h4>
+                    <p class="text-[11px] text-slate-400 font-medium leading-relaxed">Digital Branding, Consumer Behavior, and Global Market research studies.</p>
+                </div>
+
+                <div class="relative bg-white rounded-[2.5rem] p-8 border border-slate-100 shadow-sm border-b-4 border-b-emerald-600 transition-all hover:shadow-md">
+                    <div class="flex justify-between items-start mb-6">
+                        <div class="text-emerald-600 text-3xl"><i class="fas fa-users-gear"></i></div>
+                        <span class="px-3 py-1 bg-emerald-50 text-emerald-700 text-[10px] font-black uppercase rounded-lg">Office</span>
+                    </div>
+                    <h4 class="text-sm font-black uppercase tracking-tight text-slate-800 mb-2">Human Resource</h4>
+                    <p class="text-[11px] text-slate-400 font-medium leading-relaxed">Organizational Development, Labor Laws, and Strategic People management.</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-10">
+    <div class="flex flex-col items-center rounded-[2.5rem] border border-slate-100 bg-white p-10 text-center shadow-sm transition-all hover:shadow-md relative">
+        <div class="absolute top-8 right-8 opacity-10">
+            <i class="fas fa-scale-balanced text-4xl text-emerald-900"></i>
+        </div>
+        
+        <h3 class="mb-10 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
+            Department Dean
+        </h3>
+        
+        <div class="relative mb-8 h-40 w-40 rounded-full bg-slate-900 flex items-center justify-center border-[6px] border-slate-50 shadow-xl">
+            <i class="fas fa-user-tie text-5xl text-emerald-500"></i>
+            <div class="absolute bottom-2 right-2 h-7 w-7 rounded-full border-4 border-white bg-blue-600 shadow-sm"></div>
+        </div>
+
+        <h4 class="text-xl font-black uppercase tracking-tight text-slate-900 leading-tight">
+            Giovanni P. Subaldo
+        </h4>
+        <p class="mb-10 text-[11px] font-bold italic uppercase text-slate-500 tracking-wider">
+            Dean, College of Business Affairs
+        </p>
+
+        <div class="flex space-x-4">
+            <button class="flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-900 text-emerald-500 shadow-lg transition-transform hover:scale-110">
+                <i class="fas fa-envelope-open-text"></i>
+            </button>
+            <button class="flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-50 text-slate-200 transition-transform hover:scale-110">
+                <i class="fas fa-share-nodes"></i>
+            </button>
+        </div>
+    </div>
+
+    
+</div>
+
+            <!-- Distribution Stats -->
+            <div class="bg-white rounded-[2.5rem] p-8 border border-emerald-100 shadow-sm mb-10">
+                <div class="flex justify-between items-center mb-10">
+                    <div>
+                        <h3 class="text-xs font-black uppercase italic text-slate-800 tracking-widest text-emerald-700">Market Distribution</h3>
+                        <p class="text-[10px] font-medium text-slate-400 uppercase tracking-tighter">Academic Year 2025-2026</p>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-3xl font-black text-emerald-600 tracking-tighter">200</span>
+                        <p class="text-[9px] font-black text-slate-400 uppercase">Total Corporate Assets</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-10">
+                    <div class="group p-6 rounded-[2rem] bg-emerald-50/30 border border-transparent hover:border-emerald-200 transition-all text-center">
+                        <p class="text-[9px] font-black text-slate-400 uppercase mb-2">1st Year</p>
+                        <p class="text-2xl font-black text-slate-800 group-hover:text-emerald-600 transition-colors">42</p>
+                        <div class="mt-3 h-1 w-10 bg-emerald-500 mx-auto rounded-full opacity-20 group-hover:opacity-100 transition-opacity"></div>
+                    </div>
+                    <div class="group p-6 rounded-[2rem] bg-emerald-50/30 border border-transparent hover:border-emerald-200 transition-all text-center">
+                        <p class="text-[9px] font-black text-slate-400 uppercase mb-2">2nd Year</p>
+                        <p class="text-2xl font-black text-slate-800 group-hover:text-emerald-600 transition-colors">53</p>
+                        <div class="mt-3 h-1 w-10 bg-emerald-500 mx-auto rounded-full opacity-20 group-hover:opacity-100 transition-opacity"></div>
+                    </div>
+                    <div class="group p-6 rounded-[2rem] bg-emerald-50/30 border border-transparent hover:border-emerald-200 transition-all text-center">
+                        <p class="text-[9px] font-black text-slate-400 uppercase mb-2">3rd Year</p>
+                        <p class="text-2xl font-black text-slate-800 group-hover:text-emerald-600 transition-colors">53</p>
+                        <div class="mt-3 h-1 w-10 bg-emerald-500 mx-auto rounded-full opacity-20 group-hover:opacity-100 transition-opacity"></div>
+                    </div>
+                    <div class="group p-6 rounded-[2rem] bg-emerald-50/30 border border-transparent hover:border-emerald-200 transition-all text-center">
+                        <p class="text-[9px] font-black text-slate-400 uppercase mb-2">4th Year</p>
+                        <p class="text-2xl font-black text-slate-800 group-hover:text-emerald-600 transition-colors">52</p>
+                        <div class="mt-3 h-1 w-10 bg-emerald-500 mx-auto rounded-full opacity-20 group-hover:opacity-100 transition-opacity"></div>
+                    </div>
+                </div>
+
+                <!-- UPDATED TACTICAL SHOWCASE SECTION -->
+                <div class="mb-10 overflow-hidden rounded-[2.5rem] bg-slate-900 shadow-2xl border border-slate-800">
+                    <div class="grid grid-cols-1 md:grid-cols-2">
+                        <div class="relative aspect-video md:aspect-auto bg-black">
+                            <video class="h-full w-full object-cover opacity-80" autoplay muted loop playsinline>
+                                <source src="vid/bsba.mp4" type="video/mp4">
+                            </video>
+                            <div class="absolute inset-0 flex items-center justify-center">
+                            </div>
+                        </div>
+                        <div class="p-8 flex flex-col justify-center">
+                            <span class="text-[10px] font-black uppercase tracking-[0.3em] text-emerald-500 mb-2">Innovation Showcase</span>
+                            <h3 class="text-xl font-black text-white uppercase italic mb-4">Tree Planting 🌱</h3>
+                            <p class="text-xs text-slate-400 leading-relaxed mb-6">
+                                First BSBA Week Highlights, Pt. 1.5 – Growing a Greener Future: Tree Planting Event 🌱
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-10">
+    <div class="flex items-center justify-between mb-8">
+        <div>
+            <h3 class="text-xs font-black uppercase italic text-emerald-700 tracking-widest">Department Events</h3>
+            <p class="text-[10px] font-medium text-slate-400 uppercase tracking-tighter">Connecting Students to Industry</p>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        
+        <div class="group relative overflow-hidden rounded-[2rem] bg-slate-200 aspect-[4/5] shadow-sm transition-all hover:shadow-xl">
+            <img src="image/bsba1.jpg" alt="Strategic Forum" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-90"></div>
+            <div class="absolute bottom-6 left-6 right-6">
+                <span class="text-[8px] font-black uppercase text-emerald-400 tracking-widest">March 2026</span>
+                <h4 class="text-xs font-bold text-white uppercase mt-1">BACK TO BACK TO-BACK OVERALL CHAMPIONS THE UNITED CHAMPS🏆!</h4>
+            </div>
+        </div>
+
+        <div class="group relative overflow-hidden rounded-[2rem] bg-slate-200 aspect-[4/5] shadow-sm transition-all hover:shadow-xl">
+            <img src="image/bsba2.jpg" alt="Marketing Pitch" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-90"></div>
+            <div class="absolute bottom-6 left-6 right-6">
+                <span class="text-[8px] font-black uppercase text-emerald-400 tracking-widest">Feb 2026</span>
+                <h4 class="text-xs font-bold text-white uppercase mt-1">Young Entrepreneurs Pitch</h4>
+            </div>
+        </div>
+        <div class="group relative overflow-hidden rounded-[2rem] bg-slate-200 aspect-[4/5] shadow-sm transition-all hover:shadow-xl">
+            <img src="image/bsba3.jpg" alt="Workshop" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-90"></div>
+            <div class="absolute bottom-6 left-6 right-6">
+                <span class="text-[8px] font-black uppercase text-emerald-400 tracking-widest">Jan 2026</span>
+                <h4 class="text-xs font-bold text-white uppercase mt-1">Digital Literacy Workshop</h4>
+            </div>
+        </div>
+
+    </div>
+</div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

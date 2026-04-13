@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/jpg" href="image/smit.jpg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>Cashier System - SMIT</title>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        /* Base style for all links */
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            color: #cbd5e1;
+            border-radius: 0.75rem;
+            transition: all 200ms;
+            text-decoration: none;
+            font-size: 0.875rem;
+        }
+        
+        .nav-link:hover {
+            background-color: #1e293b;
+            color: white;
+        }
+
+        /* Icon sizing inside links */
+        .nav-link i {
+            width: 1.25rem;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        /* Active state - Indigo background */
+        .nav-link.active {
+            background-color: #4f46e5;
+            color: white;
+            box-shadow: 0 20px 25px -5px rgba(79, 70, 229, 0.2);
+        }
+
+        /* Section Header */
+        .nav-section-label {
+            color: #64748b;
+            font-size: 0.625rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-top: 2rem;
+            margin-bottom: 0.5rem;
+            margin-left: 0.5rem;
+            letter-spacing: 0.1em;
+        }
+
+        .program-link {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem;
+            color: #94a3b8;
+            border-radius: 0.75rem;
+            transition: all 200ms;
+        }
+        
+        .program-link:hover {
+            background-color: #1e293b;
+            color: white;
+        }
+        
+        .program-icon {
+            width: 2.25rem;
+            height: 2.25rem;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            background-color: #1e293b;
+            border: 1px solid #64748b;
+            flex-shrink: 0;
+            transition: all 200ms;
+        }
+
+        /* Rotate the chevron when closed */
+        .chevron-rotate {
+            transform: rotate(-90deg);
+        }
+
+        /* Hidden state */
+        .programs-hidden {
+            max-height: 0;
+            opacity: 0;
+            margin-top: 0;
+            pointer-events: none;
+        }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
+        .modal-active { display: flex !important; }
+    </style>
+</head>
+<body class="bg-gray-50 flex h-screen overflow-hidden">
+
+    <aside class="w-72 bg-slate-900 text-white flex flex-col h-screen shadow-2xl overflow-hidden">
+        <div class="p-8 text-center border-b border-slate-800/50 flex-shrink-0">
+            <div class="mb-4 relative inline-block">
+                <div class="absolute inset-0 bg-indigo-500 blur-lg opacity-20 rounded-full"></div>
+                <img src="image/smit.jpg" alt="University Logo" 
+                    class="w-20 h-20 mx-auto object-contain rounded-full border-4 border-slate-800 shadow-xl relative z-10">
+            </div>
+            <h1 class="text-sm font-black tracking-tighter text-white uppercase leading-tight">
+                Southern Mindanao Institute <br> of Technology INC.
+            </h1>
+        </div>
+        
+        <nav class="flex-1 px-4 py-6 space-y-1 overflow-y-auto custom-scrollbar">
+
+            <div class="nav-section-label">Administration</div>
+            
+            <a href="index.html" class="nav-link">
+                <i class="fa-solid fa-house"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="library.html" class="nav-link">
+                <i class="fa-solid fa-book-open"></i>
+                <span>Library</span>
+            </a>
+
+            <a href="faculty.html" class="nav-link">
+                <i class="fa-solid fa-chalkboard-teacher"></i>
+                <span>Faculty</span>
+            </a>
+
+            <a href="clinic.html" class="nav-link">
+                <i class="fa-solid fa-house-medical"></i>
+                <span>Clinic</span>
+            </a>
+
+            <a href="cashier.html" class="nav-link active">
+                <i class="fa-solid fa-cash-register"></i>
+                <span>Cashier</span>
+            </a>
+
+            <a href="registrar.html" class="nav-link">
+                <i class="fa-solid fa-file-signature"></i>
+                <span>Registrar Office</span>
+            </a>
+
+            <a href="president.html" class="nav-link">
+                <i class="fa-solid fa-building-columns"></i>
+                <span>President's Office</span>
+            </a>
+
+            <a href="HR.html" class="nav-link">
+                <i class="fa-solid fa-users-gear"></i>
+                <span>HR</span>
+            </a>
+
+            <a href="facilities.html" class="nav-link">
+                <i class="fa-solid fa-school"></i>
+                <span>Facilities</span>
+            </a>
+
+            <div onclick="togglePrograms()" class="flex items-center justify-between px-2 cursor-pointer group mt-8 mb-2">
+
+                <div id="programsContainer" class="space-y-1 transition-all duration-300 overflow-hidden">
+                
+                <a href="dept/bsit.html" class="program-link group">
+                    <div class="flex items-center space-x-3">
+                        <div class="program-icon border-slate-700 group-hover:border-indigo-500">
+                            <img src="image/bsit.jpg" alt="BSIT" class="w-full h-full object-cover">
+                        </div>
+                        <span class="text-xs font-medium">BS in Information Technology</span>
+                    </div>
+                </a>
+
+                <a href="dept/bshm.html" class="program-link group">
+                    <div class="flex items-center space-x-3">
+                        <div class="program-icon border-slate-700 group-hover:border-orange-500">
+                            <img src="image/bshm.png" alt="BSHM" class="w-full h-full object-cover">
+                        </div>
+                        <span class="text-xs font-medium">BS in Hospitality Management</span>
+                    </div>
+                </a>
+
+                <a href="dept/bsmidwife.html" class="program-link group">
+                    <div class="flex items-center space-x-3">
+                        <div class="program-icon border-slate-700 group-hover:border-pink-500">
+                            <img src="image/mid.png" alt="BSMID" class="w-full h-full object-cover">
+                        </div>
+                        <span class="text-xs font-medium">BS Midwifery</span>
+                    </div>
+                </a>
+
+                <a href="dept/bscrim.html" class="program-link group">
+                    <div class="flex items-center space-x-3">
+                        <div class="program-icon border-slate-700 group-hover:border-blue-500">
+                            <img src="image/bscrim.jpg" alt="Criminology" class="w-full h-full object-cover">
+                        </div>
+                        <span class="text-xs font-medium">BS in Criminology</span>
+                    </div>
+                </a>
+
+                <a href="dept/bsad.html" class="program-link group">
+                    <div class="flex items-center justify-between w-full">
+                        <div class="flex items-center space-x-3">
+                            <div class="program-icon border-slate-700 group-hover:border-green-500">
+                                <img src="image/bsba.jpg" alt="BSBA" class="w-full h-full object-cover">
+                            </div>
+                            <span class="text-xs font-medium">BS in Business Administration</span>
+                        </div>
+                        <span class="text-[10px] bg-slate-800 px-2 py-1 rounded text-slate-500 group-hover:bg-indigo-600 group-hover:text-white transition-colors">450</span>
+                    </div>
+                </a>
+                <a href="dept/education.html" class="flex items-center justify-between p-2 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl group transition-all">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-9 h-9 rounded-lg overflow-hidden bg-slate-800 border border-slate-700 group-hover:border-red-500 transition-all">
+                                <img src="image/bsed.jpg" alt="Education" class="w-full h-full object-cover">
+                            </div>
+                            <span class="text-xs font-medium">BS in Education</span>
+                        </div>
+                    </a>
+            </div>
+
+        </nav>
+    </aside>
+
+    <div class="flex-1 flex flex-col overflow-hidden">
+        <header class="h-16 bg-white border-b flex items-center justify-between px-8 shadow-sm">
+            <div class="relative">
+                <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                <input type="text" id="cashierSearch" placeholder="Search Student Name or OR Number..." 
+                       class="pl-10 pr-4 py-2 bg-gray-100 rounded-xl text-sm border-none focus:ring-2 focus:ring-emerald-500 w-96 transition-all">
+            </div>
+            <button onclick="toggleModal()" class="bg-emerald-600 text-white px-5 py-2 rounded-xl text-xs font-black uppercase hover:bg-emerald-700 shadow-lg shadow-emerald-100 transition-all">
+                <i class="fas fa-plus mr-2"></i>Process Payment
+            </button>
+        </header>
+
+<main class="flex-1 overflow-y-auto p-8 custom-scrollbar">
+
+    <!-- Cashier Services Overview -->
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+
+        <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm border-l-4 border-l-emerald-500">
+            <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Tuition Payments</p>
+            <h3 class="text-lg font-black text-slate-800 mt-2">Accept & Record</h3>
+            <p class="text-xs text-slate-400 mt-1">Handles full and partial tuition fee payments.</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm border-l-4 border-l-blue-500">
+            <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Official Receipts</p>
+            <h3 class="text-lg font-black text-slate-800 mt-2">Issue OR</h3>
+            <p class="text-xs text-slate-400 mt-1">Generates and tracks receipt numbers.</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm border-l-4 border-l-indigo-500">
+            <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Student Accounts</p>
+            <h3 class="text-lg font-black text-slate-800 mt-2">Balance Monitoring</h3>
+            <p class="text-xs text-slate-400 mt-1">Tracks unpaid balances and dues.</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm border-l-4 border-l-rose-500">
+            <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Reports</p>
+            <h3 class="text-lg font-black text-slate-800 mt-2">Daily Summary</h3>
+            <p class="text-xs text-slate-400 mt-1">Generates daily financial reports.</p>
+        </div>
+
+    </div>
+
+    <!-- Cashier Functional Sections -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+
+        <!-- Payment Processing -->
+        <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+            <h4 class="text-sm font-black text-slate-800 uppercase italic mb-4">Payment Processing</h4>
+            <ul class="space-y-2 text-xs text-slate-600">
+                <li>✔ Accepts tuition, miscellaneous, and other school fees</li>
+                <li>✔ Supports cash and digital payments</li>
+                <li>✔ Validates student information before processing</li>
+                <li>✔ Automatically updates transaction records</li>
+            </ul>
+        </div>
+
+        <!-- Receipt Management -->
+        <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+            <h4 class="text-sm font-black text-slate-800 uppercase italic mb-4">Receipt Management</h4>
+            <ul class="space-y-2 text-xs text-slate-600">
+                <li>✔ Generates official receipts (OR)</li>
+                <li>✔ Prevents duplicate OR numbers</li>
+                <li>✔ Stores transaction history</li>
+                <li>✔ Allows voiding of incorrect transactions</li>
+            </ul>
+        </div>
+
+        <!-- Account Monitoring -->
+        <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+            <h4 class="text-sm font-black text-slate-800 uppercase italic mb-4">Account Monitoring</h4>
+            <ul class="space-y-2 text-xs text-slate-600">
+                <li>✔ Displays student balances</li>
+                <li>✔ Tracks paid and unpaid fees</li>
+                <li>✔ Identifies students with pending dues</li>
+                <li>✔ Helps registrar verify payment status</li>
+            </ul>
+        </div>
+
+        <!-- Reporting -->
+        <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+            <h4 class="text-sm font-black text-slate-800 uppercase italic mb-4">Reporting & Audit</h4>
+            <ul class="space-y-2 text-xs text-slate-600">
+                <li>✔ Daily collection summaries</li>
+                <li>✔ Transaction logs for auditing</li>
+                <li>✔ Exportable financial reports</li>
+                <li>✔ Transparency and accountability tracking</li>
+            </ul>
+        </div>
+
+    </div>
+
+ 
+</main>
+    </div>
+
+    <div id="paymentModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+        <div class="bg-white rounded-[2.5rem] w-full max-w-md p-8 shadow-2xl">
+            <h3 class="text-xl font-black text-slate-800 uppercase italic mb-6 text-center">Payment Portal</h3>
+            <form id="paymentForm" class="space-y-4">
+                <input type="text" id="orNumber" placeholder="Official Receipt (OR) Number" class="w-full p-3 bg-slate-100 rounded-xl text-sm border-none focus:ring-2 focus:ring-emerald-500" required>
+                <input type="text" id="studentName" placeholder="Student Full Name" class="w-full p-3 bg-slate-100 rounded-xl text-sm border-none focus:ring-2 focus:ring-emerald-500" required>
+                
+                <select id="paymentType" class="w-full p-3 bg-slate-100 rounded-xl text-sm border-none focus:ring-2 focus:ring-emerald-500">
+                    <option value="Tuition Fee">Tuition Fee</option>
+                    <option value="Miscellaneous">Miscellaneous</option>
+                    <option value="Entrance Fee">Entrance Fee</option>
+                    <option value="Uniform/Books">Uniform / Books</option>
+                    <option value="Graduation Fee">Graduation Fee</option>
+                </select>
+
+                <div class="relative">
+                    <span class="absolute left-3 top-1/2 -translate-y-1/2 font-bold text-slate-400">₱</span>
+                    <input type="number" id="payAmount" placeholder="Amount (0.00)" step="0.01" class="w-full pl-8 p-3 bg-slate-100 rounded-xl text-sm border-none focus:ring-2 focus:ring-emerald-500" required>
+                </div>
+
+                <div class="flex gap-3 pt-4">
+                    <button type="button" onclick="toggleModal()" class="flex-1 py-3 text-slate-400 font-bold uppercase text-[10px]">Cancel</button>
+                    <button type="submit" class="flex-1 bg-emerald-600 text-white py-3 rounded-xl font-black uppercase text-[10px] shadow-lg shadow-emerald-100 hover:bg-emerald-700 transition-all">Submit Payment</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const tableBody = document.getElementById('cashierTableBody');
+        const form = document.getElementById('paymentForm');
+
+        // Initial Load
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedPayments = JSON.parse(localStorage.getItem('smit_payments')) || [];
+            savedPayments.forEach(item => renderRow(item));
+            updateStats();
+        });
+
+        function toggleModal() {
+            document.getElementById('paymentModal').classList.toggle('hidden');
+            document.getElementById('paymentModal').classList.toggle('modal-active');
+        }
+
+        function updateStats() {
+            const rows = document.querySelectorAll('.payment-row');
+            let total = 0;
+            rows.forEach(row => {
+                const amt = parseFloat(row.querySelector('.amt-val').innerText.replace(',', ''));
+                total += amt;
+            });
+            document.getElementById('transCount').innerText = rows.length;
+            document.getElementById('totalCollection').innerText = '₱ ' + total.toLocaleString(undefined, {minimumFractionDigits: 2});
+        }
+
+        function saveToStorage() {
+            const payments = [];
+            document.querySelectorAll('.payment-row').forEach(tr => {
+                payments.push({
+                    or: tr.querySelector('.or-val').innerText,
+                    name: tr.querySelector('.payer-name').innerText,
+                    type: tr.querySelector('.pay-type').innerText,
+                    amount: tr.querySelector('.amt-val').innerText
+                });
+            });
+            localStorage.setItem('smit_payments', JSON.stringify(payments));
+        }
+
+        function renderRow(item) {
+            const rowHTML = `
+                <tr class="payment-row hover:bg-slate-50/50 transition-colors">
+                    <td class="p-4">
+                        <span class="font-black text-indigo-600 text-xs or-val">${item.or}</span>
+                    </td>
+                    <td class="p-4">
+                        <p class="text-xs font-bold text-slate-800 payer-name">${item.name}</p>
+                    </td>
+                    <td class="p-4">
+                        <span class="px-3 py-1 bg-slate-100 text-slate-600 text-[9px] font-black rounded-full uppercase pay-type">${item.type}</span>
+                    </td>
+                    <td class="p-4 text-right">
+                        <span class="text-xs font-black text-slate-800">₱ <span class="amt-val">${item.amount}</span></span>
+                    </td>
+                    <td class="p-4 text-center">
+                        <button onclick="voidPayment(this)" class="text-slate-300 hover:text-rose-500">
+                            <i class="fa-solid fa-circle-minus"></i>
+                        </button>
+                    </td>
+                </tr>`;
+            tableBody.insertAdjacentHTML('afterbegin', rowHTML);
+        }
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const amount = parseFloat(document.getElementById('payAmount').value);
+            const newItem = {
+                or: document.getElementById('orNumber').value,
+                name: document.getElementById('studentName').value,
+                type: document.getElementById('paymentType').value,
+                amount: amount.toLocaleString(undefined, {minimumFractionDigits: 2})
+            };
+            renderRow(newItem);
+            saveToStorage();
+            form.reset();
+            toggleModal();
+            updateStats();
+        });
+
+        function voidPayment(btn) {
+            if(confirm('Are you sure you want to void this transaction?')) {
+                btn.closest('tr').remove();
+                saveToStorage();
+                updateStats();
+            }
+        }
+
+        // Live Search logic
+        document.getElementById('cashierSearch').addEventListener('keyup', function() {
+            const q = this.value.toLowerCase();
+            document.querySelectorAll('.payment-row').forEach(row => {
+                row.style.display = row.innerText.toLowerCase().includes(q) ? '' : 'none';
+            });
+        });
+    </script>
+</body>
+</html>

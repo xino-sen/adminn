@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/jpg" href="image/smit.jpg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>BSIT - Southern Mindanao Institute of Technology Inc.</title>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+
+        /* Base style for all links */
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            color: #000000;
+            border-radius: 0.75rem;
+            transition: all 200ms;
+            text-decoration: none;
+            font-size: 0.875rem;
+        }
+        
+        .nav-link:hover {
+            background-color: #1e293b;
+            color: white;
+        }
+
+        /* Icon sizing inside links */
+        .nav-link i {
+            width: 1.25rem;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        /* Active state - Indigo background */
+        .nav-link.active {
+            background-color: #4f46e5;
+            color: white;
+            box-shadow: 0 20px 25px -5px rgba(79, 70, 229, 0.2);
+        }
+
+        /* Section Header */
+        .nav-section-label {
+            color: #64748b;
+            font-size: 0.625rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-top: 2rem;
+            margin-bottom: 0.5rem;
+            margin-left: 0.5rem;
+            letter-spacing: 0.1em;
+        }
+
+        .program-link {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem;
+            color: #94a3b8;
+            border-radius: 0.75rem;
+            transition: all 200ms;
+        }
+        
+        .program-link:hover {
+            background-color: #1e293b;
+            color: white;
+        }
+        
+        .program-icon {
+            width: 2.25rem;
+            height: 2.25rem;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            background-color: #1e293b;
+            border: 1px solid #64748b;
+            flex-shrink: 0;
+            transition: all 200ms;
+        }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: hsla(180, 3%, 94%, 0.785); border-radius: 10px; }
+        .float-anim { animation: float 3s ease-in-out infinite; }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 flex h-screen overflow-hidden">
+
+    <aside class="w-72 bg-reds-900 text-white flex flex-col h-screen shadow-2xl overflow-hidden">
+        <div class="p-8 text-center border-b border-slate-800/50 flex-shrink-0">
+            <div class="mb-4 relative inline-block">
+                <div class="absolute inset-0 bg-indigo-500 blur-lg opacity-20 rounded-full"></div>
+                <img src="../image/smit.jpg" alt="University Logo" 
+                    class="w-20 h-20 mx-auto object-contain rounded-full border-4 border-slate-800 shadow-xl relative z-10">
+            </div>
+            <h1 class="text-sm font-black tracking-tighter text-white uppercase leading-tight">
+                Southern Mindanao Institute <br> of Technology INC.
+            </h1>
+        </div>
+        
+        <nav class="flex-1 px-4 py-6 space-y-1 overflow-y-auto custom-scrollbar">
+
+            <div class="nav-section-label">Administration</div>
+            
+            <a href="../index.html" class="nav-link">
+                <i class="fa-solid fa-house"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="../library.html" class="nav-link">
+                <i class="fa-solid fa-book-open"></i>
+                <span>Library</span>
+            </a>
+
+            <a href="../faculty.html" class="nav-link">
+                <i class="fa-solid fa-chalkboard-teacher"></i>
+                <span>Faculty</span>
+            </a>
+
+            <a href="../clinic.html" class="nav-link">
+                <i class="fa-solid fa-house-medical"></i>
+                <span>Clinic</span>
+            </a>
+
+            <a href="../cashier.html" class="nav-link">
+                <i class="fa-solid fa-cash-register"></i>
+                <span>Cashier</span>
+            </a>
+
+            <a href="../registrar.html" class="nav-link">
+                <i class="fa-solid fa-file-signature"></i>
+                <span>Registrar Office</span>
+            </a>
+
+            <a href="../president.html" class="nav-link">
+                <i class="fa-solid fa-building-columns"></i>
+                <span>President's Office</span>
+            </a>
+
+            <a href="../HR.html" class="nav-link">
+                <i class="fa-solid fa-users-gear"></i>
+                <span>HR</span>
+            </a>
+
+            <a href="../facilities.html" class="nav-link">
+                <i class="fa-solid fa-school"></i>
+                <span>Facilities</span>
+            </a>
+
+            <div onclick="togglePrograms()" class="flex items-center justify-between px-2 cursor-pointer group mt-8 mb-2">
+                <div id="programsContainer" class="space-y-1 transition-all duration-300 overflow-hidden w-full">
+                    
+                    <a href="../dept/bsit.html" class="flex items-center justify-between p-2 bg-indigo-600 rounded-xl text-white shadow-lg shadow-indigo-600/20 group transition-all">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-9 h-9 rounded-lg overflow-hidden bg-white/20 border border-white/30">
+                                <img src="../image/bsit.jpg" alt="BSIT" class="w-full h-full object-cover">
+                            </div>
+                            <span class="text-xs font-bold">BS in Information Technology</span>
+                        </div>
+                    </a>
+
+                    <a href="../dept/bshm.html" class="flex items-center justify-between p-2 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl group transition-all">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-9 h-9 rounded-lg overflow-hidden bg-slate-800 border border-slate-700 group-hover:border-orange-500 transition-all">
+                                <img src="../image/bshm.png" alt="BSHM" class="w-full h-full object-cover">
+                            </div>
+                            <span class="text-xs font-medium">BS in Hospitality Management</span>
+                        </div>
+                    </a>
+
+                    <a href="../dept/midwifery.html" class="flex items-center justify-between p-2 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl group transition-all">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-9 h-9 rounded-lg overflow-hidden bg-slate-800 border border-slate-700 group-hover:border-pink-500 transition-all">
+                                <img src="../image/mid.png" alt="BSMID" class="w-full h-full object-cover">
+                            </div>
+                            <span class="text-xs font-medium">BS Midwifery</span>
+                        </div>
+                    </a>
+
+                    <a href="../dept/bscrim.html" class="flex items-center justify-between p-2 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl group transition-all">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-9 h-9 rounded-lg overflow-hidden bg-slate-800 border border-slate-700 group-hover:border-blue-500 transition-all">
+                                <img src="../image/bscrim.jpg" alt="Criminology" class="w-full h-full object-cover">
+                            </div>
+                            <span class="text-xs font-medium">BS in Criminology</span>
+                        </div>
+                    </a>
+
+                    <a href="../dept/bsad.html" class="flex items-center justify-between p-2 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl group transition-all">
+                        <div class="flex items-center justify-between w-full">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-9 h-9 rounded-lg overflow-hidden bg-slate-800 border border-slate-700 group-hover:border-green-500 transition-all">
+                                    <img src="../image/bsba.jpg" alt="BSBA" class="w-full h-full object-cover">
+                                </div>
+                                <span class="text-xs font-medium">BS in Business Administration</span>
+                            </div>
+                            <span class="text-[10px] bg-slate-800 px-2 py-1 rounded text-slate-500 group-hover:bg-indigo-600 group-hover:text-white transition-colors">450</span>
+                        </div>
+                    </a>
+                    <a href="../dept/education.html" class="flex items-center justify-between p-2 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl group transition-all">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-9 h-9 rounded-lg overflow-hidden bg-slate-800 border border-slate-700 group-hover:border-red-500 transition-all">
+                                <img src="../image/bsed.jpg" alt="Education" class="w-full h-full object-cover">
+                            </div>
+                            <span class="text-xs font-medium">BS in Education</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </aside>
+
+    <div class="flex-1 flex flex-col overflow-y-auto">
+        
+        <header class="py-16 px-6 max-w-7xl mx-auto w-full">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-slate-200 pb-12">
+                <div>
+                    <span class="text-indigo-600 font-bold uppercase tracking-[0.2em] text-xs">Computer Studies Department</span>
+                    <h1 class="text-4xl lg:text-6xl font-extrabold text-slate-900 mt-4 italic">Tech Hub.</h1>
+                </div>
+                <div class="flex flex-wrap gap-4">
+                    <div class="bg-white px-6 py-3 rounded-2xl border border-slate-100 shadow-sm text-center">
+                        <p class="text-[10px] font-bold text-slate-400 uppercase">Total Students</p>
+                        <p class="text-xl font-black text-slate-800">450</p>
+                    </div>
+                    <div class="bg-white px-6 py-3 rounded-2xl border border-slate-100 shadow-sm text-center">
+                        <p class="text-[10px] font-bold text-slate-400 uppercase">Faculty</p>
+                        <p id="facultyCount" class="text-xl font-black text-indigo-600">0</p>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="max-w-7xl mx-auto px-6 lg:px-8 pb-24 w-full">
+            
+            <div class="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden shadow-sm mb-12 flex flex-col lg:flex-row">
+                <div class="dept-card bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden shadow-sm mb-12 flex flex-col lg:flex-row">
+    
+                    <div class="lg:w-1/3 h-80 lg:h-auto bg-slate-100 flex items-center justify-center relative overflow-hidden group">
+                        <div class="absolute inset-0 bg-slate-900/40 z-10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        
+                        <img src="../image/jes.jpg" 
+                            alt="Mr. Jess Tony Subaldo Aprostathe" 
+                            class="absolute inset-0 w-full h-full object-cover z-20 group-hover:scale-105 transition-transform duration-500">
+                            
+                        <div class="w-48 h-48 rounded-[2.5rem] bg-indigo-600 flex items-center justify-center text-white text-6xl shadow-xl float-anim opacity-10 group-hover:opacity-20 transition-opacity z-0">
+                            <i class="fa-solid fa-user-tie"></i>
+                        </div>
+                    </div>
+
+                    <div class="lg:w-2/3 p-8 lg:p-12 flex flex-col justify-center border-l border-slate-100">
+                        <h2 class="text-3xl font-bold text-slate-900 mb-4 leading-tight">Mr. Jess Tony Subaldo Aprosta</h2>
+                        <p class="text-slate-500 mb-8 leading-relaxed max-w-xl text-sm italic font-medium">
+                            "Guiding the next generation of IT professionals through innovation, resilience, and technological excellence at Southern Mindanao Institute of Technology."
+                        </p>
+                        <div class="flex gap-3">
+                            <span class="px-4 py-2 bg-slate-50 border border-slate-100 rounded-xl text-[10px] font-bold uppercase">Masters in IT</span>
+                            <span class="px-4 py-2 bg-slate-50 border border-slate-100 rounded-xl text-[10px] font-bold uppercase">System Architect</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                
+                <div class="lg:col-span-2 space-y-8">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-xl font-extrabold text-slate-900 italic">Academic Personnel.</h3>
+                        <div class="h-px flex-1 bg-slate-200 mx-6"></div>
+                    </div>
+                    
+                    <div id="facultyGrid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        </div>
+                </div>
+
+                <div class="space-y-8">
+                    <h3 class="text-xl font-extrabold text-slate-900 italic">Tech Stack.</h3>
+                    
+                    <div class="bg-slate-950 p-8 rounded-[2.5rem] text-white">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="p-4 bg-white/5 border border-white/10 rounded-2xl flex flex-col items-center hover:bg-white/10 transition-colors">
+                                <i class="fa-brands fa-php text-indigo-400 text-2xl mb-2"></i>
+                                <span class="text-[9px] font-black uppercase">PHP 8.3</span>
+                            </div>
+                            <div class="p-4 bg-white/5 border border-white/10 rounded-2xl flex flex-col items-center hover:bg-white/10 transition-colors">
+                                <i class="fa-solid fa-database text-emerald-400 text-2xl mb-2"></i>
+                                <span class="text-[9px] font-black uppercase">MySQL</span>
+                            </div>
+                            <div class="p-4 bg-white/5 border border-white/10 rounded-2xl flex flex-col items-center hover:bg-white/10 transition-colors">
+                                <i class="fa-brands fa-js text-yellow-400 text-2xl mb-2"></i>
+                                <span class="text-[9px] font-black uppercase">JavaScript</span>
+                            </div>
+                            <div class="p-4 bg-white/5 border border-white/10 rounded-2xl flex flex-col items-center hover:bg-white/10 transition-colors">
+                                <i class="fa-solid fa-cloud text-sky-400 text-2xl mb-2"></i>
+                                <span class="text-[9px] font-black uppercase">Cloud</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-[2.5rem] border border-slate-100 shadow-sm relative overflow-hidden">
+                        <div class="relative z-10">
+                            <span class="text-[8px] font-black bg-rose-50 text-rose-600 px-3 py-1 rounded-full uppercase">Lab Notice</span>
+                            <h4 class="text-sm font-bold text-slate-900 mt-4 leading-tight">CL-01 Maintenance</h4>
+                            <p class="text-[11px] text-slate-500 mt-2 leading-relaxed">The main laboratory will be undergoing server upgrades this weekend. Please backup your local project files.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-24">
+                <div class="flex items-center justify-between mb-8">
+                    <h3 class="text-xl font-extrabold text-slate-900 italic">Enrollment & Admissions.</h3>
+                    <span class="px-4 py-1 bg-emerald-50 text-emerald-600 text-[10px] font-black rounded-full uppercase tracking-tighter">
+                        Academic Year 2026-2027
+                    </span>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                    
+                    <div class="lg:col-span-5 group relative h-[500px] rounded-[2.5rem] overflow-hidden shadow-2xl shadow-indigo-100">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/20 to-transparent z-10"></div>
+                        
+                        <img src="../image/enroll.jpg" 
+                            alt="Enrollment Feature" 
+                            class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        
+                        <div class="absolute bottom-0 left-0 p-10 z-20">
+                            <span class="bg-white/20 backdrop-blur-md text-white text-[9px] font-black px-4 py-1.5 rounded-full uppercase tracking-[0.2em] border border-white/30">
+                                Join the Department
+                            </span>
+                            <h4 class="text-3xl font-black text-white mt-4 leading-tight">Enrollment Starts On:</h4>
+                            <p class="text-slate-200 text-xs mt-4 leading-relaxed max-w-xs">
+                                April 26, 2026 <br> Academic Year :2026-2027
+                            </p>
+                            <div class="mt-8 flex gap-4">
+                                <div class="flex -space-x-3">
+                                    <div class="w-10 h-10 rounded-full border-2 border-slate-900 bg-indigo-500 flex items-center justify-center text-[10px] font-bold text-white">IT</div>
+                                </div>
+                                <span class="text-white text-[10px] font-bold self-center uppercase tracking-widest opacity-60">Open Programs</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-7 flex flex-col justify-between gap-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="bg-white p-8 rounded-[2rem] border border-slate-100 hover:border-indigo-200 transition-all group shadow-sm">
+                                <div class="flex items-center justify-between mb-6">
+                                    <span class="text-4xl font-black text-slate-100 group-hover:text-indigo-50 transition-colors">01</span>
+                                    <i class="fa-solid fa-file-signature text-slate-300 group-hover:text-indigo-500 transition-colors"></i>
+                                </div>
+                                <h5 class="font-bold text-slate-900 text-sm mb-2">Pre-Registration</h5>
+                                <p class="text-[11px] text-slate-500 leading-relaxed">Access the digital portal and submit your initial intent for enrollment.</p>
+                            </div>
+
+                            <div class="bg-white p-8 rounded-[2rem] border border-slate-100 hover:border-indigo-200 transition-all group shadow-sm">
+                                <div class="flex items-center justify-between mb-6">
+                                    <span class="text-4xl font-black text-slate-100 group-hover:text-indigo-50 transition-colors">02</span>
+                                    <i class="fa-solid fa-cloud-arrow-up text-slate-300 group-hover:text-indigo-500 transition-colors"></i>
+                                </div>
+                                <h5 class="font-bold text-slate-900 text-sm mb-2">File Verification</h5>
+                                <p class="text-[11px] text-slate-500 leading-relaxed">Upload clear scanned copies of your Form 138 and PSA certificates.</p>
+                            </div>
+
+                            <div class="bg-white p-8 rounded-[2rem] border border-slate-100 hover:border-indigo-200 transition-all group shadow-sm">
+                                <div class="flex items-center justify-between mb-6">
+                                    <span class="text-4xl font-black text-slate-100 group-hover:text-indigo-50 transition-colors">03</span>
+                                    <i class="fa-solid fa-user-check text-slate-300 group-hover:text-indigo-500 transition-colors"></i>
+                                </div>
+                                <h5 class="font-bold text-slate-900 text-sm mb-2">Interview & Approval</h5>
+                                <p class="text-[11px] text-slate-500 leading-relaxed">Brief session with the Computer Studies Department panel.</p>
+                            </div>
+
+                            <div class="bg-white p-8 rounded-[2rem] border border-slate-100 hover:border-indigo-200 transition-all group shadow-sm">
+                                <div class="flex items-center justify-between mb-6">
+                                    <span class="text-4xl font-black text-slate-100 group-hover:text-indigo-50 transition-colors">04</span>
+                                    <i class="fa-solid fa-id-card text-slate-300 group-hover:text-indigo-500 transition-colors"></i>
+                                </div>
+                                <h5 class="font-bold text-slate-900 text-sm mb-2">System Induction</h5>
+                                <p class="text-[11px] text-slate-500 leading-relaxed">Official ID issuance and orientation for new tech students.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-12">
+                <div class="flex items-center justify-between mb-8">
+                    <h3 class="text-xl font-extrabold text-slate-900 italic">Latest Updates.</h3>
+                    <a href="#" class="text-xs font-bold text-indigo-600 hover:text-indigo-700 transition-colors uppercase tracking-widest">View All News</a>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="group bg-white rounded-[2rem] border border-slate-100 overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                        <div class="relative h-48 overflow-hidden">
+                            <div class="absolute inset-0 bg-indigo-900/20 group-hover:bg-transparent transition-colors z-10"></div>
+                            <img src="../image/birthday.jpg" alt="News Image" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <span class="absolute top-4 left-4 z-20 bg-indigo-600 text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-tighter">Happy Birthday</span>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center text-[10px] font-bold text-slate-400 mb-3 uppercase tracking-tight">
+                                <i class="fa-regular fa-calendar-days mr-2"></i> April 10, 2026
+                            </div>
+                            <h4 class="text-lg font-bold text-slate-900 leading-tight mb-3 group-hover:text-indigo-600 transition-colors">From the BSIT Department, we sincerely thank you for your dedication, support, and hard work as our school registrar. Wishing you good health, happiness, and continued success. May your day be filled with joy and appreciation. 🎂</h4>
+                            <p class="text-xs text-slate-500 leading-relaxed line-clamp-2">#BSITDepartment</p>
+                            <div class="mt-6 flex items-center text-indigo-600 text-[10px] font-black uppercase tracking-widest group-hover:gap-2 transition-all">
+                                Read Story <i class="fa-solid fa-arrow-right-long ml-2"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="group bg-white rounded-[2rem] border border-slate-100 overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                        <div class="relative h-48 overflow-hidden">
+                            <div class="absolute inset-0 bg-indigo-900/20 group-hover:bg-transparent transition-colors z-10"></div>
+                            <img src="../image/caps.jpg" alt="News Image" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <span class="absolute top-4 left-4 z-20 bg-emerald-500 text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-tighter">Capstone Defended</span>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center text-[10px] font-bold text-slate-400 mb-3 uppercase tracking-tight">
+                                <i class="fa-regular fa-calendar-days mr-2"></i> November 14, 2025
+                            </div>
+                            <h4 class="text-lg font-bold text-slate-900 leading-tight mb-3 group-hover:text-indigo-600 transition-colors">the 4th-Year Students on the successful submission of your capstone hardbound documents to SMIT Computer Studies Department. </h4>
+                            <p class="text-xs text-slate-500 leading-relaxed line-clamp-2">Your hard work, resilience, and commitment demonstrate that you are well-prepared to excel in the professional world. Together in the frame <br> Mr. Jess Tony Subaldo Aprosta the Program Head. </p>
+                            <div class="mt-6 flex items-center text-indigo-600 text-[10px] font-black uppercase tracking-widest group-hover:gap-2 transition-all">
+                                Read Story <i class="fa-solid fa-arrow-right-long ml-2"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="group bg-white rounded-[2rem] border border-slate-100 overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                        <div class="relative h-48 overflow-hidden">
+                            <div class="absolute inset-0 bg-indigo-900/20 group-hover:bg-transparent transition-colors z-10"></div>
+                            <img src="../image/all.jpg" alt="News Image" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <span class="absolute top-4 left-4 z-20 bg-amber-500 text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-tighter">Code. Innovate. Dominate</span>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center text-[10px] font-bold text-slate-400 mb-3 uppercase tracking-tight">
+                                <i class="fa-regular fa-calendar-days mr-2"></i> March 05, 2026
+                            </div>
+                            <h4 class="text-lg font-bold text-slate-900 leading-tight mb-3 group-hover:text-indigo-600 transition-colors">BSIT students, AY 2025-2026, get ready to level up your skills and make your mark in the tech world!</h4>
+                            <p class="text-xs text-slate-500 leading-relaxed line-clamp-2">May your passion for IT continue to soar!</p>
+                            <div class="mt-6 flex items-center text-indigo-600 text-[10px] font-black uppercase tracking-widest group-hover:gap-2 transition-all">
+                                Read Story <i class="fa-solid fa-arrow-right-long ml-2"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Sample Faculty Data for IT
+        const facultyMembers = [
+            { name: "Engr. Alan Turing", role: "Software Engineering", icon: "fa-terminal" },
+            { name: "Prof. Ada Lovelace", role: "Database Management", icon: "fa-database" },
+            { name: "Mr. Linus Torvalds", role: "System Administration", icon: "fa-linux" },
+            { name: "Ms. Grace Hopper", role: "Web Development", icon: "fa-code" }
+        ];
+
+        const grid = document.getElementById('facultyGrid');
+        const countDisplay = document.getElementById('facultyCount');
+
+        // Render Faculty Cards
+        facultyMembers.forEach(member => {
+            const card = `
+                <div class="bg-white p-6 rounded-3xl border border-slate-100 flex items-center space-x-4 hover:border-indigo-200 transition-all shadow-sm">
+                    <div class="w-12 h-12 bg-indigo-100 rounded-2xl flex items-center justify-center text-indigo-600">
+                        <i class="fa-solid ${member.icon}"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-bold text-slate-900">${member.name}</h4>
+                        <p class="text-[10px] text-slate-500 uppercase font-bold tracking-tight">${member.role}</p>
+                    </div>
+                </div>
+            `;
+            grid.innerHTML += card;
+        });
+
+        // Update Faculty Count
+        countDisplay.innerText = facultyMembers.length.toString().padStart(2, '0');
+    </script>
+</body>
+</html>
